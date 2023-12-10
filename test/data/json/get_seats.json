@@ -1,0 +1,31 @@
+[
+  {
+    "name": "seat0",
+    "capabilities": 3,
+    "focus": 15,
+    "devices": [
+      {
+        "identifier": "0:0:wayland-pointer-default",
+        "name": "wayland-pointer-default",
+        "vendor": 0,
+        "product": 0,
+        "type": "pointer",
+        "scroll_factor": 1.0
+      },
+      {
+        "identifier": "0:0:wayland-keyboard-default",
+        "name": "wayland-keyboard-default",
+        "vendor": 0,
+        "product": 0,
+        "type": "keyboard",
+        "repeat_delay": 600,
+        "repeat_rate": 25,
+        "xkb_layout_names": [
+          "English (US)"
+        ],
+        "xkb_active_layout_index": 0,
+        "xkb_active_layout_name": "English (US)"
+      }
+    ]
+  }
+]
