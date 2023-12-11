@@ -6,6 +6,7 @@ library i3_ipc;
 export 'core/tools/ipc_event_type.dart';
 export 'core/tools/ipc_magic.dart';
 export 'core/tools/ipc_payload_type.dart';
+export 'core/tools/ipc_response_parsers.dart';
 export 'core/tools/pretty_printer.dart';
 export 'core/tools/string_tools.dart';
 export 'data/models/config.dart';
