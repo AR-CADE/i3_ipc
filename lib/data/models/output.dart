@@ -28,42 +28,37 @@ class Output extends Equatable {
   });
 
   factory Output.fromJSON(Map<String, dynamic> json) {
-    try {
-      final modes = <Mode>[]..length;
-      {
-        final iterable = json['modes'] as Iterable<dynamic>;
-        for (final e in iterable) {
-          modes.add(Mode.fromJSON(e as Map<String, dynamic>));
-        }
+    final modes = <Mode>[]..length;
+    {
+      final iterable = json['modes'] as Iterable<dynamic>;
+      for (final e in iterable) {
+        modes.add(Mode.fromJSON(e as Map<String, dynamic>));
       }
-
-      return Output(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        make: json['make'] as String,
-        model: json['model'] as String,
-        serial: json['serial'] as String,
-        active: json['active'] as bool,
-        power: json['power'] as bool,
-        primary: json['primary'] as bool,
-        scale: json['scale'] as double,
-        subpixelHinting: json['subpixel_hinting'] as String,
-        transform: json['transform'] as String,
-        modes: modes,
-        currentMode:
-            Mode.fromJSON(json['current_mode'] as Map<String, dynamic>),
-        rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
-        dpms: json['dpms'] as bool?,
-        currentWorkspace: json['current_workspace'] as String?,
-        nonDesktop: json['non_desktop'] as bool?,
-        focused: json['focused'] as bool?,
-        scaleFilter: json['scale_filter'] as String?,
-        maxRenderTime: json['max_render_time'] as int?,
-        adaptiveSyncStatus: json['adaptive_sync_status'] as String?,
-      );
-    } catch (e, s) {
-      throw Exception(s.toString());
     }
+
+    return Output(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      make: json['make'] as String,
+      model: json['model'] as String,
+      serial: json['serial'] as String,
+      active: json['active'] as bool,
+      power: json['power'] as bool,
+      primary: json['primary'] as bool,
+      scale: json['scale'] as double,
+      subpixelHinting: json['subpixel_hinting'] as String,
+      transform: json['transform'] as String,
+      modes: modes,
+      currentMode: Mode.fromJSON(json['current_mode'] as Map<String, dynamic>),
+      rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
+      dpms: json['dpms'] as bool?,
+      currentWorkspace: json['current_workspace'] as String?,
+      nonDesktop: json['non_desktop'] as bool?,
+      focused: json['focused'] as bool?,
+      scaleFilter: json['scale_filter'] as String?,
+      maxRenderTime: json['max_render_time'] as int?,
+      adaptiveSyncStatus: json['adaptive_sync_status'] as String?,
+    );
   }
 
   /// The id of the output
@@ -153,5 +148,5 @@ class Output extends Equatable {
   }
 
   @override
-  List<Object?> get props => [name];
+  List<Object?> get props => [id];
 }

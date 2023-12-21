@@ -16,36 +16,32 @@ class Input extends Equatable {
   });
 
   factory Input.fromJSON(Map<String, dynamic> json) {
-    try {
-      List<String>? xkbLayoutNames;
-      {
-        final iterable = json['xkb_layout_names'] as Iterable<dynamic>?;
+    List<String>? xkbLayoutNames;
+    {
+      final iterable = json['xkb_layout_names'] as Iterable<dynamic>?;
 
-        if (iterable != null) {
-          xkbLayoutNames = <String>[];
-          for (final e in iterable) {
-            xkbLayoutNames.add(e as String);
-          }
+      if (iterable != null) {
+        xkbLayoutNames = <String>[];
+        for (final e in iterable) {
+          xkbLayoutNames.add(e as String);
         }
       }
-
-      return Input(
-        identifier: json['identifier'] as String,
-        name: json['name'] as String,
-        vendor: json['vendor'] as int,
-        product: json['product'] as int,
-        type: json['type'] as String,
-        xkbActiveLayoutName: json['xkb_active_layout_name'] as String?,
-        xkbLayoutNames: xkbLayoutNames,
-        xkbActiveLayoutIndex: json['xkb_active_layout_index'] as int?,
-        scrollFactor: json['scroll_factor'] as double?,
-        libinput: json['libinput'] != null
-            ? LibInput.fromJSON(json['libinput'] as Map<String, dynamic>)
-            : null,
-      );
-    } catch (e) {
-      throw Exception(e.toString());
     }
+
+    return Input(
+      identifier: json['identifier'] as String,
+      name: json['name'] as String,
+      vendor: json['vendor'] as int,
+      product: json['product'] as int,
+      type: json['type'] as String,
+      xkbActiveLayoutName: json['xkb_active_layout_name'] as String?,
+      xkbLayoutNames: xkbLayoutNames,
+      xkbActiveLayoutIndex: json['xkb_active_layout_index'] as int?,
+      scrollFactor: json['scroll_factor'] as double?,
+      libinput: json['libinput'] != null
+          ? LibInput.fromJSON(json['libinput'] as Map<String, dynamic>)
+          : null,
+    );
   }
 
   /// The identifier for the input device

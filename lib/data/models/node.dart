@@ -37,83 +37,79 @@ class Node extends Equatable {
   });
 
   factory Node.fromJSON(Map<String, dynamic> json) {
-    try {
-      final marks = <String>[];
-      {
-        final iterable = json['marks'] as Iterable<dynamic>;
-        for (final e in iterable) {
-          marks.add(e as String);
-        }
+    final marks = <String>[];
+    {
+      final iterable = json['marks'] as Iterable<dynamic>;
+      for (final e in iterable) {
+        marks.add(e as String);
       }
-
-      final focus = <int>[];
-      {
-        final iterable = json['focus'] as Iterable<dynamic>;
-        for (final e in iterable) {
-          focus.add(e as int);
-        }
-      }
-
-      final nodes = <Node>[];
-      {
-        final iterable = json['nodes'] as Iterable<dynamic>;
-        for (final e in iterable) {
-          nodes.add(Node.fromJSON(e as Map<String, dynamic>));
-        }
-      }
-
-      List<Node>? floatingNodes;
-      {
-        final iterable = json['floating_nodes'] as Iterable<dynamic>?;
-        if (iterable != null) {
-          floatingNodes = <Node>[];
-          for (final e in iterable) {
-            floatingNodes.add(Node.fromJSON(e as Map<String, dynamic>));
-          }
-        }
-      }
-      return Node(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        type: json['type'] as String,
-        border: json['border'] as String,
-        currentBorderWidth: json['current_border_width'] as int,
-        layout: json['layout'] as String,
-        orientation: json['orientation'] as String,
-        rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
-        windowRect: Rect.fromJSON(json['window_rect'] as Map<String, dynamic>),
-        decoRect: Rect.fromJSON(json['deco_rect'] as Map<String, dynamic>),
-        geometry: Rect.fromJSON(json['geometry'] as Map<String, dynamic>),
-        urgent: json['urgent'] as bool,
-        sticky: json['sticky'] as bool,
-        marks: marks,
-        focused: json['focused'] as bool,
-        focus: focus,
-        nodes: nodes,
-        floatingNodes: floatingNodes,
-        percent: json['percent'] as double?,
-        representation: json['representation'] as String?,
-        fullscreenMode: json['fullscreen_mode'] as int?,
-        appId: json['app_id'] as String?,
-        pid: json['pid'] as int?,
-        visible: json['visible'] as bool?,
-        shell: json['shell'] as String?,
-        inhibitIdle: json['inhibit_idle'] as bool?,
-        idleInhibitors: json['idle_inhibitors'] != null
-            ? IdleInhibitor.fromJSON(
-                json['idle_inhibitors'] as Map<String, dynamic>,
-              )
-            : null,
-        window: json['window'] as int?,
-        windowProperties: json['window_properties'] != null
-            ? WindowProperties.fromJSON(
-                json['window_properties'] as Map<String, dynamic>,
-              )
-            : null,
-      );
-    } catch (e) {
-      throw Exception(e.toString());
     }
+
+    final focus = <int>[];
+    {
+      final iterable = json['focus'] as Iterable<dynamic>;
+      for (final e in iterable) {
+        focus.add(e as int);
+      }
+    }
+
+    final nodes = <Node>[];
+    {
+      final iterable = json['nodes'] as Iterable<dynamic>;
+      for (final e in iterable) {
+        nodes.add(Node.fromJSON(e as Map<String, dynamic>));
+      }
+    }
+
+    List<Node>? floatingNodes;
+    {
+      final iterable = json['floating_nodes'] as Iterable<dynamic>?;
+      if (iterable != null) {
+        floatingNodes = <Node>[];
+        for (final e in iterable) {
+          floatingNodes.add(Node.fromJSON(e as Map<String, dynamic>));
+        }
+      }
+    }
+    return Node(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      type: json['type'] as String,
+      border: json['border'] as String,
+      currentBorderWidth: json['current_border_width'] as int,
+      layout: json['layout'] as String,
+      orientation: json['orientation'] as String,
+      rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
+      windowRect: Rect.fromJSON(json['window_rect'] as Map<String, dynamic>),
+      decoRect: Rect.fromJSON(json['deco_rect'] as Map<String, dynamic>),
+      geometry: Rect.fromJSON(json['geometry'] as Map<String, dynamic>),
+      urgent: json['urgent'] as bool,
+      sticky: json['sticky'] as bool,
+      marks: marks,
+      focused: json['focused'] as bool,
+      focus: focus,
+      nodes: nodes,
+      floatingNodes: floatingNodes,
+      percent: json['percent'] as double?,
+      representation: json['representation'] as String?,
+      fullscreenMode: json['fullscreen_mode'] as int?,
+      appId: json['app_id'] as String?,
+      pid: json['pid'] as int?,
+      visible: json['visible'] as bool?,
+      shell: json['shell'] as String?,
+      inhibitIdle: json['inhibit_idle'] as bool?,
+      idleInhibitors: json['idle_inhibitors'] != null
+          ? IdleInhibitor.fromJSON(
+              json['idle_inhibitors'] as Map<String, dynamic>,
+            )
+          : null,
+      window: json['window'] as int?,
+      windowProperties: json['window_properties'] != null
+          ? WindowProperties.fromJSON(
+              json['window_properties'] as Map<String, dynamic>,
+            )
+          : null,
+    );
   }
 
   /// The internal unique ID for this node
