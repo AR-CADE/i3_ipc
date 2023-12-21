@@ -1,15 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
 
 class IPCResponse {
-  IPCResponse({this.type = -1, this.size = 0, String? processId, this.payload})
-      : _pid = processId;
+  IPCResponse({this.type = -1, this.size = 0, String? pid, this.payload})
+      : _pid = pid;
 
   factory IPCResponse.fromJSON(Map<String, dynamic> json) {
     return IPCResponse(
       type: json['type'] as int,
       size: json['size'] as int,
-      processId: json['pid'] as String?,
+      pid: json['pid'] as String?,
       payload: json['payload'] as String?,
     );
   }
@@ -27,17 +26,11 @@ class IPCResponse {
     }
   }
 
-  Future<void> writeToFile(String path) async {
-    final file = File(path);
-    final sink = file.openWrite()..write(payload);
-    await sink.close();
-  }
-
   Map<String, dynamic> toJSON() {
     final data = <String, dynamic>{};
     data['type'] = type;
     data['size'] = size;
-    data['pid'] = pid;
+    data['pid'] = _pid;
     data['payload'] = payload;
 
     return data;
