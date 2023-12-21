@@ -7,6 +7,7 @@ import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/node.dart';
 import 'package:i3_ipc/data/models/output.dart';
 import 'package:i3_ipc/data/models/seat.dart';
+import 'package:i3_ipc/data/models/status.dart';
 import 'package:i3_ipc/data/models/version.dart';
 import 'package:i3_ipc/data/models/workspace.dart';
 
@@ -160,4 +161,14 @@ List<String> parseBarConfig(IPCResponse? response) {
     confgs.add(e as String);
   }
   return confgs;
+}
+
+Status? parseStatus(IPCResponse? response) {
+  final payload = response?.payload;
+  if (payload == null) {
+    return null;
+  }
+  final jsonBody = jsonDecode(payload);
+
+  return Status.fromJSON(jsonBody as Map<String, dynamic>);
 }
