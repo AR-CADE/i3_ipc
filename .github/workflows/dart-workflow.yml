@@ -45,9 +45,9 @@ jobs:
         with:
           channel: 'stable'
       - run: dart pub get
-      - run: dart compile exe bin/i3_ipc_example.dart
+      - run: dart compile exe bin/i3_ipc.dart
       - uses: actions/upload-artifact@v3
         with:
           name: example-linux
-          path: bin/i3_ipc_example.exe
+          path: bin/i3_ipc.exe
   
