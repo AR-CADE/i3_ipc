@@ -1,18 +1,21 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:i3_ipc/api/ipc_client_api.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
+import 'package:i3_ipc/data/models/status.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:rxdart/transformers.dart';
 import 'package:uuid/uuid.dart';
 
 class I3IpcCommandRepository {
-  final _map = <String, StreamController<IPCResponse?>>{};
+  final _controllers = <String, StreamController<IPCResponse?>>{};
+  final _subscriptions =
+      <StreamController<IPCResponse?>, StreamSubscription<IPCResponse?>>{};
 
   /// Return the number of process currently running,
   /// Mainly used for testing
-  int get processCount => _map.length;
+  int get processCount => _controllers.length;
   final _stream = PublishSubject<IPCResponse?>();
   PublishSubject<IPCResponse?> get stream => _stream;
 
@@ -250,19 +253,36 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _addOnClose(uuid, controller);
+    _addControllerToClose(uuid, controller);
 
-    StreamSubscription<IPCResponse?>? subscription;
-    final stream = controller.stream.asBroadcastStream()
-      ..doOnCancel(() {
-        subscription?.cancel();
-        close(pid: uuid);
-      });
+    final stream = controller.stream.asBroadcastStream();
 
     return stream.first.then((status) {
-      //print('status: $status');
-      subscription = stream.listen(_add);
+      _verifySubscriptionStatus(uuid, status);
+
+      final subscription = stream.listen(_add);
+      _addSubscriptionToClose(controller, subscription);
     });
+  }
+
+  void _verifySubscriptionStatus(String pid, IPCResponse? status) {
+    final payload = status?.payload;
+    var success = false;
+    String? error;
+    if (payload != null) {
+      final json = jsonDecode(payload) as Map<String, dynamic>?;
+      if (json != null) {
+        final status = Status.fromJSON(json);
+        success = status.success;
+        error = status.error;
+      }
+    }
+
+    if (success == false) {
+      close(pid: pid);
+      error ??= 'An unknown error occurred';
+      throw Exception(error);
+    }
   }
 
   FutureOr<void> execute(
@@ -284,7 +304,7 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _addOnClose(uuid, controller);
+    _addControllerToClose(uuid, controller);
 
     return controller.stream.first.then((value) {
       close(pid: uuid);
@@ -292,11 +312,20 @@ class I3IpcCommandRepository {
     });
   }
 
-  void _addOnClose(String pid, StreamController<IPCResponse?> controller) =>
-      _map.putIfAbsent(pid, () => controller);
+  void _addControllerToClose(
+    String pid,
+    StreamController<IPCResponse?> controller,
+  ) =>
+      _controllers.putIfAbsent(pid, () => controller);
+
+  void _addSubscriptionToClose(
+    StreamController<IPCResponse?> controller,
+    StreamSubscription<IPCResponse?> subscription,
+  ) =>
+      _subscriptions.putIfAbsent(controller, () => subscription);
 
   void close({String? pid}) {
-    if (_map.isEmpty) {
+    if (_controllers.isEmpty) {
       if (_stream.isClosed == false) {
         _stream.close();
       }
@@ -304,19 +333,34 @@ class I3IpcCommandRepository {
     }
 
     if (pid != null) {
-      final controller = _map[pid];
+      final controller = _controllers[pid];
       if (controller != null) {
+        final subscription = _subscriptions[controller];
+        if (subscription != null) {
+          subscription.cancel();
+          _subscriptions.remove(controller);
+        }
         controller.close();
-        _map.remove(pid);
+        _controllers.remove(pid);
       }
       return;
     }
 
-    _map
+    _controllers
       ..forEach((_, controller) {
+        final subscription = _subscriptions[controller];
+        if (subscription != null) {
+          subscription.cancel();
+          _subscriptions.remove(controller);
+        }
         controller.close();
       })
       ..clear();
+
+    assert(
+      _subscriptions.isEmpty == true,
+      'Internal _subscriptions is not empty on close',
+    );
 
     if (_stream.isClosed == false) {
       _stream.close();
