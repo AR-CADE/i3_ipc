@@ -3,6 +3,20 @@ import 'package:test/test.dart';
 
 void main() {
   group('SeatDevice model', () {
+    test('props are correct', () {
+      const seatDevice = SeatDevice(
+        identifier: 'identifier_test',
+        name: 'name_test',
+        vendor: 0,
+        product: 1,
+        type: 'type_test',
+      );
+      expect(
+        seatDevice.props,
+        equals(['identifier_test']),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const seatDevice = SeatDevice(

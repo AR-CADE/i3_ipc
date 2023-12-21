@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:test/test.dart';
 
@@ -33,7 +35,7 @@ void main() {
         final ipcResponse = IPCResponse(
           type: 1,
           size: 1,
-          processId: 'pid_test',
+          pid: 'pid_test',
           payload: 'payload_test',
         );
         final json = ipcResponse.toJSON();
@@ -134,6 +136,40 @@ void main() {
         expect(
           iPCResponse.payload,
           'payload_test',
+        );
+      });
+    });
+
+    group('to string', () {
+      test('with required parameters only', () {
+        final json = {'type': 1, 'size': 1};
+
+        final expectedJson = {
+          'type': 1,
+          'size': 1,
+          'pid': null,
+          'payload': null,
+        };
+        final iPCResponse = IPCResponse.fromJSON(json);
+        final string = iPCResponse.toString();
+        expect(
+          string,
+          jsonEncode(expectedJson),
+        );
+      });
+
+      test('with required all parameters', () {
+        final json = {
+          'type': 1,
+          'size': 1,
+          'pid': 'pid_test',
+          'payload': 'payload_test',
+        };
+        final iPCResponse = IPCResponse.fromJSON(json);
+        final string = iPCResponse.toString();
+        expect(
+          string,
+          jsonEncode(json),
         );
       });
     });

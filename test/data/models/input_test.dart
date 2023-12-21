@@ -30,6 +30,19 @@ class _MockLibInput extends MockLibInput {
 
 void main() {
   group('Input model', () {
+    test('props are correct', () {
+      const input = Input(
+        identifier: 'identifier_test',
+        name: 'name_test',
+        vendor: 0,
+        product: 0,
+        type: 'type_test',
+      );
+      expect(
+        input.props,
+        equals(['identifier_test']),
+      );
+    });
     group('serialize', () {
       test('with required parameters only', () {
         const input = Input(

@@ -23,6 +23,20 @@ class _MockSeatDevice extends MockSeatDevice {
 
 void main() {
   group('Seat model', () {
+    test('props are correct', () {
+      final devicesMock = [_MockSeatDevice(), _MockSeatDevice()];
+      final seat = Seat(
+        name: 'name_test',
+        capabilities: 1,
+        focus: 2,
+        devices: devicesMock,
+      );
+      expect(
+        seat.props,
+        equals(['name_test']),
+      );
+    });
+
     test('serialize', () {
       final devicesMock = [_MockSeatDevice(), _MockSeatDevice()];
       final seat = Seat(

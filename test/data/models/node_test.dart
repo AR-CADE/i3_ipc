@@ -80,6 +80,40 @@ class _MockNode extends MockNode {
 
 void main() {
   group('Node model', () {
+    test('props are correct', () {
+      const marksMock = ['1', '2'];
+      const focusMock = [1, 2, 3, 4];
+      final rectMock = _MockRect();
+      final windowRectMock = _MockRect();
+      final decoRectMock = _MockRect();
+      final geometryMock = _MockRect();
+      final nodesMock = [_MockNode()];
+
+      final mode = Node(
+        id: 0,
+        name: 'name_test',
+        type: 'type_test',
+        border: 'border_test',
+        currentBorderWidth: 1,
+        layout: 'layout_test',
+        orientation: 'orientation_test',
+        rect: rectMock,
+        windowRect: windowRectMock,
+        decoRect: decoRectMock,
+        geometry: geometryMock,
+        urgent: false,
+        sticky: false,
+        marks: marksMock,
+        focused: true,
+        focus: focusMock,
+        nodes: nodesMock,
+      );
+      expect(
+        mode.props,
+        equals([0]),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const marksMock = ['1', '2'];

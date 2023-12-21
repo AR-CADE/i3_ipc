@@ -29,6 +29,32 @@ class _MockRect extends MockRect {
 
 void main() {
   group('Output model', () {
+    test('props are correct', () {
+      final rectMock = _MockRect();
+      final currentModeMock = _MockMode();
+      final modesMock = [_MockMode()];
+      final output = Output(
+        id: 0,
+        name: 'name_test',
+        make: 'make_test',
+        model: 'model_test',
+        serial: 'serial_test',
+        active: true,
+        power: true,
+        primary: true,
+        scale: 1,
+        subpixelHinting: 'subpixelHinting_test',
+        transform: 'transform_test',
+        modes: modesMock,
+        currentMode: currentModeMock,
+        rect: rectMock,
+      );
+      expect(
+        output.props,
+        equals([0]),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         final rectMock = _MockRect();

@@ -17,6 +17,23 @@ class _MockRect extends MockRect {
 
 void main() {
   group('Workspace model', () {
+    test('props are correct', () {
+      final rectMock = _MockRect();
+      final workspace = Workspace(
+        num: 1,
+        name: 'name_test',
+        visible: true,
+        focused: true,
+        urgent: false,
+        rect: rectMock,
+        output: 'output_test',
+      );
+      expect(
+        workspace.props,
+        equals([1, 'name_test']),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         final rectMock = _MockRect();
