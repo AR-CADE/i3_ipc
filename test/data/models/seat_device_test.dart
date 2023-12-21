@@ -201,7 +201,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {
           'identifier': 'identifier_test',
           'name': 'name_test',

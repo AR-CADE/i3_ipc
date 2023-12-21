@@ -85,7 +85,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {
           'width': 1,
           'height': 2,

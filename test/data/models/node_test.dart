@@ -633,7 +633,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         const marksMock = ['1', '2'];
         const focusMock = [1, 2, 3, 4];
         final rectMock = _MockRect();

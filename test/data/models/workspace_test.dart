@@ -210,7 +210,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final rectMock = _MockRect();
         final json = {
           'num': 1,

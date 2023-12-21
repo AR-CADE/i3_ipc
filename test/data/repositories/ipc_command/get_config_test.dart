@@ -44,7 +44,7 @@ void main() {
       client = _MockI3IpcClientApi();
     });
 
-    test('onGetInputs', () async {
+    test('onGetConfig', () async {
       unawaited(
         i3IpcCommandRepository.stream.first.then((response) {
           expect(

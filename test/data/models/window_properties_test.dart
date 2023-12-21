@@ -93,7 +93,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {
           'class': 'class_test',
           'instance': 'instance_test',

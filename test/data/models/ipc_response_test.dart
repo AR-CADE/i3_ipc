@@ -113,7 +113,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {
           'type': 1,
           'size': 1,
@@ -158,7 +158,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {
           'type': 1,
           'size': 1,

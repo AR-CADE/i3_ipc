@@ -21,7 +21,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         const status = Status(success: true, error: 'error_test');
         final json = status.toJSON();
         final success = json['success'];
@@ -56,7 +56,7 @@ void main() {
         );
       });
 
-      test('with required all parameters', () {
+      test('with all parameters', () {
         final json = {'success': true, 'error': 'error_test'};
         final status = Status.fromJSON(json);
 
