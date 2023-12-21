@@ -8,19 +8,9 @@ import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/node.dart';
 import 'package:i3_ipc/data/models/output.dart';
 import 'package:i3_ipc/data/models/seat.dart';
+import 'package:i3_ipc/data/models/status.dart';
 import 'package:i3_ipc/data/models/version.dart';
 import 'package:i3_ipc/data/models/workspace.dart';
-
-class _Status {
-  static bool successObject(dynamic result) {
-    if (result is! Map) {
-      return false;
-    }
-    final ret = result['success'] as bool?;
-
-    return ret ?? true;
-  }
-}
 
 class PrettyPrinter {
   const PrettyPrinter();
@@ -30,12 +20,9 @@ class PrettyPrinter {
     return encoder.convert(object);
   }
 
-  static void prettyPrintCmd(dynamic r) {
-    if (r is! Map || !_Status.successObject(r)) {
-      String? error;
-      if (r is Map) {
-        error = r['error'] as String;
-      }
+  static void prettyPrintCmd(Status s) {
+    if (s.success == false) {
+      final error = s.error;
 
       if (error == null) {
         stdout.write('An unknkown error occurred');
@@ -316,7 +303,7 @@ class PrettyPrinter {
       for (final obj in json) {
         switch (type) {
           case IpcPayloadType.ipcCommand:
-            prettyPrintCmd(obj);
+            prettyPrintCmd(Status.fromJSON(obj as Map<String, dynamic>));
 
           case IpcPayloadType.ipcGetWorkspaces:
             prettyPrintWorkspace(
