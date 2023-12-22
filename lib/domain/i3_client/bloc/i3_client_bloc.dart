@@ -6,7 +6,6 @@ import 'package:i3_ipc/core/tools/ipc_event_type.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository.dart';
-import 'package:uuid/uuid.dart';
 
 part 'i3_client_event.dart';
 part 'i3_client_state.dart';

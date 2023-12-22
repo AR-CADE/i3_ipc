@@ -17,7 +17,7 @@ class I3IpcCommandRepository {
   /// Mainly used for testing
   int get processCount => _controllers.length;
   final _stream = PublishSubject<IPCResponse?>();
-  PublishSubject<IPCResponse?> get stream => _stream;
+  Stream<IPCResponse?> get stream => _stream.stream;
 
   void _add(IPCResponse? response) {
     if (_stream.isClosed == false) {
@@ -366,4 +366,6 @@ class I3IpcCommandRepository {
       _stream.close();
     }
   }
+
+  bool get isClosed => _stream.isClosed;
 }

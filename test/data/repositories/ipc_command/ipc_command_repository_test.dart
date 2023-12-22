@@ -106,7 +106,7 @@ void main() {
         test('status is closed', () {
           i3IpcCommandRepository.close();
           expect(
-            i3IpcCommandRepository.stream.isClosed,
+            i3IpcCommandRepository.isClosed,
             true,
           );
         });
