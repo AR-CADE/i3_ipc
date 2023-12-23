@@ -253,7 +253,7 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _addControllerToClose(uuid, controller);
+    _open(uuid, controller);
 
     final stream = controller.stream.asBroadcastStream();
 
@@ -261,7 +261,7 @@ class I3IpcCommandRepository {
       _verifySubscriptionStatus(uuid, status);
 
       final subscription = stream.listen(_add);
-      _addSubscriptionToClose(controller, subscription);
+      _attachSubscription(controller, subscription);
     });
   }
 
@@ -304,7 +304,7 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _addControllerToClose(uuid, controller);
+    _open(uuid, controller);
 
     return controller.stream.first.then((value) {
       close(pid: uuid);
@@ -312,20 +312,18 @@ class I3IpcCommandRepository {
     });
   }
 
-  void _addControllerToClose(
+  void _open(
     String pid,
     StreamController<IPCResponse?> controller,
   ) =>
       _controllers.putIfAbsent(pid, () => controller);
 
-  void _addSubscriptionToClose(
-    StreamController<IPCResponse?> controller,
-    StreamSubscription<IPCResponse?> subscription,
-  ) =>
-      _subscriptions.putIfAbsent(controller, () => subscription);
-
   void close({String? pid}) {
     if (_controllers.isEmpty) {
+      assert(
+        _subscriptions.isEmpty == true,
+        'Internal _subscriptions is not empty on close but no controller found',
+      );
       if (_stream.isClosed == false) {
         _stream.close();
       }
@@ -335,11 +333,7 @@ class I3IpcCommandRepository {
     if (pid != null) {
       final controller = _controllers[pid];
       if (controller != null) {
-        final subscription = _subscriptions[controller];
-        if (subscription != null) {
-          subscription.cancel();
-          _subscriptions.remove(controller);
-        }
+        _detachSubscription(controller);
         controller.close();
         _controllers.remove(pid);
       }
@@ -348,11 +342,7 @@ class I3IpcCommandRepository {
 
     _controllers
       ..forEach((_, controller) {
-        final subscription = _subscriptions[controller];
-        if (subscription != null) {
-          subscription.cancel();
-          _subscriptions.remove(controller);
-        }
+        _detachSubscription(controller);
         controller.close();
       })
       ..clear();
@@ -364,6 +354,23 @@ class I3IpcCommandRepository {
 
     if (_stream.isClosed == false) {
       _stream.close();
+    }
+  }
+
+  void _attachSubscription(
+    StreamController<IPCResponse?> controller,
+    StreamSubscription<IPCResponse?> subscription,
+  ) =>
+      _subscriptions.putIfAbsent(controller, () => subscription);
+
+  void _detachSubscription(
+    StreamController<IPCResponse?> controller,
+  ) {
+    final subscription = _subscriptions[controller];
+
+    if (subscription != null) {
+      subscription.cancel();
+      _subscriptions.remove(controller);
     }
   }
 
