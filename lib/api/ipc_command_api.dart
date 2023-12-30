@@ -13,17 +13,19 @@ class I3IpcCommandApi {
     required String pid,
     String payload = '',
     StreamController<IPCResponse?>? controller,
-  }) : _pid = pid {
+  })  : _pid = pid,
+        _controller = controller {
     streamListener = socket.asBroadcastStream().listen(
       (event) {
         if (event == RawSocketEvent.read) {
           final response = _ipcRecvResponse(socket);
-          if (response == null || (controller != null && controller.isClosed)) {
+          if (response == null ||
+              (_controller != null && _controller.isClosed)) {
             streamListener.cancel();
             socket.close();
             return;
           }
-          controller?.add(response);
+          _controller?.add(response);
           if (type != IpcPayloadType.ipcSubscribe) {
             streamListener.cancel();
             socket.close();
@@ -34,37 +36,37 @@ class I3IpcCommandApi {
           socket.close();
         }
       },
-      onError: (Object error) {
+      onError: (Object error, StackTrace s) {
         stderr.writeln('error $error');
+        _controller?.addError(error, s);
       },
       cancelOnError: false,
     );
 
-    controller?.onCancel = () {
+    _controller?.onCancel = () {
       streamListener.cancel();
       socket.close();
     };
 
     final header = _buildHeader(type, payload);
     if (socket.write(utf8.encode(header)) == -1) {
-      streamListener.cancel();
-      _clientAbort(socket, 'Unable to send IPC header');
+      _clientAbort('Unable to send IPC header');
     }
 
     if (socket.write(utf8.encode(payload)) == -1) {
-      streamListener.cancel();
-      _clientAbort(socket, 'Unable to send IPC payload');
+      _clientAbort('Unable to send IPC payload');
     }
   }
 
   final String _pid;
+  final StreamController<IPCResponse?>? _controller;
   late StreamSubscription<RawSocketEvent> streamListener;
 
-  void _clientAbort(RawSocket? socket, String message) {
-    if (socket != null) {
-      socket.close();
-    }
-    throw Exception('message');
+  void _clientAbort(
+    String message,
+  ) {
+    _controller?.addError(message);
+    throw Exception(message);
   }
 
   String _buildHeader(
@@ -92,7 +94,7 @@ class I3IpcCommandApi {
     while (total < IpcMagic.size) {
       final received = socket.read(IpcMagic.size - total);
       if (received == null || received.isEmpty) {
-        _clientAbort(socket, 'Unable to receive IPC response');
+        _clientAbort('Unable to receive IPC response');
         return null;
       }
       var offset = 0;
@@ -117,7 +119,7 @@ class I3IpcCommandApi {
     while (total < response.size) {
       final received = socket.read(response.size - total);
       if (received == null || received.isEmpty) {
-        _clientAbort(socket, 'Unable to receive IPC response');
+        _clientAbort('Unable to receive IPC response');
         return null;
       }
       var offset = 0;

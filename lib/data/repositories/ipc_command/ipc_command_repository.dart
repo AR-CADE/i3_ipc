@@ -6,6 +6,7 @@ import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/status.dart';
 import 'package:rxdart/subjects.dart';
+import 'package:rxdart/transformers.dart';
 import 'package:uuid/uuid.dart';
 
 class I3IpcCommandRepository {
@@ -257,12 +258,17 @@ class I3IpcCommandRepository {
 
     final stream = controller.stream.asBroadcastStream();
 
-    return stream.first.then((status) {
-      _verifySubscriptionStatus(uuid, status);
+    return stream
+        .doOnError((_, __) {
+          close(pid: uuid);
+        })
+        .first
+        .then((status) {
+          _verifySubscriptionStatus(uuid, status);
 
-      final subscription = stream.listen(_add);
-      _attachSubscription(controller, subscription);
-    });
+          final subscription = stream.listen(_add);
+          _attachSubscription(controller, subscription);
+        });
   }
 
   void _verifySubscriptionStatus(String pid, IPCResponse? status) {
@@ -306,10 +312,15 @@ class I3IpcCommandRepository {
 
     _open(uuid, controller);
 
-    return controller.stream.first.then((value) {
-      close(pid: uuid);
-      _add(value);
-    });
+    return controller.stream
+        .doOnError((_, __) {
+          close(pid: uuid);
+        })
+        .first
+        .then((value) {
+          close(pid: uuid);
+          _add(value);
+        });
   }
 
   void _open(

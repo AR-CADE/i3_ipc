@@ -73,6 +73,22 @@ class _MockI3IpcClientFailedApi extends MockI3IpcClientApi {
   }
 }
 
+class _MockI3IpcClientErrorApi extends MockI3IpcClientApi {
+  @override
+  void execute(
+    int type, {
+    required String pid,
+    String payload = '',
+    StreamController<IPCResponse?>? controller,
+    Endian? endian,
+    String? socketPath,
+    Duration timeout = const Duration(seconds: 2),
+    I3IpcSocketApi socket = const I3IpcSocketApi(),
+  }) {
+    controller?.addError('Error in proccess with $pid');
+  }
+}
+
 void main() {
   group('I3IpcCommandRepository', () {
     late I3IpcCommandRepository i3IpcCommandRepository;
@@ -164,6 +180,28 @@ void main() {
 
         throw Exception('Expected Exception');
       });
+
+      test('error', () async {
+        final client = _MockI3IpcClientErrorApi();
+
+        try {
+          await i3IpcCommandRepository.subscribeEvents(
+            payload: '["window"]',
+            client: client,
+          );
+        } catch (_) {
+          expect(
+            i3IpcCommandRepository.processCount,
+            0,
+          );
+          return;
+        }
+
+        final response = await i3IpcCommandRepository.stream.first;
+        i3IpcCommandRepository.close(pid: response?.pid);
+
+        throw Exception('Expected Exception');
+      });
     });
 
     group('onExecute', () {
@@ -178,6 +216,28 @@ void main() {
         );
 
         i3IpcCommandRepository.close();
+      });
+
+      test('error', () async {
+        final client = _MockI3IpcClientErrorApi();
+
+        try {
+          await i3IpcCommandRepository.execute(
+            0,
+            client: client,
+          );
+        } catch (_) {
+          expect(
+            i3IpcCommandRepository.processCount,
+            0,
+          );
+          return;
+        }
+
+        final response = await i3IpcCommandRepository.stream.first;
+        i3IpcCommandRepository.close(pid: response?.pid);
+
+        throw Exception('Expected Exception');
       });
     });
   });
