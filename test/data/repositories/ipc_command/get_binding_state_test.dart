@@ -38,43 +38,70 @@ void main() {
   group('I3IpcCommandRepository', () {
     late I3IpcCommandRepository i3IpcCommandRepository;
     late _MockI3IpcClientApi client;
+    late MockI3IpcClientNullResponseApi nullResponseClient;
 
     setUp(() {
       i3IpcCommandRepository = I3IpcCommandRepository();
       client = _MockI3IpcClientApi();
+      nullResponseClient = MockI3IpcClientNullResponseApi();
     });
 
-    test('onGetBindingState', () async {
-      unawaited(
-        i3IpcCommandRepository.stream.first.then((response) {
-          expect(
-            response != null,
-            true,
-          );
+    group('onGetBindingState', () {
+      test('with success', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            expect(
+              response != null,
+              true,
+            );
 
-          expect(
-            response?.payload != null,
-            true,
-          );
+            expect(
+              response?.payload != null,
+              true,
+            );
 
-          final state = parseBindingState(response);
+            final state = parseBindingState(response);
 
-          expect(
-            state != null,
-            true,
-          );
+            expect(
+              state != null,
+              true,
+            );
 
-          expect(
-            state!.name,
-            'default',
-          );
-        }),
-      );
-      await i3IpcCommandRepository.getBindingState(
-        client: client,
-      );
+            expect(
+              state!.name,
+              'default',
+            );
+          }),
+        );
+        await i3IpcCommandRepository.getBindingState(
+          client: client,
+        );
 
-      i3IpcCommandRepository.close();
+        i3IpcCommandRepository.close();
+      });
+
+      test('with error', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            expect(
+              response == null,
+              true,
+            );
+
+            final state = parseBindingState(response);
+
+            expect(
+              state == null,
+              true,
+            );
+          }),
+        );
+        await i3IpcCommandRepository.getBindingState(
+          client: nullResponseClient,
+        );
+
+        i3IpcCommandRepository.close();
+      });
     });
   });
 }

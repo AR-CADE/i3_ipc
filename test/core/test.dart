@@ -1,9 +1,30 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:i3_ipc/api/ipc_client_api.dart';
 import 'package:i3_ipc/api/socket_api.dart';
 import 'package:i3_ipc/i3_ipc.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockI3IpcClientApi extends Mock implements I3IpcClientApi {}
+
+class MockI3IpcClientNullResponseApi extends MockI3IpcClientApi {
+  @override
+  void execute(
+    int type, {
+    required String pid,
+    String payload = '',
+    StreamController<IPCResponse?>? controller,
+    Endian? endian,
+    String? socketPath,
+    Duration timeout = const Duration(seconds: 2),
+    I3IpcSocketApi socket = const I3IpcSocketApi(),
+  }) {
+    controller?.add(
+      null,
+    );
+  }
+}
 
 class MockLibInput extends Mock implements LibInput {}
 

@@ -37,38 +37,70 @@ void main() {
   group('I3IpcCommandRepository', () {
     late I3IpcCommandRepository i3IpcCommandRepository;
     late _MockI3IpcClientApi client;
+    late MockI3IpcClientNullResponseApi nullResponseClient;
 
     setUp(() {
       i3IpcCommandRepository = I3IpcCommandRepository();
       client = _MockI3IpcClientApi();
+      nullResponseClient = MockI3IpcClientNullResponseApi();
     });
 
-    test('onGetWorkspaces', () async {
-      unawaited(
-        i3IpcCommandRepository.stream.first.then((response) {
-          expect(
-            response != null,
-            true,
-          );
+    group('onGetWorkspaces', () {
+      test('with success', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            final workspaces = parseWorkspaces(response);
 
-          expect(
-            response?.payload != null,
-            true,
-          );
+            expect(
+              response != null,
+              true,
+            );
 
-          final workspaces = parseWorkspaces(response);
+            expect(
+              response?.payload != null,
+              true,
+            );
 
-          expect(
-            workspaces.length,
-            4,
-          );
-        }),
-      );
-      await i3IpcCommandRepository.getWorkspaces(
-        client: client,
-      );
+            expect(
+              workspaces.length,
+              4,
+            );
+          }),
+        );
+        await i3IpcCommandRepository.getWorkspaces(
+          client: client,
+        );
 
-      i3IpcCommandRepository.close();
+        i3IpcCommandRepository.close();
+      });
+
+      test('with error', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            final workspaces = parseWorkspaces(response);
+
+            expect(
+              response == null,
+              true,
+            );
+
+            expect(
+              response?.payload == null,
+              true,
+            );
+
+            expect(
+              workspaces.isEmpty,
+              true,
+            );
+          }),
+        );
+        await i3IpcCommandRepository.getWorkspaces(
+          client: nullResponseClient,
+        );
+
+        i3IpcCommandRepository.close();
+      });
     });
   });
 }

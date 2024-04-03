@@ -38,43 +38,70 @@ void main() {
   group('I3IpcCommandRepository', () {
     late I3IpcCommandRepository i3IpcCommandRepository;
     late _MockI3IpcClientApi client;
+    late MockI3IpcClientNullResponseApi nullResponseClient;
 
     setUp(() {
       i3IpcCommandRepository = I3IpcCommandRepository();
       client = _MockI3IpcClientApi();
+      nullResponseClient = MockI3IpcClientNullResponseApi();
     });
 
-    test('onSync', () async {
-      unawaited(
-        i3IpcCommandRepository.stream.first.then((response) {
-          expect(
-            response != null,
-            true,
-          );
+    group('onSync', () {
+      test('with success', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            expect(
+              response != null,
+              true,
+            );
 
-          expect(
-            response?.payload != null,
-            true,
-          );
+            expect(
+              response?.payload != null,
+              true,
+            );
 
-          final status = parseStatus(response);
+            final status = parseStatus(response);
 
-          expect(
-            status != null,
-            true,
-          );
+            expect(
+              status != null,
+              true,
+            );
 
-          expect(
-            status!.success,
-            true,
-          );
-        }),
-      );
-      await i3IpcCommandRepository.sync(
-        client: client,
-      );
+            expect(
+              status!.success,
+              true,
+            );
+          }),
+        );
+        await i3IpcCommandRepository.sync(
+          client: client,
+        );
 
-      i3IpcCommandRepository.close();
+        i3IpcCommandRepository.close();
+      });
+
+      test('with error', () async {
+        unawaited(
+          i3IpcCommandRepository.stream.first.then((response) {
+            expect(
+              response == null,
+              true,
+            );
+
+            final status = parseStatus(response);
+
+            expect(
+              status == null,
+              true,
+            );
+          }),
+        );
+        await i3IpcCommandRepository.sync(
+          client: nullResponseClient,
+        );
+
+        i3IpcCommandRepository.close();
+      });
     });
   });
 }
