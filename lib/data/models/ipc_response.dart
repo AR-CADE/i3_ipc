@@ -2,9 +2,9 @@ import 'dart:convert';
 
 class IPCResponse {
   IPCResponse({
-    String? id,
     this.type = -1,
     this.size = 0,
+    String? id,
     String? pid,
     this.payload,
   })  : _id = id,
@@ -12,9 +12,9 @@ class IPCResponse {
 
   factory IPCResponse.fromJSON(Map<String, dynamic> json) {
     return IPCResponse(
-      id: json['id'] as String?,
       type: json['type'] as int,
       size: json['size'] as int,
+      id: json['id'] as String?,
       pid: json['pid'] as String?,
       payload: json['payload'] as String?,
     );
@@ -44,9 +44,9 @@ class IPCResponse {
 
   Map<String, dynamic> toJSON() {
     final data = <String, dynamic>{};
-    data['id'] = _id;
     data['type'] = type;
     data['size'] = size;
+    data['id'] = _id;
     data['pid'] = _pid;
     data['payload'] = payload;
 
