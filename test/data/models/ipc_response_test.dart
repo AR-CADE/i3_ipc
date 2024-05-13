@@ -11,6 +11,7 @@ void main() {
         final json = ipcResponse.toJSON();
         final type = json['type'];
         final size = json['size'];
+        final id = json['id'];
         final pid = json['pid'];
         final payload = json['payload'];
         expect(
@@ -20,6 +21,10 @@ void main() {
         expect(
           size,
           0,
+        );
+        expect(
+          id,
+          null,
         );
         expect(
           pid,
@@ -35,12 +40,14 @@ void main() {
         final ipcResponse = IPCResponse(
           type: 1,
           size: 1,
+          id: 'id_test',
           pid: 'pid_test',
           payload: 'payload_test',
         );
         final json = ipcResponse.toJSON();
         final type = json['type'];
         final size = json['size'];
+        final id = json['id'];
         final pid = json['pid'];
         final payload = json['payload'];
         expect(
@@ -50,6 +57,10 @@ void main() {
         expect(
           size,
           1,
+        );
+        expect(
+          id,
+          'id_test',
         );
         expect(
           pid,
@@ -65,11 +76,13 @@ void main() {
         final ipcResponse = IPCResponse()
           ..type = 1
           ..size = 1
+          ..id = 'id_test'
           ..pid = 'pid_test'
           ..payload = 'payload_test';
         final json = ipcResponse.toJSON();
         final type = json['type'];
         final size = json['size'];
+        final id = json['id'];
         final pid = json['pid'];
         final payload = json['payload'];
         expect(
@@ -79,6 +92,10 @@ void main() {
         expect(
           size,
           1,
+        );
+        expect(
+          id,
+          'id_test',
         );
         expect(
           pid,
@@ -104,6 +121,10 @@ void main() {
           1,
         );
         expect(
+          iPCResponse.id,
+          null,
+        );
+        expect(
           iPCResponse.pid,
           null,
         );
@@ -117,6 +138,7 @@ void main() {
         final json = {
           'type': 1,
           'size': 1,
+          'id': 'id_test',
           'pid': 'pid_test',
           'payload': 'payload_test',
         };
@@ -128,6 +150,10 @@ void main() {
         expect(
           iPCResponse.size,
           1,
+        );
+        expect(
+          iPCResponse.id,
+          'id_test',
         );
         expect(
           iPCResponse.pid,
@@ -147,6 +173,7 @@ void main() {
         final expectedJson = {
           'type': 1,
           'size': 1,
+          'id': null,
           'pid': null,
           'payload': null,
         };
@@ -162,6 +189,7 @@ void main() {
         final json = {
           'type': 1,
           'size': 1,
+          'id': 'id_test',
           'pid': 'pid_test',
           'payload': 'payload_test',
         };

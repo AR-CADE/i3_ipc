@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:i3_ipc/core/tools/ipc_magic.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
+import 'package:uuid/uuid.dart';
 
 class I3IpcCommandApi {
   I3IpcCommandApi(
@@ -111,7 +112,8 @@ class I3IpcCommandApi {
     //     .toList());
     final response = IPCResponse()
       ..size = data.getUint32(IpcMagic.asUtf8Encoded.length, endian)
-      ..type = data.getUint32(IpcMagic.asUtf8Encoded.length + 4, endian);
+      ..type = data.getUint32(IpcMagic.asUtf8Encoded.length + 4, endian)
+      ..id = const Uuid().v4();
 
     total = 0;
     final payload = ByteData(response.size);

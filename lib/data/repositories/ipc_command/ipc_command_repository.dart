@@ -243,10 +243,10 @@ class I3IpcCommandRepository {
     I3IpcClientApi client = const I3IpcClientApi(),
   }) {
     final controller = StreamController<IPCResponse?>();
-    final uuid = const Uuid().v4();
+    final pid = const Uuid().v4();
 
     client.execute(
-      pid: uuid,
+      pid: pid,
       IpcPayloadType.ipcSubscribe,
       payload: payload,
       controller: controller,
@@ -254,17 +254,17 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _open(uuid, controller);
+    _open(pid, controller);
 
     final stream = controller.stream.asBroadcastStream();
 
     return stream
         .doOnError((_, __) {
-          close(pid: uuid);
+          close(pid: pid);
         })
         .first
         .then((status) {
-          _verifySubscriptionStatus(uuid, status);
+          _verifySubscriptionStatus(pid, status);
 
           final subscription = stream.listen(_add);
           _attachSubscription(controller, subscription);
@@ -299,10 +299,10 @@ class I3IpcCommandRepository {
     I3IpcClientApi client = const I3IpcClientApi(),
   }) {
     final controller = StreamController<IPCResponse?>();
-    final uuid = const Uuid().v4();
+    final pid = const Uuid().v4();
 
     client.execute(
-      pid: uuid,
+      pid: pid,
       type,
       payload: payload,
       controller: controller,
@@ -310,15 +310,15 @@ class I3IpcCommandRepository {
       timeout: timeout,
     );
 
-    _open(uuid, controller);
+    _open(pid, controller);
 
     return controller.stream
         .doOnError((_, __) {
-          close(pid: uuid);
+          close(pid: pid);
         })
         .first
         .then((value) {
-          close(pid: uuid);
+          close(pid: pid);
           _add(value);
         });
   }

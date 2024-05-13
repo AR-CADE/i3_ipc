@@ -8,6 +8,7 @@ import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/status.dart';
 import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository.dart';
 import 'package:test/test.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../core/test.dart';
 
@@ -32,11 +33,11 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
       );
 
       final stream = [
-        IPCResponse(pid: pid),
-        IPCResponse(pid: pid),
-        IPCResponse(pid: pid),
-        IPCResponse(pid: pid),
-        IPCResponse(pid: pid),
+        IPCResponse(id: const Uuid().v4(), pid: pid),
+        IPCResponse(id: const Uuid().v4(), pid: pid),
+        IPCResponse(id: const Uuid().v4(), pid: pid),
+        IPCResponse(id: const Uuid().v4(), pid: pid),
+        IPCResponse(id: const Uuid().v4(), pid: pid),
       ];
 
       for (final response in stream) {

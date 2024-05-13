@@ -3,6 +3,7 @@ part of 'i3_client_bloc.dart';
 class I3ClientBlocState extends Equatable {
   const I3ClientBlocState._({
     this.status = '',
+    this.id,
     this.pid,
     this.response,
   });
@@ -20,6 +21,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.barConfig(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'barConfig',
@@ -27,6 +29,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.bindingModes(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'bindingModes',
@@ -34,6 +37,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.bindingState(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'bindingState',
@@ -41,6 +45,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.config(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'config',
@@ -48,6 +53,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.inputs(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'inputs',
@@ -55,6 +61,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.marks(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'marks',
@@ -62,6 +69,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.outputs(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'outputs',
@@ -69,6 +77,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.seats(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'seats',
@@ -76,6 +85,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.tree(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'tree',
@@ -83,6 +93,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.version(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'version',
@@ -90,6 +101,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.workspaces(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'workspaces',
@@ -97,6 +109,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.events(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'events',
@@ -104,6 +117,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.command(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'command',
@@ -111,6 +125,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.tick(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'tick',
@@ -118,6 +133,7 @@ class I3ClientBlocState extends Equatable {
 
   I3ClientBlocState.sync(IPCResponse? response)
       : this._(
+          id: response?.id,
           pid: response?.pid,
           response: response,
           status: 'sync',
@@ -125,8 +141,9 @@ class I3ClientBlocState extends Equatable {
 
   final IPCResponse? response;
   final String status;
+  final String? id;
   final String? pid;
 
   @override
-  List<Object> get props => [pid ?? status];
+  List<Object> get props => [id ?? pid ?? status, status];
 }
