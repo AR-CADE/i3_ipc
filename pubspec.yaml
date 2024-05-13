@@ -1,6 +1,6 @@
 name: i3_ipc
 description: An I3 ipc client library written in Dart.
-version: 2.0.9
+version: 2.0.10
 repository: https://github.com/AR-CADE/i3_ipc
 
 environment:
