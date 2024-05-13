@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 class IPCResponse {
-  IPCResponse(
-      {String? id, this.type = -1, this.size = 0, String? pid, this.payload})
-      : _id = id,
+  IPCResponse({
+    String? id,
+    this.type = -1,
+    this.size = 0,
+    String? pid,
+    this.payload,
+  })  : _id = id,
         _pid = pid;
 
   factory IPCResponse.fromJSON(Map<String, dynamic> json) {
