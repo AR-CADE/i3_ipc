@@ -4,7 +4,7 @@ version: 2.0.10
 repository: https://github.com/AR-CADE/i3_ipc
 
 environment:
-  sdk: ">=3.3.4 <4.0.0"
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   bloc: ^8.1.4
