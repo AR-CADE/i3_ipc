@@ -13,8 +13,6 @@ import 'package:i3_ipc/data/models/version.dart';
 import 'package:i3_ipc/data/models/workspace.dart';
 
 class PrettyPrinter {
-  const PrettyPrinter();
-
   static String rawPretty(Object? object) {
     const encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(object);

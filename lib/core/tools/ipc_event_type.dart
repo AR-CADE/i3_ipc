@@ -1,6 +1,4 @@
 class IPCEventType {
-  const IPCEventType();
-
   // events sent from sway to clients. events have the highest bits set.
   static final ipcI3EventTypeWorkspace = (1.toUnsigned(8) << 31) | 0;
   static final ipcI3EventTypeOutput = (1.toUnsigned(8) << 31) | 1;
@@ -27,69 +25,4 @@ class IPCEventType {
 
   static const ipcSwayEventInput = 'input';
   static const ipcI3EventOutput = 'output';
-
-  static int eventMask(int ev) => 1 << (ev & 0x8F);
-
-  static int toTypeMask(List<String> list) {
-    var subscribedEvents = 0;
-    list.map((event) {
-      if (event == ipcI3EventWorkspace) {
-        subscribedEvents |= eventMask(ipcI3EventTypeWorkspace);
-      } else if (event == ipcI3EventShutdown) {
-        subscribedEvents |= eventMask(ipcI3EventTypeShutdown);
-      } else if (event == ipcI3EventWindow) {
-        subscribedEvents |= eventMask(ipcI3EventTypeWindow);
-      } else if (event == ipcI3EventTick) {
-        subscribedEvents |= eventMask(ipcI3EventTypeTick);
-      } else if (event == ipcSwayEventInput) {
-        subscribedEvents |= eventMask(ipcSwayEventTypeInput);
-      } else if (event == ipcI3EventOutput) {
-        subscribedEvents |= eventMask(ipcI3EventTypeOutput);
-      }
-    });
-    return subscribedEvents;
-  }
-
-  static List<int> toTypeMaskList(List<String> list) {
-    return list.map((event) {
-      if (event == ipcI3EventWorkspace) {
-        return ipcI3EventTypeWorkspace;
-      } else if (event == ipcI3EventShutdown) {
-        return ipcI3EventTypeShutdown;
-      } else if (event == ipcI3EventWindow) {
-        return ipcI3EventTypeWindow;
-      } else if (event == ipcI3EventTick) {
-        return ipcI3EventTypeTick;
-      } else if (event == ipcSwayEventInput) {
-        return ipcSwayEventTypeInput;
-      } else if (event == ipcI3EventOutput) {
-        return ipcI3EventTypeOutput;
-      }
-      return -1;
-    }).toList();
-  }
-
-  static List<String> toStringList(int mask) {
-    final list = List<String>.empty();
-    if ((mask & eventMask(ipcI3EventTypeWorkspace)) != 0) {
-      list.add(ipcI3EventWorkspace);
-    }
-    if ((mask & eventMask(ipcI3EventTypeShutdown)) != 0) {
-      list.add(ipcI3EventShutdown);
-    }
-    if ((mask & eventMask(ipcI3EventTypeWindow)) != 0) {
-      list.add(ipcI3EventWindow);
-    }
-    if ((mask & eventMask(ipcI3EventTypeTick)) != 0) {
-      list.add(ipcI3EventTick);
-    }
-    if ((mask & eventMask(ipcSwayEventTypeInput)) != 0) {
-      list.add(ipcSwayEventInput);
-    }
-    if ((mask & eventMask(ipcI3EventTypeOutput)) != 0) {
-      list.add(ipcI3EventOutput);
-    }
-
-    return list;
-  }
 }
