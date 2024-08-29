@@ -4,17 +4,17 @@ version: 2.1.0
 repository: https://github.com/AR-CADE/i3_ipc
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
+  sdk: ">=3.5.1 <4.0.0"
 
 dependencies:
   bloc: ^8.1.4
   equatable: ^2.0.5
-  rxdart: ^0.27.7
-  uuid: ^4.4.0
+  rxdart: ^0.28.0
+  uuid: ^4.4.2
 
 dev_dependencies:
   bloc_test: ^9.1.7
-  mocktail: ^1.0.3
-  test: ^1.25.5
-  very_good_analysis: ^5.1.0
+  mocktail: ^1.0.4
+  test: ^1.25.8
+  very_good_analysis: ^6.0.0
 
