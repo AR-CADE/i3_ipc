@@ -36,7 +36,7 @@ class Node extends Equatable {
     this.windowProperties,
   });
 
-  factory Node.fromJSON(Map<String, Object?> json) {
+  factory Node.fromJson(Map<String, Object?> json) {
     final marks = <String>[];
     {
       final iterable = json['marks']! as Iterable<Object?>;
@@ -57,7 +57,7 @@ class Node extends Equatable {
     {
       final iterable = json['nodes']! as Iterable<Object?>;
       for (final e in iterable) {
-        nodes.add(Node.fromJSON(e! as Map<String, Object?>));
+        nodes.add(Node.fromJson(e! as Map<String, Object?>));
       }
     }
 
@@ -67,7 +67,7 @@ class Node extends Equatable {
       if (iterable != null) {
         floatingNodes = <Node>[];
         for (final e in iterable) {
-          floatingNodes.add(Node.fromJSON(e! as Map<String, Object?>));
+          floatingNodes.add(Node.fromJson(e! as Map<String, Object?>));
         }
       }
     }
@@ -79,10 +79,10 @@ class Node extends Equatable {
       currentBorderWidth: json['current_border_width']! as int,
       layout: json['layout']! as String,
       orientation: json['orientation']! as String,
-      rect: Rect.fromJSON(json['rect']! as Map<String, Object?>),
-      windowRect: Rect.fromJSON(json['window_rect']! as Map<String, Object?>),
-      decoRect: Rect.fromJSON(json['deco_rect']! as Map<String, Object?>),
-      geometry: Rect.fromJSON(json['geometry']! as Map<String, Object?>),
+      rect: Rect.fromJson(json['rect']! as Map<String, Object?>),
+      windowRect: Rect.fromJson(json['window_rect']! as Map<String, Object?>),
+      decoRect: Rect.fromJson(json['deco_rect']! as Map<String, Object?>),
+      geometry: Rect.fromJson(json['geometry']! as Map<String, Object?>),
       urgent: json['urgent']! as bool,
       sticky: json['sticky']! as bool,
       marks: marks,
@@ -99,13 +99,13 @@ class Node extends Equatable {
       shell: json['shell'] as String?,
       inhibitIdle: json['inhibit_idle'] as bool?,
       idleInhibitors: json['idle_inhibitors'] != null
-          ? IdleInhibitor.fromJSON(
+          ? IdleInhibitor.fromJson(
               json['idle_inhibitors']! as Map<String, Object?>,
             )
           : null,
       window: json['window'] as int?,
       windowProperties: json['window_properties'] != null
-          ? WindowProperties.fromJSON(
+          ? WindowProperties.fromJson(
               json['window_properties']! as Map<String, Object?>,
             )
           : null,
@@ -213,7 +213,7 @@ class Node extends Equatable {
   /// window_role, window_type, and transient_for for the view
   final WindowProperties? windowProperties;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['id'] = id;
     data['name'] = name;
@@ -222,19 +222,19 @@ class Node extends Equatable {
     data['current_border_width'] = currentBorderWidth;
     data['layout'] = layout;
     data['orientation'] = orientation;
-    data['rect'] = rect.toJSON();
-    data['window_rect'] = windowRect.toJSON();
-    data['deco_rect'] = decoRect.toJSON();
-    data['geometry'] = geometry.toJSON();
+    data['rect'] = rect.toJson();
+    data['window_rect'] = windowRect.toJson();
+    data['deco_rect'] = decoRect.toJson();
+    data['geometry'] = geometry.toJson();
     data['urgent'] = urgent;
     data['sticky'] = sticky;
     data['marks'] = marks;
     data['focused'] = focused;
     data['focus'] = focus;
-    data['nodes'] = nodes.map((m) => m.toJSON()).toList();
+    data['nodes'] = nodes.map((m) => m.toJson()).toList();
 
     if (floatingNodes != null) {
-      data['floating_nodes'] = floatingNodes?.map((m) => m.toJSON()).toList();
+      data['floating_nodes'] = floatingNodes?.map((m) => m.toJson()).toList();
     }
 
     if (percent != null) {
@@ -270,7 +270,7 @@ class Node extends Equatable {
     }
 
     if (idleInhibitors != null) {
-      data['idle_inhibitors'] = idleInhibitors?.toJSON();
+      data['idle_inhibitors'] = idleInhibitors?.toJson();
     }
 
     if (window != null) {
@@ -278,7 +278,7 @@ class Node extends Equatable {
     }
 
     if (windowProperties != null) {
-      data['window_properties'] = windowProperties?.toJSON();
+      data['window_properties'] = windowProperties?.toJson();
     }
     return data;
   }

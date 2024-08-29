@@ -24,7 +24,7 @@ class LibInput {
     required this.calibrationMatrix,
   });
 
-  factory LibInput.fromJSON(Map<String, Object?> json) {
+  factory LibInput.fromJson(Map<String, Object?> json) {
     final calibrationMatrix = <double>[];
     {
       final iterable = json['calibration_matrix']! as Iterable<Object?>;
@@ -109,7 +109,7 @@ class LibInput {
   /// devices such as touchscreens
   final List<double> calibrationMatrix;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['send_events'] = sendEvents;
     data['tap'] = tap;

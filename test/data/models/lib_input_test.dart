@@ -23,7 +23,7 @@ void main() {
         dwtp: 'dwtp_test',
         calibrationMatrix: [1.0, 2.0],
       );
-      final json = workspace.toJSON();
+      final json = workspace.toJson();
 
       final sendEvents = json['send_events'];
       final tap = json['tap'];
@@ -134,11 +134,11 @@ void main() {
         'dwtp': 'dwtp_test',
         'calibration_matrix': [1.0, 2.0],
       };
-      final libinput = LibInput.fromJSON(json);
+      final libinput = LibInput.fromJson(json);
 
       expect(
         json,
-        libinput.toJSON(),
+        libinput.toJson(),
       );
 
       expect(

@@ -6,7 +6,7 @@ void main() {
     group('serialize', () {
       test('with required parameters only', () {
         const mode = Mode(width: 1, height: 2, refresh: 3);
-        final json = mode.toJSON();
+        final json = mode.toJson();
         final width = json['width'];
         final height = json['height'];
         final refresh = json['refresh'];
@@ -37,7 +37,7 @@ void main() {
           refresh: 3,
           modePictureAspectRatio: 'modePictureAspectRatio_test',
         );
-        final json = mode.toJSON();
+        final json = mode.toJson();
         final width = json['width'];
         final height = json['height'];
         final refresh = json['refresh'];
@@ -65,10 +65,10 @@ void main() {
     group('deserialize', () {
       test('with required parameters only', () {
         final json = {'width': 1, 'height': 2, 'refresh': 3};
-        final mode = Mode.fromJSON(json);
+        final mode = Mode.fromJson(json);
         expect(
           json,
-          mode.toJSON(),
+          mode.toJson(),
         );
         expect(
           mode.width,
@@ -95,10 +95,10 @@ void main() {
           'refresh': 3,
           'picture_aspect_ratio': 'modePictureAspectRatio_test',
         };
-        final mode = Mode.fromJSON(json);
+        final mode = Mode.fromJson(json);
         expect(
           json,
-          mode.toJSON(),
+          mode.toJson(),
         );
         expect(
           mode.width,

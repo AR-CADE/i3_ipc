@@ -14,7 +14,7 @@ class SeatDevice extends Equatable {
     this.repeatRate,
   });
 
-  factory SeatDevice.fromJSON(Map<String, Object?> json) {
+  factory SeatDevice.fromJson(Map<String, Object?> json) {
     List<String>? xkbLayoutNames;
     {
       final iterable = json['xkb_layout_names'] as Iterable<Object?>?;
@@ -50,7 +50,7 @@ class SeatDevice extends Equatable {
   final int? repeatDelay;
   final int? repeatRate;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['identifier'] = identifier;
     data['name'] = name;

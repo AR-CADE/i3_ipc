@@ -5,7 +5,7 @@ void main() {
   group('BindingState model', () {
     test('serialize', () {
       const bindingState = BindingState(name: 'name_test');
-      final value = bindingState.toJSON()['name'];
+      final value = bindingState.toJson()['name'];
 
       expect(
         value,
@@ -15,11 +15,11 @@ void main() {
 
     test('deserialize', () {
       final json = {'name': 'name_test'};
-      final state = BindingState.fromJSON(json);
+      final state = BindingState.fromJson(json);
 
       expect(
         json,
-        state.toJSON(),
+        state.toJson(),
       );
 
       expect(

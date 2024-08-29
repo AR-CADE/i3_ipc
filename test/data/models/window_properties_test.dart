@@ -10,7 +10,7 @@ void main() {
           instance: 'instance_test',
           title: 'title_test',
         );
-        final json = windowProperties.toJSON();
+        final json = windowProperties.toJson();
         final clazz = json['class'];
         final instance = json['instance'];
         final title = json['title'];
@@ -41,7 +41,7 @@ void main() {
           title: 'title_test',
           transientFor: 'transientFor_test',
         );
-        final json = windowProperties.toJSON();
+        final json = windowProperties.toJson();
         final clazz = json['class'];
         final instance = json['instance'];
         final title = json['title'];
@@ -73,10 +73,10 @@ void main() {
           'instance': 'instance_test',
           'title': 'title_test',
         };
-        final windowProperties = WindowProperties.fromJSON(json);
+        final windowProperties = WindowProperties.fromJson(json);
         expect(
           json,
-          windowProperties.toJSON(),
+          windowProperties.toJson(),
         );
         expect(
           windowProperties.clazz,
@@ -103,10 +103,10 @@ void main() {
           'title': 'title_test',
           'transient_for': 'transientFor_test',
         };
-        final windowProperties = WindowProperties.fromJSON(json);
+        final windowProperties = WindowProperties.fromJson(json);
         expect(
           json,
-          windowProperties.toJSON(),
+          windowProperties.toJson(),
         );
         expect(
           windowProperties.clazz,

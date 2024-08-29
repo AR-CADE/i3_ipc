@@ -27,12 +27,12 @@ class Output extends Equatable {
     this.adaptiveSyncStatus,
   });
 
-  factory Output.fromJSON(Map<String, Object?> json) {
+  factory Output.fromJson(Map<String, Object?> json) {
     final modes = <Mode>[]..length;
     {
       final iterable = json['modes']! as Iterable<Object?>;
       for (final e in iterable) {
-        modes.add(Mode.fromJSON(e! as Map<String, Object?>));
+        modes.add(Mode.fromJson(e! as Map<String, Object?>));
       }
     }
 
@@ -49,8 +49,8 @@ class Output extends Equatable {
       subpixelHinting: json['subpixel_hinting']! as String,
       transform: json['transform']! as String,
       modes: modes,
-      currentMode: Mode.fromJSON(json['current_mode']! as Map<String, Object?>),
-      rect: Rect.fromJSON(json['rect']! as Map<String, Object?>),
+      currentMode: Mode.fromJson(json['current_mode']! as Map<String, Object?>),
+      rect: Rect.fromJson(json['rect']! as Map<String, Object?>),
       dpms: json['dpms'] as bool?,
       currentWorkspace: json['current_workspace'] as String?,
       nonDesktop: json['non_desktop'] as bool?,
@@ -121,7 +121,7 @@ class Output extends Equatable {
   final int? maxRenderTime;
   final String? adaptiveSyncStatus;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['id'] = id;
     data['name'] = name;
@@ -134,9 +134,9 @@ class Output extends Equatable {
     data['scale'] = scale;
     data['subpixel_hinting'] = subpixelHinting;
     data['transform'] = transform;
-    data['modes'] = modes.map((m) => m.toJSON()).toList();
-    data['current_mode'] = currentMode.toJSON();
-    data['rect'] = rect.toJSON();
+    data['modes'] = modes.map((m) => m.toJson()).toList();
+    data['current_mode'] = currentMode.toJson();
+    data['rect'] = rect.toJson();
 
     if (dpms != null) {
       data['dpms'] = dpms;

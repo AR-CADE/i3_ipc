@@ -10,7 +10,7 @@ class IPCResponse {
   })  : _id = id,
         _pid = pid;
 
-  factory IPCResponse.fromJSON(Map<String, Object?> json) {
+  factory IPCResponse.fromJson(Map<String, Object?> json) {
     return IPCResponse(
       type: json['type']! as int,
       size: json['size']! as int,
@@ -42,7 +42,7 @@ class IPCResponse {
     }
   }
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['type'] = type;
     data['size'] = size;
@@ -64,6 +64,6 @@ class IPCResponse {
 
   @override
   String toString() {
-    return jsonEncode(toJSON());
+    return jsonEncode(toJson());
   }
 }

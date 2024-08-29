@@ -8,7 +8,7 @@ void main() {
     group('serialize', () {
       test('with required parameters only', () {
         final ipcResponse = IPCResponse();
-        final json = ipcResponse.toJSON();
+        final json = ipcResponse.toJson();
         final type = json['type'];
         final size = json['size'];
         final id = json['id'];
@@ -44,7 +44,7 @@ void main() {
           pid: 'pid_test',
           payload: 'payload_test',
         );
-        final json = ipcResponse.toJSON();
+        final json = ipcResponse.toJson();
         final type = json['type'];
         final size = json['size'];
         final id = json['id'];
@@ -79,7 +79,7 @@ void main() {
           ..id = 'id_test'
           ..pid = 'pid_test'
           ..payload = 'payload_test';
-        final json = ipcResponse.toJSON();
+        final json = ipcResponse.toJson();
         final type = json['type'];
         final size = json['size'];
         final id = json['id'];
@@ -111,11 +111,11 @@ void main() {
     group('deserialize', () {
       test('with required parameters only', () {
         final json = {'type': 1, 'size': 1};
-        final iPCResponse = IPCResponse.fromJSON(json);
+        final iPCResponse = IPCResponse.fromJson(json);
 
         expect(
           json,
-          iPCResponse.toJSON(),
+          iPCResponse.toJson(),
         );
 
         expect(
@@ -148,11 +148,11 @@ void main() {
           'pid': 'pid_test',
           'payload': 'payload_test',
         };
-        final iPCResponse = IPCResponse.fromJSON(json);
+        final iPCResponse = IPCResponse.fromJson(json);
 
         expect(
           json,
-          iPCResponse.toJSON(),
+          iPCResponse.toJson(),
         );
 
         expect(
@@ -186,11 +186,11 @@ void main() {
           'type': 1,
           'size': 1,
         };
-        final iPCResponse = IPCResponse.fromJSON(json);
+        final iPCResponse = IPCResponse.fromJson(json);
 
         expect(
           json,
-          iPCResponse.toJSON(),
+          iPCResponse.toJson(),
         );
         final string = iPCResponse.toString();
         expect(
@@ -207,11 +207,11 @@ void main() {
           'pid': 'pid_test',
           'payload': 'payload_test',
         };
-        final iPCResponse = IPCResponse.fromJSON(json);
+        final iPCResponse = IPCResponse.fromJson(json);
 
         expect(
           json,
-          iPCResponse.toJSON(),
+          iPCResponse.toJson(),
         );
         final string = iPCResponse.toString();
         expect(

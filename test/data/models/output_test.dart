@@ -5,7 +5,7 @@ import '../../core/test.dart';
 
 class _MockMode extends MockMode {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['width'] = 1;
     data['height'] = 2;
@@ -17,7 +17,7 @@ class _MockMode extends MockMode {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
@@ -76,7 +76,7 @@ void main() {
           currentMode: currentModeMock,
           rect: rectMock,
         );
-        final json = output.toJSON();
+        final json = output.toJson();
         final id = json['id'];
         final name = json['name'];
         final make = json['make'];
@@ -145,15 +145,15 @@ void main() {
         );
         expect(
           modes,
-          modesMock.map((e) => e.toJSON()),
+          modesMock.map((e) => e.toJson()),
         );
         expect(
           currentMode,
-          currentModeMock.toJSON(),
+          currentModeMock.toJson(),
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           dpms,
@@ -212,7 +212,7 @@ void main() {
           maxRenderTime: 0,
           adaptiveSyncStatus: 'adaptiveSyncStatus_test',
         );
-        final json = output.toJSON();
+        final json = output.toJson();
         final id = json['id'];
         final name = json['name'];
         final make = json['make'];
@@ -281,15 +281,15 @@ void main() {
         );
         expect(
           modes,
-          modesMock.map((e) => e.toJSON()),
+          modesMock.map((e) => e.toJson()),
         );
         expect(
           currentMode,
-          currentModeMock.toJSON(),
+          currentModeMock.toJson(),
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           dpms,
@@ -339,14 +339,14 @@ void main() {
           'scale': 1.0,
           'subpixel_hinting': 'subpixelHinting_test',
           'transform': 'transform_test',
-          'modes': modesMock.map((e) => e.toJSON()),
-          'current_mode': currentModeMock.toJSON(),
-          'rect': rectMock.toJSON(),
+          'modes': modesMock.map((e) => e.toJson()),
+          'current_mode': currentModeMock.toJson(),
+          'rect': rectMock.toJson(),
         };
-        final output = Output.fromJSON(json);
+        final output = Output.fromJson(json);
         expect(
           json,
-          output.toJSON(),
+          output.toJson(),
         );
         expect(
           output.id,
@@ -393,16 +393,16 @@ void main() {
           'transform_test',
         );
         expect(
-          output.modes.map((e) => e.toJSON()),
-          modesMock.map((e) => e.toJSON()),
+          output.modes.map((e) => e.toJson()),
+          modesMock.map((e) => e.toJson()),
         );
         expect(
-          output.currentMode.toJSON(),
-          currentModeMock.toJSON(),
+          output.currentMode.toJson(),
+          currentModeMock.toJson(),
         );
         expect(
-          output.rect.toJSON(),
-          rectMock.toJSON(),
+          output.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
           output.dpms,
@@ -447,9 +447,9 @@ void main() {
           'scale': 1.0,
           'subpixel_hinting': 'subpixelHinting_test',
           'transform': 'transform_test',
-          'modes': modesMock.map((e) => e.toJSON()),
-          'current_mode': currentModeMock.toJSON(),
-          'rect': rectMock.toJSON(),
+          'modes': modesMock.map((e) => e.toJson()),
+          'current_mode': currentModeMock.toJson(),
+          'rect': rectMock.toJson(),
           'dpms': true,
           'current_workspace': 'currentWorkspace_test',
           'non_desktop': false,
@@ -458,10 +458,10 @@ void main() {
           'max_render_time': 0,
           'adaptive_sync_status': 'adaptiveSyncStatus_test',
         };
-        final output = Output.fromJSON(json);
+        final output = Output.fromJson(json);
         expect(
           json,
-          output.toJSON(),
+          output.toJson(),
         );
         expect(
           output.id,
@@ -508,16 +508,16 @@ void main() {
           'transform_test',
         );
         expect(
-          output.modes.map((e) => e.toJSON()),
-          modesMock.map((e) => e.toJSON()),
+          output.modes.map((e) => e.toJson()),
+          modesMock.map((e) => e.toJson()),
         );
         expect(
-          output.currentMode.toJSON(),
-          currentModeMock.toJSON(),
+          output.currentMode.toJson(),
+          currentModeMock.toJson(),
         );
         expect(
-          output.rect.toJSON(),
-          rectMock.toJSON(),
+          output.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
           output.dpms,

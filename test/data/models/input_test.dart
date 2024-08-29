@@ -5,7 +5,7 @@ import '../../core/test.dart';
 
 class _MockLibInput extends MockLibInput {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['send_events'] = 'sendEvents_test';
     data['tap'] = 'tap_test';
@@ -52,7 +52,7 @@ void main() {
           product: 0,
           type: 'type_test',
         );
-        final json = input.toJSON();
+        final json = input.toJson();
         final identifier = json['identifier'];
         final name = json['name'];
         final vendor = json['vendor'];
@@ -129,7 +129,7 @@ void main() {
           scrollFactor: 1.2,
           libinput: libinputMock,
         );
-        final json = input.toJSON();
+        final json = input.toJson();
         final identifier = json['identifier'];
         final name = json['name'];
         final vendor = json['vendor'];
@@ -188,7 +188,7 @@ void main() {
 
         expect(
           libinput,
-          libinputMock.toJSON(),
+          libinputMock.toJson(),
         );
       });
     });
@@ -202,10 +202,10 @@ void main() {
           'product': 0,
           'type': 'type_test',
         };
-        final input = Input.fromJSON(json);
+        final input = Input.fromJson(json);
         expect(
           json,
-          input.toJSON(),
+          input.toJson(),
         );
 
         expect(
@@ -272,13 +272,13 @@ void main() {
           'xkb_layout_names': const ['0', '1', '2'],
           'xkb_active_layout_index': 0,
           'scroll_factor': 1.2,
-          'libinput': libinputMock.toJSON(),
+          'libinput': libinputMock.toJson(),
         };
-        final input = Input.fromJSON(json);
+        final input = Input.fromJson(json);
 
         expect(
           json,
-          input.toJSON(),
+          input.toJson(),
         );
 
         expect(
@@ -327,8 +327,8 @@ void main() {
         );
 
         expect(
-          input.libinput?.toJSON(),
-          libinputMock.toJSON(),
+          input.libinput?.toJson(),
+          libinputMock.toJson(),
         );
       });
     });

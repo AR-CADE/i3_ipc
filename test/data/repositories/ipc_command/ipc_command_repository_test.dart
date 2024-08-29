@@ -28,7 +28,7 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
       controller?.add(
         IPCResponse(
           pid: pid,
-          payload: jsonEncode(const Status(success: true).toJSON()),
+          payload: jsonEncode(const Status(success: true).toJson()),
         ),
       );
 
@@ -65,7 +65,7 @@ class _MockI3IpcClientFailedApi extends MockI3IpcClientApi {
       controller?.add(
         IPCResponse(
           pid: pid,
-          payload: jsonEncode(const Status(success: false).toJSON()),
+          payload: jsonEncode(const Status(success: false).toJson()),
         ),
       );
     } else {

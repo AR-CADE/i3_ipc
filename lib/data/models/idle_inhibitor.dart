@@ -4,7 +4,7 @@ class IdleInhibitor {
     required this.user,
   });
 
-  factory IdleInhibitor.fromJSON(Map<String, Object?> json) {
+  factory IdleInhibitor.fromJson(Map<String, Object?> json) {
     return IdleInhibitor(
       application: json['application']! as String,
       user: json['user']! as String,
@@ -17,7 +17,7 @@ class IdleInhibitor {
   /// User can be focus, fullscreen, open, visible or none.
   final String user;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['application'] = application;
     data['user'] = user;

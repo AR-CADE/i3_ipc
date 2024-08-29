@@ -12,7 +12,7 @@ void main() {
         patch: 3,
         loadedConfigFileName: 'loadedConfigFileName_test',
       );
-      final json = version.toJSON();
+      final json = version.toJson();
       final humanReadable = json['human_readable'];
       final variant = json['variant'];
       final major = json['major'];
@@ -55,10 +55,10 @@ void main() {
         'patch': 3,
         'loaded_config_file_name': 'loadedConfigFileName_test',
       };
-      final version = Version.fromJSON(json);
+      final version = Version.fromJson(json);
       expect(
         json,
-        version.toJSON(),
+        version.toJson(),
       );
       expect(
         version.humanReadable,

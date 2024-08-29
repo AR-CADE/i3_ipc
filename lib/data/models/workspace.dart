@@ -14,14 +14,14 @@ class Workspace extends Equatable {
     this.representation,
   });
 
-  factory Workspace.fromJSON(Map<String, Object?> json) {
+  factory Workspace.fromJson(Map<String, Object?> json) {
     return Workspace(
       num: json['num']! as int,
       name: json['name']! as String,
       visible: json['visible']! as bool,
       focused: json['focused']! as bool,
       urgent: json['urgent']! as bool,
-      rect: Rect.fromJSON(json['rect']! as Map<String, Object?>),
+      rect: Rect.fromJson(json['rect']! as Map<String, Object?>),
       output: json['output']! as String,
       layout: json['layout'] as String?,
       representation: json['representation'] as String?,
@@ -53,14 +53,14 @@ class Workspace extends Equatable {
   final String? layout;
   final String? representation;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['num'] = num;
     data['name'] = name;
     data['visible'] = visible;
     data['focused'] = focused;
     data['urgent'] = urgent;
-    data['rect'] = rect.toJSON();
+    data['rect'] = rect.toJson();
     data['output'] = output;
 
     if (layout != null) {

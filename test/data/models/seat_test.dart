@@ -5,7 +5,7 @@ import '../../core/test.dart';
 
 class _MockSeatDevice extends MockSeatDevice {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['identifier'] = 'identifier_test';
     data['name'] = 'name_test';
@@ -45,7 +45,7 @@ void main() {
         focus: 2,
         devices: devicesMock,
       );
-      final json = seat.toJSON();
+      final json = seat.toJson();
       final name = json['name'];
       final capabilities = json['capabilities'];
       final focus = json['focus'];
@@ -65,7 +65,7 @@ void main() {
       );
       expect(
         devices,
-        devicesMock.map((e) => e.toJSON()),
+        devicesMock.map((e) => e.toJson()),
       );
     });
 
@@ -76,12 +76,12 @@ void main() {
         'name': 'name_test',
         'capabilities': 1,
         'focus': 2,
-        'devices': devicesMock.map((e) => e.toJSON()),
+        'devices': devicesMock.map((e) => e.toJson()),
       };
-      final seat = Seat.fromJSON(json);
+      final seat = Seat.fromJson(json);
       expect(
         json,
-        seat.toJSON(),
+        seat.toJson(),
       );
       expect(
         seat.name,
@@ -96,8 +96,8 @@ void main() {
         2,
       );
       expect(
-        seat.devices.map((e) => e.toJSON()),
-        devicesMock.map((e) => e.toJSON()),
+        seat.devices.map((e) => e.toJson()),
+        devicesMock.map((e) => e.toJson()),
       );
     });
   });

@@ -278,7 +278,7 @@ class I3IpcCommandRepository {
     if (payload != null) {
       final json = jsonDecode(payload) as Map<String, Object?>?;
       if (json != null) {
-        final status = Status.fromJSON(json);
+        final status = Status.fromJson(json);
         success = status.success;
         error = status.error;
       }

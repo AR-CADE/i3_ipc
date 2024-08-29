@@ -6,7 +6,7 @@ void main() {
     test('serialize', () {
       const idleInhibitor =
           IdleInhibitor(application: 'test_app', user: 'test_user');
-      final json = idleInhibitor.toJSON();
+      final json = idleInhibitor.toJson();
 
       final application = json['application'];
       final user = json['user'];
@@ -24,11 +24,11 @@ void main() {
 
     test('deserialize', () {
       final json = {'application': 'test_app', 'user': 'test_user'};
-      final idleInhibitor = IdleInhibitor.fromJSON(json);
+      final idleInhibitor = IdleInhibitor.fromJson(json);
 
       expect(
         json,
-        idleInhibitor.toJSON(),
+        idleInhibitor.toJson(),
       );
 
       expect(

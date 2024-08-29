@@ -5,7 +5,7 @@ import '../../core/test.dart';
 
 class _MockWindowProperties extends MockWindowProperties {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['class'] = 'class_test';
     data['instance'] = 'instance_test';
@@ -17,7 +17,7 @@ class _MockWindowProperties extends MockWindowProperties {
 
 class _MockIdleInhibitor extends MockIdleInhibitor {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['application'] = 'application_test';
     data['user'] = 'user_test';
@@ -27,7 +27,7 @@ class _MockIdleInhibitor extends MockIdleInhibitor {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
@@ -39,7 +39,7 @@ class _MockRect extends MockRect {
 
 class _MockNode extends MockNode {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     final rect = _MockRect();
     final windowRect = _MockRect();
@@ -52,10 +52,10 @@ class _MockNode extends MockNode {
     data['current_border_width'] = 1;
     data['layout'] = 'layout';
     data['orientation'] = 'orientation';
-    data['rect'] = rect.toJSON();
-    data['window_rect'] = windowRect.toJSON();
-    data['deco_rect'] = decoRect.toJSON();
-    data['geometry'] = geometry.toJSON();
+    data['rect'] = rect.toJson();
+    data['window_rect'] = windowRect.toJson();
+    data['deco_rect'] = decoRect.toJson();
+    data['geometry'] = geometry.toJson();
     data['urgent'] = false;
     data['sticky'] = false;
     data['marks'] = ['1', '2'];
@@ -141,7 +141,7 @@ void main() {
           focus: focusMock,
           nodes: nodesMock,
         );
-        final json = mode.toJSON();
+        final json = mode.toJson();
         final id = json['id'];
         final name = json['name'];
         final type = json['type'];
@@ -202,19 +202,19 @@ void main() {
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           windowRect,
-          windowRectMock.toJSON(),
+          windowRectMock.toJson(),
         );
         expect(
           decoRect,
-          decoRectMock.toJSON(),
+          decoRectMock.toJson(),
         );
         expect(
           geometry,
-          geometryMock.toJSON(),
+          geometryMock.toJson(),
         );
         expect(
           urgent,
@@ -238,7 +238,7 @@ void main() {
         );
         expect(
           nodes,
-          nodesMock.map((e) => e.toJSON()),
+          nodesMock.map((e) => e.toJson()),
         );
         expect(
           floatingNodes,
@@ -333,7 +333,7 @@ void main() {
           window: 4,
           windowProperties: windowPropertiesMock,
         );
-        final json = mode.toJSON();
+        final json = mode.toJson();
         final id = json['id'];
         final name = json['name'];
         final type = json['type'];
@@ -394,19 +394,19 @@ void main() {
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           windowRect,
-          windowRectMock.toJSON(),
+          windowRectMock.toJson(),
         );
         expect(
           decoRect,
-          decoRectMock.toJSON(),
+          decoRectMock.toJson(),
         );
         expect(
           geometry,
-          geometryMock.toJSON(),
+          geometryMock.toJson(),
         );
         expect(
           urgent,
@@ -430,11 +430,11 @@ void main() {
         );
         expect(
           nodes,
-          nodesMock.map((e) => e.toJSON()),
+          nodesMock.map((e) => e.toJson()),
         );
         expect(
           floatingNodes,
-          floatingNodesMock.map((e) => e.toJSON()),
+          floatingNodesMock.map((e) => e.toJson()),
         );
         expect(
           percent,
@@ -470,7 +470,7 @@ void main() {
         );
         expect(
           idleInhibitors,
-          idleInhibitorsMock.toJSON(),
+          idleInhibitorsMock.toJson(),
         );
         expect(
           window,
@@ -478,7 +478,7 @@ void main() {
         );
         expect(
           windowProperties,
-          windowPropertiesMock.toJSON(),
+          windowPropertiesMock.toJson(),
         );
       });
     });
@@ -500,10 +500,10 @@ void main() {
           'current_border_width': 1,
           'layout': 'layout_test',
           'orientation': 'orientation_test',
-          'rect': rectMock.toJSON(),
-          'window_rect': windowRectMock.toJSON(),
-          'deco_rect': decoRectMock.toJSON(),
-          'geometry': geometryMock.toJSON(),
+          'rect': rectMock.toJson(),
+          'window_rect': windowRectMock.toJson(),
+          'deco_rect': decoRectMock.toJson(),
+          'geometry': geometryMock.toJson(),
           'urgent': false,
           'sticky': false,
           'marks': marksMock,
@@ -511,11 +511,11 @@ void main() {
           'focus': focusMock,
           'nodes': <Map<String, Object?>>[],
         };
-        final node = Node.fromJSON(json);
+        final node = Node.fromJson(json);
 
         expect(
           json,
-          node.toJSON(),
+          node.toJson(),
         );
 
         expect(
@@ -547,20 +547,20 @@ void main() {
           'orientation_test',
         );
         expect(
-          node.rect.toJSON(),
-          rectMock.toJSON(),
+          node.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
-          node.windowRect.toJSON(),
-          windowRectMock.toJSON(),
+          node.windowRect.toJson(),
+          windowRectMock.toJson(),
         );
         expect(
-          node.decoRect.toJSON(),
-          decoRectMock.toJSON(),
+          node.decoRect.toJson(),
+          decoRectMock.toJson(),
         );
         expect(
-          node.geometry.toJSON(),
-          geometryMock.toJSON(),
+          node.geometry.toJson(),
+          geometryMock.toJson(),
         );
         expect(
           node.urgent,
@@ -656,17 +656,17 @@ void main() {
           'current_border_width': 1,
           'layout': 'layout_test',
           'orientation': 'orientation_test',
-          'rect': rectMock.toJSON(),
-          'window_rect': windowRectMock.toJSON(),
-          'deco_rect': decoRectMock.toJSON(),
-          'geometry': geometryMock.toJSON(),
+          'rect': rectMock.toJson(),
+          'window_rect': windowRectMock.toJson(),
+          'deco_rect': decoRectMock.toJson(),
+          'geometry': geometryMock.toJson(),
           'urgent': false,
           'sticky': false,
           'marks': marksMock,
           'focused': true,
           'focus': focusMock,
-          'nodes': nodes.map((e) => e.toJSON()),
-          'floating_nodes': floatingNodes.map((e) => e.toJSON()),
+          'nodes': nodes.map((e) => e.toJson()),
+          'floating_nodes': floatingNodes.map((e) => e.toJson()),
           'percent': 2.0,
           'representation': 'representation_test',
           'fullscreen_mode': 3,
@@ -675,14 +675,14 @@ void main() {
           'visible': true,
           'shell': 'shell_test',
           'inhibit_idle': false,
-          'idle_inhibitors': idleInhibitorsMock.toJSON(),
+          'idle_inhibitors': idleInhibitorsMock.toJson(),
           'window': 4,
-          'window_properties': windowPropertiesMock.toJSON(),
+          'window_properties': windowPropertiesMock.toJson(),
         };
-        final node = Node.fromJSON(json);
+        final node = Node.fromJson(json);
         expect(
           json,
-          node.toJSON(),
+          node.toJson(),
         );
         expect(
           node.id,
@@ -713,20 +713,20 @@ void main() {
           'orientation_test',
         );
         expect(
-          node.rect.toJSON(),
-          rectMock.toJSON(),
+          node.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
-          node.windowRect.toJSON(),
-          windowRectMock.toJSON(),
+          node.windowRect.toJson(),
+          windowRectMock.toJson(),
         );
         expect(
-          node.decoRect.toJSON(),
-          decoRectMock.toJSON(),
+          node.decoRect.toJson(),
+          decoRectMock.toJson(),
         );
         expect(
-          node.geometry.toJSON(),
-          geometryMock.toJSON(),
+          node.geometry.toJson(),
+          geometryMock.toJson(),
         );
         expect(
           node.urgent,
@@ -749,12 +749,12 @@ void main() {
           focusMock,
         );
         expect(
-          node.nodes.map((e) => e.toJSON()),
-          nodes.map((e) => e.toJSON()),
+          node.nodes.map((e) => e.toJson()),
+          nodes.map((e) => e.toJson()),
         );
         expect(
-          node.floatingNodes?.map((e) => e.toJSON()),
-          floatingNodes.map((e) => e.toJSON()),
+          node.floatingNodes?.map((e) => e.toJson()),
+          floatingNodes.map((e) => e.toJson()),
         );
         expect(
           node.percent,
@@ -789,16 +789,16 @@ void main() {
           false,
         );
         expect(
-          node.idleInhibitors?.toJSON(),
-          idleInhibitorsMock.toJSON(),
+          node.idleInhibitors?.toJson(),
+          idleInhibitorsMock.toJson(),
         );
         expect(
           node.window,
           4,
         );
         expect(
-          node.windowProperties?.toJSON(),
-          windowPropertiesMock.toJSON(),
+          node.windowProperties?.toJson(),
+          windowPropertiesMock.toJson(),
         );
       });
     });

@@ -8,7 +8,7 @@ class Version {
     required this.loadedConfigFileName,
   });
 
-  factory Version.fromJSON(Map<String, Object?> json) {
+  factory Version.fromJson(Map<String, Object?> json) {
     return Version(
       humanReadable: json['human_readable']! as String,
       variant: json['variant']! as String,
@@ -26,7 +26,7 @@ class Version {
   final int patch;
   final String loadedConfigFileName;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['human_readable'] = humanReadable;
     data['variant'] = variant;

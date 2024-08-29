@@ -6,7 +6,7 @@ class Rect {
     required this.width,
   });
 
-  factory Rect.fromJSON(Map<String, Object?> json) {
+  factory Rect.fromJson(Map<String, Object?> json) {
     return Rect(
       x: json['x']! as int,
       y: json['y']! as int,
@@ -19,7 +19,7 @@ class Rect {
   final int x;
   final int y;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['x'] = x;
     data['y'] = y;

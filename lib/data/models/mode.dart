@@ -6,7 +6,7 @@ class Mode {
     this.modePictureAspectRatio,
   });
 
-  factory Mode.fromJSON(Map<String, Object?> json) {
+  factory Mode.fromJson(Map<String, Object?> json) {
     return Mode(
       width: json['width']! as int,
       height: json['height']! as int,
@@ -21,7 +21,7 @@ class Mode {
   // not documented
   final String? modePictureAspectRatio;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['width'] = width;
     data['height'] = height;

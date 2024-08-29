@@ -22,7 +22,7 @@ List<Workspace> parseWorkspaces(IPCResponse? response) {
   final workspaces = <Workspace>[];
 
   for (final e in iterable) {
-    workspaces.add(Workspace.fromJSON(e! as Map<String, Object?>));
+    workspaces.add(Workspace.fromJson(e! as Map<String, Object?>));
   }
   return workspaces;
 }
@@ -34,7 +34,7 @@ Version? parseVersion(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Version.fromJSON(jsonBody as Map<String, Object?>);
+  return Version.fromJson(jsonBody as Map<String, Object?>);
 }
 
 Node? parseTree(IPCResponse? response) {
@@ -44,7 +44,7 @@ Node? parseTree(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Node.fromJSON(jsonBody as Map<String, Object?>);
+  return Node.fromJson(jsonBody as Map<String, Object?>);
 }
 
 List<Seat> parseSeats(IPCResponse? response) {
@@ -58,7 +58,7 @@ List<Seat> parseSeats(IPCResponse? response) {
   final seats = <Seat>[];
 
   for (final e in iterable) {
-    seats.add(Seat.fromJSON(e! as Map<String, Object?>));
+    seats.add(Seat.fromJson(e! as Map<String, Object?>));
   }
   return seats;
 }
@@ -74,7 +74,7 @@ List<Output> parseOutputs(IPCResponse? response) {
   final outputs = <Output>[];
 
   for (final e in iterable) {
-    outputs.add(Output.fromJSON(e! as Map<String, Object?>));
+    outputs.add(Output.fromJson(e! as Map<String, Object?>));
   }
   return outputs;
 }
@@ -106,7 +106,7 @@ List<Input> parseInputs(IPCResponse? response) {
   final inputs = <Input>[];
 
   for (final e in iterable) {
-    inputs.add(Input.fromJSON(e! as Map<String, Object?>));
+    inputs.add(Input.fromJson(e! as Map<String, Object?>));
   }
   return inputs;
 }
@@ -118,7 +118,7 @@ Config? parseConfig(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Config.fromJSON(jsonBody as Map<String, Object?>);
+  return Config.fromJson(jsonBody as Map<String, Object?>);
 }
 
 BindingState? parseBindingState(IPCResponse? response) {
@@ -128,7 +128,7 @@ BindingState? parseBindingState(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return BindingState.fromJSON(jsonBody as Map<String, Object?>);
+  return BindingState.fromJson(jsonBody as Map<String, Object?>);
 }
 
 List<String> parseBindingModes(IPCResponse? response) {
@@ -170,5 +170,5 @@ Status? parseStatus(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Status.fromJSON(jsonBody as Map<String, Object?>);
+  return Status.fromJson(jsonBody as Map<String, Object?>);
 }

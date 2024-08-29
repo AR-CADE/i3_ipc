@@ -26,7 +26,7 @@ void main() {
           product: 1,
           type: 'type_test',
         );
-        final json = seatDevice.toJSON();
+        final json = seatDevice.toJson();
         final identifier = json['identifier'];
         final name = json['name'];
         final vendor = json['vendor'];
@@ -93,7 +93,7 @@ void main() {
           repeatDelay: 3,
           repeatRate: 4,
         );
-        final json = seatDevice.toJSON();
+        final json = seatDevice.toJson();
         final identifier = json['identifier'];
         final name = json['name'];
         final vendor = json['vendor'];
@@ -157,10 +157,10 @@ void main() {
           'product': 1,
           'type': 'type_test',
         };
-        final seatDevice = SeatDevice.fromJSON(json);
+        final seatDevice = SeatDevice.fromJson(json);
         expect(
           json,
-          seatDevice.toJSON(),
+          seatDevice.toJson(),
         );
         expect(
           seatDevice.identifier,
@@ -217,10 +217,10 @@ void main() {
           'repeat_delay': 3,
           'repeat_rate': 4,
         };
-        final seatDevice = SeatDevice.fromJSON(json);
+        final seatDevice = SeatDevice.fromJson(json);
         expect(
           json,
-          seatDevice.toJSON(),
+          seatDevice.toJson(),
         );
         expect(
           seatDevice.identifier,

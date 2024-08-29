@@ -10,7 +10,7 @@ void main() {
         width: 3,
         height: 4,
       );
-      final json = mode.toJSON();
+      final json = mode.toJson();
       final x = json['x'];
       final y = json['y'];
       final width = json['width'];
@@ -36,10 +36,10 @@ void main() {
 
     test('deserialize', () {
       final json = {'x': 1, 'y': 2, 'width': 3, 'height': 4};
-      final rect = Rect.fromJSON(json);
+      final rect = Rect.fromJson(json);
       expect(
         json,
-        rect.toJSON(),
+        rect.toJson(),
       );
       expect(
         rect.x,

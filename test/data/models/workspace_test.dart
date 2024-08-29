@@ -5,7 +5,7 @@ import '../../core/test.dart';
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
@@ -46,7 +46,7 @@ void main() {
           rect: rectMock,
           output: 'output_test',
         );
-        final json = workspace.toJSON();
+        final json = workspace.toJson();
         final num = json['num'];
         final name = json['name'];
         final visible = json['visible'];
@@ -79,7 +79,7 @@ void main() {
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           output,
@@ -108,7 +108,7 @@ void main() {
           layout: 'layout_test',
           representation: 'representation_test',
         );
-        final json = workspace.toJSON();
+        final json = workspace.toJson();
         final num = json['num'];
         final name = json['name'];
         final visible = json['visible'];
@@ -141,7 +141,7 @@ void main() {
         );
         expect(
           rect,
-          rectMock.toJSON(),
+          rectMock.toJson(),
         );
         expect(
           output,
@@ -167,13 +167,13 @@ void main() {
           'visible': true,
           'focused': true,
           'urgent': false,
-          'rect': rectMock.toJSON(),
+          'rect': rectMock.toJson(),
           'output': 'output_test',
         };
-        final workspace = Workspace.fromJSON(json);
+        final workspace = Workspace.fromJson(json);
         expect(
           json,
-          workspace.toJSON(),
+          workspace.toJson(),
         );
         expect(
           workspace.num,
@@ -196,8 +196,8 @@ void main() {
           false,
         );
         expect(
-          workspace.rect.toJSON(),
-          rectMock.toJSON(),
+          workspace.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
           workspace.output,
@@ -221,15 +221,15 @@ void main() {
           'visible': true,
           'focused': true,
           'urgent': false,
-          'rect': rectMock.toJSON(),
+          'rect': rectMock.toJson(),
           'output': 'output_test',
           'layout': 'layout_test',
           'representation': 'representation_test',
         };
-        final workspace = Workspace.fromJSON(json);
+        final workspace = Workspace.fromJson(json);
         expect(
           json,
-          workspace.toJSON(),
+          workspace.toJson(),
         );
         expect(
           workspace.num,
@@ -252,8 +252,8 @@ void main() {
           false,
         );
         expect(
-          workspace.rect.toJSON(),
-          rectMock.toJSON(),
+          workspace.rect.toJson(),
+          rectMock.toJson(),
         );
         expect(
           workspace.output,

@@ -3,14 +3,14 @@ class BindingState {
     required this.name,
   });
 
-  factory BindingState.fromJSON(Map<String, Object?> json) {
+  factory BindingState.fromJson(Map<String, Object?> json) {
     return BindingState(
       name: json['name']! as String,
     );
   }
   final String name;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['name'] = name;
     return data;

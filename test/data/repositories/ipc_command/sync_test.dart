@@ -28,7 +28,7 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
     controller?.add(
       IPCResponse(
         type: IpcPayloadType.ipcSync,
-        payload: jsonEncode(const Status(success: true).toJSON()),
+        payload: jsonEncode(const Status(success: true).toJson()),
       ),
     );
   }

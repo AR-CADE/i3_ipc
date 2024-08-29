@@ -6,7 +6,7 @@ void main() {
     group('serialize', () {
       test('with required parameters only', () {
         const status = Status();
-        final json = status.toJSON();
+        final json = status.toJson();
         final success = json['success'];
         final error = json['error'];
 
@@ -23,7 +23,7 @@ void main() {
 
       test('with all parameters', () {
         const status = Status(success: true, error: 'error_test');
-        final json = status.toJSON();
+        final json = status.toJson();
         final success = json['success'];
         final error = json['error'];
 
@@ -43,10 +43,10 @@ void main() {
       test('with required parameters only', () {
         // ignore: omit_local_variable_types
         final Map<String, Object?> json = {};
-        final status = Status.fromJSON(json);
+        final status = Status.fromJson(json);
         expect(
           {'success': true},
-          status.toJSON(),
+          status.toJson(),
         );
         expect(
           status.success,
@@ -61,10 +61,10 @@ void main() {
 
       test('with all parameters', () {
         final json = {'success': true, 'error': 'error_test'};
-        final status = Status.fromJSON(json);
+        final status = Status.fromJson(json);
         expect(
           json,
-          status.toJSON(),
+          status.toJson(),
         );
         expect(
           status.success,

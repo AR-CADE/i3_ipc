@@ -15,7 +15,7 @@ class Input extends Equatable {
     this.libinput,
   });
 
-  factory Input.fromJSON(Map<String, Object?> json) {
+  factory Input.fromJson(Map<String, Object?> json) {
     List<String>? xkbLayoutNames;
     {
       final iterable = json['xkb_layout_names'] as Iterable<Object?>?;
@@ -39,7 +39,7 @@ class Input extends Equatable {
       xkbActiveLayoutIndex: json['xkb_active_layout_index'] as int?,
       scrollFactor: json['scroll_factor'] as double?,
       libinput: json['libinput'] != null
-          ? LibInput.fromJSON(json['libinput']! as Map<String, Object?>)
+          ? LibInput.fromJson(json['libinput']! as Map<String, Object?>)
           : null,
     );
   }
@@ -75,7 +75,7 @@ class Input extends Equatable {
   /// (Only libinput devices) An object describing the current device settings.
   final LibInput? libinput;
 
-  Map<String, Object?> toJSON() {
+  Map<String, Object?> toJson() {
     final data = <String, Object?>{};
     data['identifier'] = identifier;
     data['name'] = name;
@@ -100,7 +100,7 @@ class Input extends Equatable {
     }
 
     if (libinput != null) {
-      data['libinput'] = libinput!.toJSON();
+      data['libinput'] = libinput!.toJson();
     }
 
     return data;

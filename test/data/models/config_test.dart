@@ -5,7 +5,7 @@ void main() {
   group('Config model', () {
     test('serialize', () {
       const config = Config(config: 'config_test');
-      final value = config.toJSON()['config'];
+      final value = config.toJson()['config'];
 
       expect(
         value,
@@ -15,11 +15,11 @@ void main() {
 
     test('deserialize', () {
       final json = {'config': 'config_test'};
-      final config = Config.fromJSON(json);
+      final config = Config.fromJson(json);
 
       expect(
         json,
-        config.toJSON(),
+        config.toJson(),
       );
 
       expect(
