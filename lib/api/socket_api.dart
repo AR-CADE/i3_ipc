@@ -13,7 +13,16 @@ class I3IpcSocketApi {
   }) {
     const port = 0;
     final host = InternetAddress(socketPath, type: InternetAddressType.unix);
-    final socket = RawSocket.connect(host, port, timeout: timeout);
+    final socket = RawSocket.connect(host, port, timeout: timeout).catchError(
+      (_) {
+        stderr.writeln(
+          'Error: Unable to retrieve socket path ($socketPath)',
+        );
+        exit(-1);
+      },
+      test: (error) =>
+          error is SocketException && error.osError?.errorCode == 2,
+    );
 
     return socket;
   }
