@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockRect extends MockRect {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
@@ -171,7 +171,10 @@ void main() {
           'output': 'output_test',
         };
         final workspace = Workspace.fromJSON(json);
-
+        expect(
+          json,
+          workspace.toJSON(),
+        );
         expect(
           workspace.num,
           1,
@@ -224,7 +227,10 @@ void main() {
           'representation': 'representation_test',
         };
         final workspace = Workspace.fromJSON(json);
-
+        expect(
+          json,
+          workspace.toJSON(),
+        );
         expect(
           workspace.num,
           1,

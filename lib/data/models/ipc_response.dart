@@ -10,10 +10,10 @@ class IPCResponse {
   })  : _id = id,
         _pid = pid;
 
-  factory IPCResponse.fromJSON(Map<String, dynamic> json) {
+  factory IPCResponse.fromJSON(Map<String, Object?> json) {
     return IPCResponse(
-      type: json['type'] as int,
-      size: json['size'] as int,
+      type: json['type']! as int,
+      size: json['size']! as int,
       id: json['id'] as String?,
       pid: json['pid'] as String?,
       payload: json['payload'] as String?,
@@ -42,13 +42,22 @@ class IPCResponse {
     }
   }
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['type'] = type;
     data['size'] = size;
-    data['id'] = _id;
-    data['pid'] = _pid;
-    data['payload'] = payload;
+
+    if (_id != null) {
+      data['id'] = _id;
+    }
+
+    if (_pid != null) {
+      data['pid'] = _pid;
+    }
+
+    if (payload != null) {
+      data['payload'] = payload;
+    }
 
     return data;
   }

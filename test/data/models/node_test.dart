@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockWindowProperties extends MockWindowProperties {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['class'] = 'class_test';
     data['instance'] = 'instance_test';
     data['title'] = 'title_test';
@@ -17,8 +17,8 @@ class _MockWindowProperties extends MockWindowProperties {
 
 class _MockIdleInhibitor extends MockIdleInhibitor {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['application'] = 'application_test';
     data['user'] = 'user_test';
     return data;
@@ -27,8 +27,8 @@ class _MockIdleInhibitor extends MockIdleInhibitor {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
@@ -39,8 +39,8 @@ class _MockRect extends MockRect {
 
 class _MockNode extends MockNode {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     final rect = _MockRect();
     final windowRect = _MockRect();
     final decoRect = _MockRect();
@@ -61,9 +61,9 @@ class _MockNode extends MockNode {
     data['marks'] = ['1', '2'];
     data['focused'] = true;
     data['focus'] = [1, 2, 3];
-    data['nodes'] = <Map<String, dynamic>>[];
+    data['nodes'] = <Map<String, Object?>>[];
     data['percent'] = 2.0;
-    data['floating_nodes'] = <Map<String, dynamic>>[];
+    data['floating_nodes'] = <Map<String, Object?>>[];
     data['representation'] = 'representation';
     data['fullscreen_mode'] = 3;
     data['app_id'] = 'appId';
@@ -71,9 +71,7 @@ class _MockNode extends MockNode {
     data['visible'] = true;
     data['shell'] = 'shell';
     data['inhibit_idle'] = false;
-    data['idle_inhibitors'] = null;
     data['window'] = 4;
-    data['window_properties'] = null;
     return data;
   }
 }
@@ -511,9 +509,14 @@ void main() {
           'marks': marksMock,
           'focused': true,
           'focus': focusMock,
-          'nodes': <Map<String, dynamic>>[],
+          'nodes': <Map<String, Object?>>[],
         };
         final node = Node.fromJSON(json);
+
+        expect(
+          json,
+          node.toJSON(),
+        );
 
         expect(
           node.id,
@@ -677,7 +680,10 @@ void main() {
           'window_properties': windowPropertiesMock.toJSON(),
         };
         final node = Node.fromJSON(json);
-
+        expect(
+          json,
+          node.toJSON(),
+        );
         expect(
           node.id,
           0,

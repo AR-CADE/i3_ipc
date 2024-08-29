@@ -42,9 +42,12 @@ void main() {
     group('deserialize', () {
       test('with required parameters only', () {
         // ignore: omit_local_variable_types
-        final Map<String, dynamic> json = {};
+        final Map<String, Object?> json = {};
         final status = Status.fromJSON(json);
-
+        expect(
+          {'success': true},
+          status.toJSON(),
+        );
         expect(
           status.success,
           true,
@@ -59,7 +62,10 @@ void main() {
       test('with all parameters', () {
         final json = {'success': true, 'error': 'error_test'};
         final status = Status.fromJSON(json);
-
+        expect(
+          json,
+          status.toJSON(),
+        );
         expect(
           status.success,
           true,

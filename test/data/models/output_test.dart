@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockMode extends MockMode {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['width'] = 1;
     data['height'] = 2;
     data['refresh'] = 3;
@@ -17,8 +17,8 @@ class _MockMode extends MockMode {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
@@ -344,7 +344,10 @@ void main() {
           'rect': rectMock.toJSON(),
         };
         final output = Output.fromJSON(json);
-
+        expect(
+          json,
+          output.toJSON(),
+        );
         expect(
           output.id,
           0,
@@ -456,7 +459,10 @@ void main() {
           'adaptive_sync_status': 'adaptiveSyncStatus_test',
         };
         final output = Output.fromJSON(json);
-
+        expect(
+          json,
+          output.toJSON(),
+        );
         expect(
           output.id,
           0,

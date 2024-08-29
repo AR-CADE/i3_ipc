@@ -56,7 +56,10 @@ void main() {
         'loaded_config_file_name': 'loadedConfigFileName_test',
       };
       final version = Version.fromJSON(json);
-
+      expect(
+        json,
+        version.toJSON(),
+      );
       expect(
         version.humanReadable,
         'humanReadable_test',

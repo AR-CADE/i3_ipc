@@ -6,12 +6,12 @@ class Rect {
     required this.width,
   });
 
-  factory Rect.fromJSON(Map<String, dynamic> json) {
+  factory Rect.fromJSON(Map<String, Object?> json) {
     return Rect(
-      x: json['x'] as int,
-      y: json['y'] as int,
-      width: json['width'] as int,
-      height: json['height'] as int,
+      x: json['x']! as int,
+      y: json['y']! as int,
+      width: json['width']! as int,
+      height: json['height']! as int,
     );
   }
   final int height;
@@ -19,8 +19,8 @@ class Rect {
   final int x;
   final int y;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['x'] = x;
     data['y'] = y;
     data['width'] = width;

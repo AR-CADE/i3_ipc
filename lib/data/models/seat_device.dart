@@ -14,23 +14,23 @@ class SeatDevice extends Equatable {
     this.repeatRate,
   });
 
-  factory SeatDevice.fromJSON(Map<String, dynamic> json) {
+  factory SeatDevice.fromJSON(Map<String, Object?> json) {
     List<String>? xkbLayoutNames;
     {
-      final iterable = json['xkb_layout_names'] as Iterable<dynamic>?;
+      final iterable = json['xkb_layout_names'] as Iterable<Object?>?;
       if (iterable != null) {
         xkbLayoutNames = <String>[];
         for (final e in iterable) {
-          xkbLayoutNames.add(e as String);
+          xkbLayoutNames.add(e! as String);
         }
       }
     }
     return SeatDevice(
-      identifier: json['identifier'] as String,
-      name: json['name'] as String,
-      vendor: json['vendor'] as int,
-      product: json['product'] as int,
-      type: json['type'] as String,
+      identifier: json['identifier']! as String,
+      name: json['name']! as String,
+      vendor: json['vendor']! as int,
+      product: json['product']! as int,
+      type: json['type']! as String,
       xkbActiveLayoutName: json['xkb_active_layout_name'] as String?,
       xkbLayoutNames: xkbLayoutNames,
       xkbActiveLayoutIndex: json['xkb_active_layout_index'] as int?,
@@ -50,18 +50,33 @@ class SeatDevice extends Equatable {
   final int? repeatDelay;
   final int? repeatRate;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['identifier'] = identifier;
     data['name'] = name;
     data['vendor'] = vendor;
     data['product'] = product;
     data['type'] = type;
-    data['xkb_active_layout_name'] = xkbActiveLayoutName;
-    data['xkb_layout_names'] = xkbLayoutNames;
-    data['xkb_active_layout_index'] = xkbActiveLayoutIndex;
-    data['repeat_delay'] = repeatDelay;
-    data['repeat_rate'] = repeatRate;
+
+    if (xkbActiveLayoutName != null) {
+      data['xkb_active_layout_name'] = xkbActiveLayoutName;
+    }
+
+    if (xkbLayoutNames != null) {
+      data['xkb_layout_names'] = xkbLayoutNames;
+    }
+
+    if (xkbActiveLayoutIndex != null) {
+      data['xkb_active_layout_index'] = xkbActiveLayoutIndex;
+    }
+
+    if (repeatDelay != null) {
+      data['repeat_delay'] = repeatDelay;
+    }
+
+    if (repeatRate != null) {
+      data['repeat_rate'] = repeatRate;
+    }
     return data;
   }
 

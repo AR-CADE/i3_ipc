@@ -6,11 +6,11 @@ class WindowProperties {
     this.transientFor,
   });
 
-  factory WindowProperties.fromJSON(Map<String, dynamic> json) {
+  factory WindowProperties.fromJSON(Map<String, Object?> json) {
     return WindowProperties(
-      clazz: json['class'] as String,
-      instance: json['instance'] as String,
-      title: json['title'] as String,
+      clazz: json['class']! as String,
+      instance: json['instance']! as String,
+      title: json['title']! as String,
       transientFor: json['transient_for'] as String?,
     );
   }
@@ -20,12 +20,14 @@ class WindowProperties {
   final String title;
   final String? transientFor;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['class'] = clazz;
     data['instance'] = instance;
     data['title'] = title;
-    data['transient_for'] = transientFor;
+    if (transientFor != null) {
+      data['transient_for'] = transientFor;
+    }
     return data;
   }
 }

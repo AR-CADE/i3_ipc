@@ -158,7 +158,10 @@ void main() {
           'type': 'type_test',
         };
         final seatDevice = SeatDevice.fromJSON(json);
-
+        expect(
+          json,
+          seatDevice.toJSON(),
+        );
         expect(
           seatDevice.identifier,
           'identifier_test',
@@ -215,7 +218,10 @@ void main() {
           'repeat_rate': 4,
         };
         final seatDevice = SeatDevice.fromJSON(json);
-
+        expect(
+          json,
+          seatDevice.toJSON(),
+        );
         expect(
           seatDevice.identifier,
           'identifier_test',

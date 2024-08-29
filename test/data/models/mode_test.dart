@@ -66,7 +66,10 @@ void main() {
       test('with required parameters only', () {
         final json = {'width': 1, 'height': 2, 'refresh': 3};
         final mode = Mode.fromJSON(json);
-
+        expect(
+          json,
+          mode.toJSON(),
+        );
         expect(
           mode.width,
           1,
@@ -93,7 +96,10 @@ void main() {
           'picture_aspect_ratio': 'modePictureAspectRatio_test',
         };
         final mode = Mode.fromJSON(json);
-
+        expect(
+          json,
+          mode.toJSON(),
+        );
         expect(
           mode.width,
           1,

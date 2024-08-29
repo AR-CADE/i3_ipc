@@ -36,57 +36,57 @@ class Node extends Equatable {
     this.windowProperties,
   });
 
-  factory Node.fromJSON(Map<String, dynamic> json) {
+  factory Node.fromJSON(Map<String, Object?> json) {
     final marks = <String>[];
     {
-      final iterable = json['marks'] as Iterable<dynamic>;
+      final iterable = json['marks']! as Iterable<Object?>;
       for (final e in iterable) {
-        marks.add(e as String);
+        marks.add(e! as String);
       }
     }
 
     final focus = <int>[];
     {
-      final iterable = json['focus'] as Iterable<dynamic>;
+      final iterable = json['focus']! as Iterable<Object?>;
       for (final e in iterable) {
-        focus.add(e as int);
+        focus.add(e! as int);
       }
     }
 
     final nodes = <Node>[];
     {
-      final iterable = json['nodes'] as Iterable<dynamic>;
+      final iterable = json['nodes']! as Iterable<Object?>;
       for (final e in iterable) {
-        nodes.add(Node.fromJSON(e as Map<String, dynamic>));
+        nodes.add(Node.fromJSON(e! as Map<String, Object?>));
       }
     }
 
     List<Node>? floatingNodes;
     {
-      final iterable = json['floating_nodes'] as Iterable<dynamic>?;
+      final iterable = json['floating_nodes'] as Iterable<Object?>?;
       if (iterable != null) {
         floatingNodes = <Node>[];
         for (final e in iterable) {
-          floatingNodes.add(Node.fromJSON(e as Map<String, dynamic>));
+          floatingNodes.add(Node.fromJSON(e! as Map<String, Object?>));
         }
       }
     }
     return Node(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      type: json['type'] as String,
-      border: json['border'] as String,
-      currentBorderWidth: json['current_border_width'] as int,
-      layout: json['layout'] as String,
-      orientation: json['orientation'] as String,
-      rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
-      windowRect: Rect.fromJSON(json['window_rect'] as Map<String, dynamic>),
-      decoRect: Rect.fromJSON(json['deco_rect'] as Map<String, dynamic>),
-      geometry: Rect.fromJSON(json['geometry'] as Map<String, dynamic>),
-      urgent: json['urgent'] as bool,
-      sticky: json['sticky'] as bool,
+      id: json['id']! as int,
+      name: json['name']! as String,
+      type: json['type']! as String,
+      border: json['border']! as String,
+      currentBorderWidth: json['current_border_width']! as int,
+      layout: json['layout']! as String,
+      orientation: json['orientation']! as String,
+      rect: Rect.fromJSON(json['rect']! as Map<String, Object?>),
+      windowRect: Rect.fromJSON(json['window_rect']! as Map<String, Object?>),
+      decoRect: Rect.fromJSON(json['deco_rect']! as Map<String, Object?>),
+      geometry: Rect.fromJSON(json['geometry']! as Map<String, Object?>),
+      urgent: json['urgent']! as bool,
+      sticky: json['sticky']! as bool,
       marks: marks,
-      focused: json['focused'] as bool,
+      focused: json['focused']! as bool,
       focus: focus,
       nodes: nodes,
       floatingNodes: floatingNodes,
@@ -100,13 +100,13 @@ class Node extends Equatable {
       inhibitIdle: json['inhibit_idle'] as bool?,
       idleInhibitors: json['idle_inhibitors'] != null
           ? IdleInhibitor.fromJSON(
-              json['idle_inhibitors'] as Map<String, dynamic>,
+              json['idle_inhibitors']! as Map<String, Object?>,
             )
           : null,
       window: json['window'] as int?,
       windowProperties: json['window_properties'] != null
           ? WindowProperties.fromJSON(
-              json['window_properties'] as Map<String, dynamic>,
+              json['window_properties']! as Map<String, Object?>,
             )
           : null,
     );
@@ -213,8 +213,8 @@ class Node extends Equatable {
   /// window_role, window_type, and transient_for for the view
   final WindowProperties? windowProperties;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['id'] = id;
     data['name'] = name;
     data['type'] = type;
@@ -232,18 +232,54 @@ class Node extends Equatable {
     data['focused'] = focused;
     data['focus'] = focus;
     data['nodes'] = nodes.map((m) => m.toJSON()).toList();
-    data['percent'] = percent;
-    data['floating_nodes'] = floatingNodes?.map((m) => m.toJSON()).toList();
-    data['representation'] = representation;
-    data['fullscreen_mode'] = fullscreenMode;
-    data['app_id'] = appId;
-    data['pid'] = pid;
-    data['visible'] = visible;
-    data['shell'] = shell;
-    data['inhibit_idle'] = inhibitIdle;
-    data['idle_inhibitors'] = idleInhibitors?.toJSON();
-    data['window'] = window;
-    data['window_properties'] = windowProperties?.toJSON();
+
+    if (floatingNodes != null) {
+      data['floating_nodes'] = floatingNodes?.map((m) => m.toJSON()).toList();
+    }
+
+    if (percent != null) {
+      data['percent'] = percent;
+    }
+
+    if (representation != null) {
+      data['representation'] = representation;
+    }
+
+    if (fullscreenMode != null) {
+      data['fullscreen_mode'] = fullscreenMode;
+    }
+
+    if (appId != null) {
+      data['app_id'] = appId;
+    }
+
+    if (pid != null) {
+      data['pid'] = pid;
+    }
+
+    if (visible != null) {
+      data['visible'] = visible;
+    }
+
+    if (shell != null) {
+      data['shell'] = shell;
+    }
+
+    if (inhibitIdle != null) {
+      data['inhibit_idle'] = inhibitIdle;
+    }
+
+    if (idleInhibitors != null) {
+      data['idle_inhibitors'] = idleInhibitors?.toJSON();
+    }
+
+    if (window != null) {
+      data['window'] = window;
+    }
+
+    if (windowProperties != null) {
+      data['window_properties'] = windowProperties?.toJSON();
+    }
     return data;
   }
 

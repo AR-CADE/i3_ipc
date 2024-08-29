@@ -18,6 +18,11 @@ void main() {
       final config = Config.fromJSON(json);
 
       expect(
+        json,
+        config.toJSON(),
+      );
+
+      expect(
         config.config,
         'config_test',
       );

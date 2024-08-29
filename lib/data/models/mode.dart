@@ -6,11 +6,11 @@ class Mode {
     this.modePictureAspectRatio,
   });
 
-  factory Mode.fromJSON(Map<String, dynamic> json) {
+  factory Mode.fromJSON(Map<String, Object?> json) {
     return Mode(
-      width: json['width'] as int,
-      height: json['height'] as int,
-      refresh: json['refresh'] as int,
+      width: json['width']! as int,
+      height: json['height']! as int,
+      refresh: json['refresh']! as int,
       modePictureAspectRatio: json['picture_aspect_ratio'] as String?,
     );
   }
@@ -21,12 +21,15 @@ class Mode {
   // not documented
   final String? modePictureAspectRatio;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['width'] = width;
     data['height'] = height;
     data['refresh'] = refresh;
-    data['picture_aspect_ratio'] = modePictureAspectRatio;
+
+    if (modePictureAspectRatio != null) {
+      data['picture_aspect_ratio'] = modePictureAspectRatio;
+    }
     return data;
   }
 }

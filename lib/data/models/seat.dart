@@ -9,18 +9,18 @@ class Seat extends Equatable {
     required this.devices,
   });
 
-  factory Seat.fromJSON(Map<String, dynamic> json) {
+  factory Seat.fromJSON(Map<String, Object?> json) {
     final devices = <SeatDevice>[];
     {
-      final iterable = json['devices'] as Iterable<dynamic>;
+      final iterable = json['devices']! as Iterable<Object?>;
       for (final e in iterable) {
-        devices.add(SeatDevice.fromJSON(e as Map<String, dynamic>));
+        devices.add(SeatDevice.fromJSON(e! as Map<String, Object?>));
       }
     }
     return Seat(
-      name: json['name'] as String,
-      capabilities: json['capabilities'] as int,
-      focus: json['focus'] as int,
+      name: json['name']! as String,
+      capabilities: json['capabilities']! as int,
+      focus: json['focus']! as int,
       devices: devices,
     );
   }
@@ -41,8 +41,8 @@ class Seat extends Equatable {
   /// those returned by GET_INPUTS
   final List<SeatDevice> devices;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['name'] = name;
     data['capabilities'] = capabilities;
     data['focus'] = focus;

@@ -74,7 +74,10 @@ void main() {
           'title': 'title_test',
         };
         final windowProperties = WindowProperties.fromJSON(json);
-
+        expect(
+          json,
+          windowProperties.toJSON(),
+        );
         expect(
           windowProperties.clazz,
           'class_test',
@@ -101,7 +104,10 @@ void main() {
           'transient_for': 'transientFor_test',
         };
         final windowProperties = WindowProperties.fromJSON(json);
-
+        expect(
+          json,
+          windowProperties.toJSON(),
+        );
         expect(
           windowProperties.clazz,
           'class_test',

@@ -15,10 +15,15 @@ void main() {
 
     test('deserialize', () {
       final json = {'name': 'name_test'};
-      final config = BindingState.fromJSON(json);
+      final state = BindingState.fromJSON(json);
 
       expect(
-        config.name,
+        json,
+        state.toJSON(),
+      );
+
+      expect(
+        state.name,
         'name_test',
       );
     });

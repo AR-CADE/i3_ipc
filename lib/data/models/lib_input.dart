@@ -24,31 +24,31 @@ class LibInput {
     required this.calibrationMatrix,
   });
 
-  factory LibInput.fromJSON(Map<String, dynamic> json) {
+  factory LibInput.fromJSON(Map<String, Object?> json) {
     final calibrationMatrix = <double>[];
     {
-      final iterable = json['calibration_matrix'] as Iterable<dynamic>;
+      final iterable = json['calibration_matrix']! as Iterable<Object?>;
       for (final e in iterable) {
-        calibrationMatrix.add(e as double);
+        calibrationMatrix.add(e! as double);
       }
     }
     return LibInput(
-      sendEvents: json['send_events'] as String,
-      tap: json['tap'] as String,
-      tapButtonMap: json['tap_button_map'] as String,
-      tapDrag: json['tap_drag'] as String,
-      tapDragLock: json['tap_drag_lock'] as String,
-      accelSpeed: json['accel_speed'] as double,
-      accelProfile: json['accel_profile'] as String,
-      naturalScroll: json['natural_scroll'] as String,
-      leftHanded: json['left_handed'] as String,
-      clickMethod: json['click_method'] as String,
-      middleEmulation: json['middle_emulation'] as String,
-      scrollMethod: json['scroll_method'] as String,
-      scrollButton: json['scroll_button'] as int,
-      scrollButtonLock: json['scroll_button_lock'] as String,
-      dwt: json['dwt'] as String,
-      dwtp: json['dwtp'] as String,
+      sendEvents: json['send_events']! as String,
+      tap: json['tap']! as String,
+      tapButtonMap: json['tap_button_map']! as String,
+      tapDrag: json['tap_drag']! as String,
+      tapDragLock: json['tap_drag_lock']! as String,
+      accelSpeed: json['accel_speed']! as double,
+      accelProfile: json['accel_profile']! as String,
+      naturalScroll: json['natural_scroll']! as String,
+      leftHanded: json['left_handed']! as String,
+      clickMethod: json['click_method']! as String,
+      middleEmulation: json['middle_emulation']! as String,
+      scrollMethod: json['scroll_method']! as String,
+      scrollButton: json['scroll_button']! as int,
+      scrollButtonLock: json['scroll_button_lock']! as String,
+      dwt: json['dwt']! as String,
+      dwtp: json['dwtp']! as String,
       calibrationMatrix: calibrationMatrix,
     );
   }
@@ -109,8 +109,8 @@ class LibInput {
   /// devices such as touchscreens
   final List<double> calibrationMatrix;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['send_events'] = sendEvents;
     data['tap'] = tap;
     data['tap_button_map'] = tapButtonMap;

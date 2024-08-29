@@ -27,6 +27,11 @@ void main() {
       final idleInhibitor = IdleInhibitor.fromJSON(json);
 
       expect(
+        json,
+        idleInhibitor.toJSON(),
+      );
+
+      expect(
         idleInhibitor.application,
         'test_app',
       );

@@ -217,7 +217,7 @@ class PrettyPrinter {
     stdout.write('#$id: $type "$name"');
 
     if (shell != null) {
-      final dynamic pid = n.pid;
+      final pid = n.pid;
       final appId = n.appId;
       final windowPropsObj = n.windowProperties;
 
@@ -274,15 +274,15 @@ class PrettyPrinter {
         return;
 
       case IpcPayloadType.ipcGetVersion:
-        prettyPrintVersion(Version.fromJSON(json as Map<String, dynamic>));
+        prettyPrintVersion(Version.fromJSON(json as Map<String, Object?>));
         return;
 
       case IpcPayloadType.ipcGetConfig:
-        prettyPrintConfig(Config.fromJSON(json as Map<String, dynamic>));
+        prettyPrintConfig(Config.fromJSON(json as Map<String, Object?>));
         return;
 
       case IpcPayloadType.ipcGetTree:
-        prettyPrintTree(Node.fromJSON(json as Map<String, dynamic>), 0);
+        prettyPrintTree(Node.fromJSON(json as Map<String, Object?>), 0);
         return;
 
       case IpcPayloadType.ipcCommand:
@@ -301,21 +301,21 @@ class PrettyPrinter {
       for (final obj in json) {
         switch (type) {
           case IpcPayloadType.ipcCommand:
-            prettyPrintCmd(Status.fromJSON(obj as Map<String, dynamic>));
+            prettyPrintCmd(Status.fromJSON(obj as Map<String, Object?>));
 
           case IpcPayloadType.ipcGetWorkspaces:
             prettyPrintWorkspace(
-              Workspace.fromJSON(obj as Map<String, dynamic>),
+              Workspace.fromJSON(obj as Map<String, Object?>),
             );
 
           case IpcPayloadType.ipcGetInputs:
-            prettyPrintInput(Input.fromJSON(obj as Map<String, dynamic>));
+            prettyPrintInput(Input.fromJSON(obj as Map<String, Object?>));
 
           case IpcPayloadType.ipcGetOutputs:
-            prettyPrintOutput(Output.fromJSON(obj as Map<String, dynamic>));
+            prettyPrintOutput(Output.fromJSON(obj as Map<String, Object?>));
 
           case IpcPayloadType.ipcGetSeats:
-            prettyPrintSeat(Seat.fromJSON(obj as Map<String, dynamic>));
+            prettyPrintSeat(Seat.fromJSON(obj as Map<String, Object?>));
         }
       }
     }

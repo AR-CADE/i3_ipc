@@ -137,6 +137,11 @@ void main() {
       final libinput = LibInput.fromJSON(json);
 
       expect(
+        json,
+        libinput.toJSON(),
+      );
+
+      expect(
         libinput.sendEvents,
         'sendEvents_test',
       );

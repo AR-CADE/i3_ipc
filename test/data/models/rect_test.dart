@@ -37,7 +37,10 @@ void main() {
     test('deserialize', () {
       final json = {'x': 1, 'y': 2, 'width': 3, 'height': 4};
       final rect = Rect.fromJSON(json);
-
+      expect(
+        json,
+        rect.toJSON(),
+      );
       expect(
         rect.x,
         1,

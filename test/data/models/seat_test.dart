@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockSeatDevice extends MockSeatDevice {
   @override
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['identifier'] = 'identifier_test';
     data['name'] = 'name_test';
     data['vendor'] = 1;
@@ -79,7 +79,10 @@ void main() {
         'devices': devicesMock.map((e) => e.toJSON()),
       };
       final seat = Seat.fromJSON(json);
-
+      expect(
+        json,
+        seat.toJSON(),
+      );
       expect(
         seat.name,
         'name_test',

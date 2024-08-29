@@ -112,6 +112,12 @@ void main() {
       test('with required parameters only', () {
         final json = {'type': 1, 'size': 1};
         final iPCResponse = IPCResponse.fromJSON(json);
+
+        expect(
+          json,
+          iPCResponse.toJSON(),
+        );
+
         expect(
           iPCResponse.type,
           1,
@@ -143,6 +149,12 @@ void main() {
           'payload': 'payload_test',
         };
         final iPCResponse = IPCResponse.fromJSON(json);
+
+        expect(
+          json,
+          iPCResponse.toJSON(),
+        );
+
         expect(
           iPCResponse.type,
           1,
@@ -173,11 +185,13 @@ void main() {
         final expectedJson = {
           'type': 1,
           'size': 1,
-          'id': null,
-          'pid': null,
-          'payload': null,
         };
         final iPCResponse = IPCResponse.fromJSON(json);
+
+        expect(
+          json,
+          iPCResponse.toJSON(),
+        );
         final string = iPCResponse.toString();
         expect(
           string,
@@ -194,6 +208,11 @@ void main() {
           'payload': 'payload_test',
         };
         final iPCResponse = IPCResponse.fromJSON(json);
+
+        expect(
+          json,
+          iPCResponse.toJSON(),
+        );
         final string = iPCResponse.toString();
         expect(
           string,

@@ -14,15 +14,15 @@ class Workspace extends Equatable {
     this.representation,
   });
 
-  factory Workspace.fromJSON(Map<String, dynamic> json) {
+  factory Workspace.fromJSON(Map<String, Object?> json) {
     return Workspace(
-      num: json['num'] as int,
-      name: json['name'] as String,
-      visible: json['visible'] as bool,
-      focused: json['focused'] as bool,
-      urgent: json['urgent'] as bool,
-      rect: Rect.fromJSON(json['rect'] as Map<String, dynamic>),
-      output: json['output'] as String,
+      num: json['num']! as int,
+      name: json['name']! as String,
+      visible: json['visible']! as bool,
+      focused: json['focused']! as bool,
+      urgent: json['urgent']! as bool,
+      rect: Rect.fromJSON(json['rect']! as Map<String, Object?>),
+      output: json['output']! as String,
       layout: json['layout'] as String?,
       representation: json['representation'] as String?,
     );
@@ -53,8 +53,8 @@ class Workspace extends Equatable {
   final String? layout;
   final String? representation;
 
-  Map<String, dynamic> toJSON() {
-    final data = <String, dynamic>{};
+  Map<String, Object?> toJSON() {
+    final data = <String, Object?>{};
     data['num'] = num;
     data['name'] = name;
     data['visible'] = visible;
@@ -62,8 +62,14 @@ class Workspace extends Equatable {
     data['urgent'] = urgent;
     data['rect'] = rect.toJSON();
     data['output'] = output;
-    data['layout'] = layout;
-    data['representation'] = representation;
+
+    if (layout != null) {
+      data['layout'] = layout;
+    }
+
+    if (representation != null) {
+      data['representation'] = representation;
+    }
     return data;
   }
 
