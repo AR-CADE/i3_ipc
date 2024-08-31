@@ -10,7 +10,7 @@ class MockI3IpcClientApi extends Mock implements I3IpcClientApi {}
 
 class MockI3IpcClientNullResponseApi extends MockI3IpcClientApi {
   @override
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -19,8 +19,8 @@ class MockI3IpcClientNullResponseApi extends MockI3IpcClientApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
-  }) {
-    controller?.add(
+  }) async {
+    return controller?.add(
       null,
     );
   }

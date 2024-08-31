@@ -6,7 +6,7 @@ import 'package:i3_ipc/data/models/ipc_response.dart';
 class I3IpcClientApi {
   const I3IpcClientApi();
 
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -15,7 +15,7 @@ class I3IpcClientApi {
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
   }) {
-    socket.execute(
+    return socket.execute(
       type,
       pid: pid,
       payload: payload,

@@ -13,7 +13,7 @@ import '../../../core/test.dart';
 
 class _MockI3IpcClientApi extends MockI3IpcClientApi {
   @override
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -22,9 +22,9 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
-  }) {
+  }) async {
     final file = File('test/data/json/get_workspaces.json');
-    controller?.add(
+    return controller?.add(
       IPCResponse(
         type: IpcPayloadType.ipcGetWorkspaces,
         payload: file.readAsStringSync(),

@@ -6,6 +6,7 @@ import 'package:i3_ipc/core/tools/ipc_event_type.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository.dart';
+import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository_error.dart';
 
 part 'i3_client_event.dart';
 part 'i3_client_state.dart';
@@ -37,15 +38,21 @@ class I3ClientBloc extends Bloc<I3ClientBlocEvent, I3ClientBlocState> {
     _i3CommandStatusSubscription = _i3CommandRepository.stream.listen(
       (status) => add(_I3IpcStatusChanged(status)),
     );
+
+    _i3ErrorSubscription = _i3CommandRepository.error.listen(
+      (e) => addError(e.error, e.stackTrace),
+    );
   }
 
   late final StreamSubscription<IPCResponse?> _i3CommandStatusSubscription;
+  late final StreamSubscription<IpcCommandRepositoryError> _i3ErrorSubscription;
 
   final I3IpcCommandRepository _i3CommandRepository;
 
   @override
   Future<void> close() {
     _i3CommandStatusSubscription.cancel();
+    _i3ErrorSubscription.cancel();
     return super.close();
   }
 

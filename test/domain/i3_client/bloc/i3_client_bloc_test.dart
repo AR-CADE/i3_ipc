@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository_error.dart';
 import 'package:i3_ipc/i3_ipc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
@@ -15,6 +16,17 @@ void main() {
     ).thenAnswer(
       (_) => Stream.value(
         null,
+      ),
+    );
+
+    when(
+      () => i3CommandRepository.error,
+    ).thenAnswer(
+      (_) => Stream.value(
+        IpcCommandRepositoryError(
+          error: Exception('boom'),
+          stackTrace: StackTrace.current,
+        ),
       ),
     );
   });

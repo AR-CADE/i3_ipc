@@ -13,16 +13,7 @@ class I3IpcSocketApi {
   }) {
     const port = 0;
     final host = InternetAddress(socketPath, type: InternetAddressType.unix);
-    final socket = RawSocket.connect(host, port, timeout: timeout).catchError(
-      (_) {
-        stderr.writeln(
-          'Error: Unable to retrieve socket path ($socketPath)',
-        );
-        exit(-1);
-      },
-      test: (error) =>
-          error is SocketException && error.osError?.errorCode == 2,
-    );
+    final socket = RawSocket.connect(host, port, timeout: timeout);
 
     return socket;
   }
@@ -69,7 +60,7 @@ class I3IpcSocketApi {
     return sunPath;
   }
 
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -77,7 +68,7 @@ class I3IpcSocketApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
   }) {
-    getSocket(socketPath: socketPath, timeout: timeout).then(
+    return getSocket(socketPath: socketPath, timeout: timeout).then(
       (socket) => I3IpcCommandApi(
         socket,
         type,

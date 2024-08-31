@@ -5,6 +5,7 @@ import 'package:i3_ipc/api/ipc_client_api.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/status.dart';
+import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository_error.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:rxdart/transformers.dart';
 import 'package:uuid/uuid.dart';
@@ -18,11 +19,24 @@ class I3IpcCommandRepository {
   /// Mainly used for testing
   int get processCount => _controllers.length;
   final _stream = PublishSubject<IPCResponse?>();
+  final _error = PublishSubject<IpcCommandRepositoryError>();
   Stream<IPCResponse?> get stream => _stream.stream;
+  Stream<IpcCommandRepositoryError> get error => _error.stream;
 
   void _add(IPCResponse? response) {
     if (_stream.isClosed == false) {
       _stream.add(response);
+    }
+  }
+
+  void _addError(Object error, [StackTrace? stackTrace]) {
+    if (_error.isClosed == false) {
+      _error.add(
+        IpcCommandRepositoryError(
+          error: error,
+          stackTrace: stackTrace ?? StackTrace.current,
+        ),
+      );
     }
   }
 
@@ -241,26 +255,32 @@ class I3IpcCommandRepository {
     String payload = '',
     Duration timeout = const Duration(seconds: 2),
     I3IpcClientApi client = const I3IpcClientApi(),
-  }) {
+  }) async {
     final controller = StreamController<IPCResponse?>();
     final pid = const Uuid().v4();
 
-    client.execute(
+    await client
+        .execute(
       pid: pid,
       IpcPayloadType.ipcSubscribe,
       payload: payload,
       controller: controller,
       socketPath: socketPath,
       timeout: timeout,
-    );
+    )
+        .catchError((Object error) {
+      close(pid: pid);
+      _addError(error);
+    });
 
     _open(pid, controller);
 
     final stream = controller.stream.asBroadcastStream();
 
     return stream
-        .doOnError((_, __) {
+        .doOnError((e, s) {
           close(pid: pid);
+          _addError(e, s);
         })
         .first
         .then((status) {
@@ -297,24 +317,29 @@ class I3IpcCommandRepository {
     String payload = '',
     Duration timeout = const Duration(seconds: 2),
     I3IpcClientApi client = const I3IpcClientApi(),
-  }) {
+  }) async {
     final controller = StreamController<IPCResponse?>();
     final pid = const Uuid().v4();
 
-    client.execute(
+    await client
+        .execute(
       pid: pid,
       type,
       payload: payload,
       controller: controller,
       socketPath: socketPath,
       timeout: timeout,
-    );
+    )
+        .catchError((Object error) {
+      close(pid: pid);
+      _addError(error);
+    });
 
     _open(pid, controller);
-
     return controller.stream
-        .doOnError((_, __) {
+        .doOnError((e, s) {
           close(pid: pid);
+          _addError(e, s);
         })
         .first
         .then((value) {
@@ -337,6 +362,9 @@ class I3IpcCommandRepository {
       );
       if (_stream.isClosed == false) {
         _stream.close();
+      }
+      if (_error.isClosed == false) {
+        _error.close();
       }
       return;
     }
@@ -365,6 +393,10 @@ class I3IpcCommandRepository {
 
     if (_stream.isClosed == false) {
       _stream.close();
+    }
+
+    if (_error.isClosed == false) {
+      _error.close();
     }
   }
 

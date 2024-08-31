@@ -14,7 +14,7 @@ import '../../../core/test.dart';
 
 class _MockI3IpcClientApi extends MockI3IpcClientApi {
   @override
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -23,7 +23,7 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
-  }) {
+  }) async {
     if (type == IpcPayloadType.ipcSubscribe) {
       controller?.add(
         IPCResponse(
@@ -51,7 +51,7 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
 
 class _MockI3IpcClientFailedApi extends MockI3IpcClientApi {
   @override
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -60,7 +60,7 @@ class _MockI3IpcClientFailedApi extends MockI3IpcClientApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
-  }) {
+  }) async {
     if (type == IpcPayloadType.ipcSubscribe) {
       controller?.add(
         IPCResponse(
@@ -76,7 +76,7 @@ class _MockI3IpcClientFailedApi extends MockI3IpcClientApi {
 
 class _MockI3IpcClientErrorApi extends MockI3IpcClientApi {
   @override
-  void execute(
+  Future<void> execute(
     int type, {
     required String pid,
     String payload = '',
@@ -85,8 +85,8 @@ class _MockI3IpcClientErrorApi extends MockI3IpcClientApi {
     String? socketPath,
     Duration timeout = const Duration(seconds: 2),
     I3IpcSocketApi socket = const I3IpcSocketApi(),
-  }) {
-    controller?.addError('Error in proccess with $pid');
+  }) async {
+    return controller?.addError('Error in proccess with $pid');
   }
 }
 
