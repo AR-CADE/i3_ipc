@@ -1,7 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:i3_ipc/data/models/mode.dart';
 import 'package:i3_ipc/data/models/rect.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'output.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Output extends Equatable {
   const Output({
     required this.id,
@@ -27,39 +31,9 @@ class Output extends Equatable {
     this.adaptiveSyncStatus,
   });
 
-  factory Output.fromJson(Map<String, Object?> json) {
-    final modes = <Mode>[]..length;
-    {
-      final iterable = json['modes']! as Iterable<Object?>;
-      for (final e in iterable) {
-        modes.add(Mode.fromJson(e! as Map<String, Object?>));
-      }
-    }
+  factory Output.fromJson(Map<String, dynamic> json) => _$OutputFromJson(json);
 
-    return Output(
-      id: json['id']! as int,
-      name: json['name']! as String,
-      make: json['make']! as String,
-      model: json['model']! as String,
-      serial: json['serial']! as String,
-      active: json['active']! as bool,
-      power: json['power']! as bool,
-      primary: json['primary']! as bool,
-      scale: json['scale']! as double,
-      subpixelHinting: json['subpixel_hinting']! as String,
-      transform: json['transform']! as String,
-      modes: modes,
-      currentMode: Mode.fromJson(json['current_mode']! as Map<String, Object?>),
-      rect: Rect.fromJson(json['rect']! as Map<String, Object?>),
-      dpms: json['dpms'] as bool?,
-      currentWorkspace: json['current_workspace'] as String?,
-      nonDesktop: json['non_desktop'] as bool?,
-      focused: json['focused'] as bool?,
-      scaleFilter: json['scale_filter'] as String?,
-      maxRenderTime: json['max_render_time'] as int?,
-      adaptiveSyncStatus: json['adaptive_sync_status'] as String?,
-    );
-  }
+  Map<String, dynamic> toJson() => _$OutputToJson(this);
 
   /// The id of the output
   final int id;
@@ -91,6 +65,7 @@ class Output extends Equatable {
 
   /// The subpixel hinting current in use on the output.
   /// This can be rgb, bgr, vrgb, vbgr, or none
+  @JsonKey(name: 'subpixel_hinting')
   final String subpixelHinting;
 
   /// The transform currently in use for the output.
@@ -103,6 +78,7 @@ class Output extends Equatable {
 
   /// An object representing the current mode containing width, height,
   /// and refresh
+  @JsonKey(name: 'current_mode')
   final Mode currentMode;
 
   /// The bounds for the output consisting of x, y, width, and height
@@ -112,62 +88,20 @@ class Output extends Equatable {
   final bool? dpms;
 
   /// The workspace currently visible on the output or null for disabled outputs
+  @JsonKey(name: 'current_workspace')
   final String? currentWorkspace;
 
   // not documented
+  @JsonKey(name: 'non_desktop')
   final bool? nonDesktop;
   final bool? focused;
+  @JsonKey(name: 'scale_filter')
   final String? scaleFilter;
+  @JsonKey(name: 'max_render_time')
   final int? maxRenderTime;
+  @JsonKey(name: 'adaptive_sync_status')
   final String? adaptiveSyncStatus;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['make'] = make;
-    data['model'] = model;
-    data['serial'] = serial;
-    data['active'] = active;
-    data['power'] = power;
-    data['primary'] = primary;
-    data['scale'] = scale;
-    data['subpixel_hinting'] = subpixelHinting;
-    data['transform'] = transform;
-    data['modes'] = modes.map((m) => m.toJson()).toList();
-    data['current_mode'] = currentMode.toJson();
-    data['rect'] = rect.toJson();
-
-    if (dpms != null) {
-      data['dpms'] = dpms;
-    }
-
-    if (currentWorkspace != null) {
-      data['current_workspace'] = currentWorkspace;
-    }
-
-    if (nonDesktop != null) {
-      data['non_desktop'] = nonDesktop;
-    }
-
-    if (focused != null) {
-      data['focused'] = focused;
-    }
-
-    if (scaleFilter != null) {
-      data['scale_filter'] = scaleFilter;
-    }
-
-    if (maxRenderTime != null) {
-      data['max_render_time'] = maxRenderTime;
-    }
-
-    if (adaptiveSyncStatus != null) {
-      data['adaptive_sync_status'] = adaptiveSyncStatus;
-    }
-    return data;
-  }
-
   @override
-  List<Object?> get props => [id];
+  List<dynamic> get props => [id];
 }

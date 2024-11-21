@@ -1,4 +1,10 @@
-class Mode {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'mode.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class Mode extends Equatable {
   const Mode({
     required this.width,
     required this.height,
@@ -6,30 +12,18 @@ class Mode {
     this.modePictureAspectRatio,
   });
 
-  factory Mode.fromJson(Map<String, Object?> json) {
-    return Mode(
-      width: json['width']! as int,
-      height: json['height']! as int,
-      refresh: json['refresh']! as int,
-      modePictureAspectRatio: json['picture_aspect_ratio'] as String?,
-    );
-  }
+  factory Mode.fromJson(Map<String, dynamic> json) => _$ModeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ModeToJson(this);
+
   final int width;
   final int height;
   final int refresh;
 
   // not documented
+  @JsonKey(name: 'picture_aspect_ratio')
   final String? modePictureAspectRatio;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['width'] = width;
-    data['height'] = height;
-    data['refresh'] = refresh;
-
-    if (modePictureAspectRatio != null) {
-      data['picture_aspect_ratio'] = modePictureAspectRatio;
-    }
-    return data;
-  }
+  @override
+  List<Object?> get props => [width, height, refresh, modePictureAspectRatio];
 }

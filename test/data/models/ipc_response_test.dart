@@ -203,9 +203,9 @@ void main() {
         final json = {
           'type': 1,
           'size': 1,
+          'payload': 'payload_test',
           'id': 'id_test',
           'pid': 'pid_test',
-          'payload': 'payload_test',
         };
         final iPCResponse = IPCResponse.fromJson(json);
 

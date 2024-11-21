@@ -296,7 +296,7 @@ class I3IpcCommandRepository {
     var success = false;
     String? error;
     if (payload != null) {
-      final json = jsonDecode(payload) as Map<String, Object?>?;
+      final json = jsonDecode(payload) as Map<String, dynamic>?;
       if (json != null) {
         final status = Status.fromJson(json);
         success = status.success;

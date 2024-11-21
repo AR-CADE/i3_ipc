@@ -1,4 +1,10 @@
-class Rect {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'rect.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class Rect extends Equatable {
   const Rect({
     required this.x,
     required this.y,
@@ -6,25 +12,15 @@ class Rect {
     required this.width,
   });
 
-  factory Rect.fromJson(Map<String, Object?> json) {
-    return Rect(
-      x: json['x']! as int,
-      y: json['y']! as int,
-      width: json['width']! as int,
-      height: json['height']! as int,
-    );
-  }
+  factory Rect.fromJson(Map<String, dynamic> json) => _$RectFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RectToJson(this);
+
   final int height;
   final int width;
   final int x;
   final int y;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['x'] = x;
-    data['y'] = y;
-    data['width'] = width;
-    data['height'] = height;
-    return data;
-  }
+  @override
+  List<dynamic> get props => [x, y, width, height];
 }

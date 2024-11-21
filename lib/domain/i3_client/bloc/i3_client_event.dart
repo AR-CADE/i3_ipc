@@ -10,7 +10,7 @@ final class _I3IpcStatusChanged extends I3ClientBlocEvent {
   final IPCResponse? status;
 
   @override
-  List<Object?> get props => [status];
+  List<dynamic> get props => [status];
 }
 
 final class I3IpcGetBarConfigRequested extends I3ClientBlocEvent {
@@ -19,7 +19,7 @@ final class I3IpcGetBarConfigRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetBindingModesRequested extends I3ClientBlocEvent {
@@ -28,7 +28,7 @@ final class I3IpcGetBindingModesRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetBindingStateRequested extends I3ClientBlocEvent {
@@ -37,7 +37,7 @@ final class I3IpcGetBindingStateRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetConfigRequested extends I3ClientBlocEvent {
@@ -46,7 +46,7 @@ final class I3IpcGetConfigRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetInputsRequested extends I3ClientBlocEvent {
@@ -55,7 +55,7 @@ final class I3IpcGetInputsRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetMarksRequested extends I3ClientBlocEvent {
@@ -64,7 +64,7 @@ final class I3IpcGetMarksRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetOutputsRequested extends I3ClientBlocEvent {
@@ -73,7 +73,7 @@ final class I3IpcGetOutputsRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetSeatsRequested extends I3ClientBlocEvent {
@@ -82,7 +82,7 @@ final class I3IpcGetSeatsRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetTreeRequested extends I3ClientBlocEvent {
@@ -91,7 +91,7 @@ final class I3IpcGetTreeRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetVersionRequested extends I3ClientBlocEvent {
@@ -100,7 +100,7 @@ final class I3IpcGetVersionRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcGetWorkspacesRequested extends I3ClientBlocEvent {
@@ -109,7 +109,7 @@ final class I3IpcGetWorkspacesRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcSubscribeEventsRequested extends I3ClientBlocEvent {
@@ -119,7 +119,7 @@ final class I3IpcSubscribeEventsRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcExecuteRequested extends I3ClientBlocEvent {
@@ -134,7 +134,7 @@ final class I3IpcExecuteRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcCommandRequested extends I3ClientBlocEvent {
@@ -144,7 +144,7 @@ final class I3IpcCommandRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcSendTickRequested extends I3ClientBlocEvent {
@@ -154,7 +154,7 @@ final class I3IpcSendTickRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcSyncRequested extends I3ClientBlocEvent {
@@ -164,7 +164,7 @@ final class I3IpcSyncRequested extends I3ClientBlocEvent {
   final String? socketPath;
 
   @override
-  List<Object?> get props => [payload, socketPath];
+  List<dynamic> get props => [payload, socketPath];
 }
 
 final class I3IpcCloseRequested extends I3ClientBlocEvent {
@@ -173,5 +173,5 @@ final class I3IpcCloseRequested extends I3ClientBlocEvent {
   final String pid;
 
   @override
-  List<Object?> get props => [pid];
+  List<dynamic> get props => [pid];
 }

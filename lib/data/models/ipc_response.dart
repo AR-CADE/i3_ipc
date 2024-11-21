@@ -1,5 +1,10 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'ipc_response.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class IPCResponse {
   IPCResponse({
     this.type = -1,
@@ -10,15 +15,10 @@ class IPCResponse {
   })  : _id = id,
         _pid = pid;
 
-  factory IPCResponse.fromJson(Map<String, Object?> json) {
-    return IPCResponse(
-      type: json['type']! as int,
-      size: json['size']! as int,
-      id: json['id'] as String?,
-      pid: json['pid'] as String?,
-      payload: json['payload'] as String?,
-    );
-  }
+  factory IPCResponse.fromJson(Map<String, dynamic> json) =>
+      _$IPCResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$IPCResponseToJson(this);
 
   int type = -1;
   int size = 0;
@@ -40,26 +40,6 @@ class IPCResponse {
     if (value != null) {
       _pid = value;
     }
-  }
-
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['type'] = type;
-    data['size'] = size;
-
-    if (_id != null) {
-      data['id'] = _id;
-    }
-
-    if (_pid != null) {
-      data['pid'] = _pid;
-    }
-
-    if (payload != null) {
-      data['payload'] = payload;
-    }
-
-    return data;
   }
 
   @override

@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockWindowProperties extends MockWindowProperties {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['class'] = 'class_test';
     data['instance'] = 'instance_test';
     data['title'] = 'title_test';
@@ -17,8 +17,8 @@ class _MockWindowProperties extends MockWindowProperties {
 
 class _MockIdleInhibitor extends MockIdleInhibitor {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['application'] = 'application_test';
     data['user'] = 'user_test';
     return data;
@@ -27,8 +27,8 @@ class _MockIdleInhibitor extends MockIdleInhibitor {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
@@ -39,8 +39,8 @@ class _MockRect extends MockRect {
 
 class _MockNode extends MockNode {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     final rect = _MockRect();
     final windowRect = _MockRect();
     final decoRect = _MockRect();
@@ -61,9 +61,9 @@ class _MockNode extends MockNode {
     data['marks'] = ['1', '2'];
     data['focused'] = true;
     data['focus'] = [1, 2, 3];
-    data['nodes'] = <Map<String, Object?>>[];
+    data['nodes'] = <Map<String, dynamic>>[];
     data['percent'] = 2.0;
-    data['floating_nodes'] = <Map<String, Object?>>[];
+    data['floating_nodes'] = <Map<String, dynamic>>[];
     data['representation'] = 'representation';
     data['fullscreen_mode'] = 3;
     data['app_id'] = 'appId';
@@ -509,7 +509,7 @@ void main() {
           'marks': marksMock,
           'focused': true,
           'focus': focusMock,
-          'nodes': <Map<String, Object?>>[],
+          'nodes': <Map<String, dynamic>>[],
         };
         final node = Node.fromJson(json);
 
@@ -665,8 +665,8 @@ void main() {
           'marks': marksMock,
           'focused': true,
           'focus': focusMock,
-          'nodes': nodes.map((e) => e.toJson()),
-          'floating_nodes': floatingNodes.map((e) => e.toJson()),
+          'nodes': nodes.map((e) => e.toJson()).toList(),
+          'floating_nodes': floatingNodes.map((e) => e.toJson()).toList(),
           'percent': 2.0,
           'representation': 'representation_test',
           'fullscreen_mode': 3,

@@ -1,18 +1,20 @@
-class Config {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'config.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class Config extends Equatable {
   const Config({
     required this.config,
   });
 
-  factory Config.fromJson(Map<String, Object?> json) {
-    return Config(
-      config: json['config']! as String,
-    );
-  }
+  factory Config.fromJson(Map<String, dynamic> json) => _$ConfigFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConfigToJson(this);
+
   final String config;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['config'] = config;
-    return data;
-  }
+  @override
+  List<dynamic> get props => [config];
 }

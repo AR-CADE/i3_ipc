@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:i3_ipc/data/models/seat_device.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'seat.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Seat extends Equatable {
   const Seat({
     required this.name,
@@ -9,21 +13,9 @@ class Seat extends Equatable {
     required this.devices,
   });
 
-  factory Seat.fromJson(Map<String, Object?> json) {
-    final devices = <SeatDevice>[];
-    {
-      final iterable = json['devices']! as Iterable<Object?>;
-      for (final e in iterable) {
-        devices.add(SeatDevice.fromJson(e! as Map<String, Object?>));
-      }
-    }
-    return Seat(
-      name: json['name']! as String,
-      capabilities: json['capabilities']! as int,
-      focus: json['focus']! as int,
-      devices: devices,
-    );
-  }
+  factory Seat.fromJson(Map<String, dynamic> json) => _$SeatFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SeatToJson(this);
 
   /// The unique name for the seat
   final String name;
@@ -41,15 +33,6 @@ class Seat extends Equatable {
   /// those returned by GET_INPUTS
   final List<SeatDevice> devices;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['name'] = name;
-    data['capabilities'] = capabilities;
-    data['focus'] = focus;
-    data['devices'] = devices.map((m) => m.toJson()).toList();
-    return data;
-  }
-
   @override
-  List<Object?> get props => [name];
+  List<dynamic> get props => [name];
 }

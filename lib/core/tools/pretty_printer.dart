@@ -13,7 +13,7 @@ import 'package:i3_ipc/data/models/version.dart';
 import 'package:i3_ipc/data/models/workspace.dart';
 
 class PrettyPrinter {
-  static String rawPretty(Object? object) {
+  static String rawPretty(dynamic object) {
     const encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(object);
   }
@@ -274,15 +274,15 @@ class PrettyPrinter {
         return;
 
       case IpcPayloadType.ipcGetVersion:
-        prettyPrintVersion(Version.fromJson(json as Map<String, Object?>));
+        prettyPrintVersion(Version.fromJson(json as Map<String, dynamic>));
         return;
 
       case IpcPayloadType.ipcGetConfig:
-        prettyPrintConfig(Config.fromJson(json as Map<String, Object?>));
+        prettyPrintConfig(Config.fromJson(json as Map<String, dynamic>));
         return;
 
       case IpcPayloadType.ipcGetTree:
-        prettyPrintTree(Node.fromJson(json as Map<String, Object?>), 0);
+        prettyPrintTree(Node.fromJson(json as Map<String, dynamic>), 0);
         return;
 
       case IpcPayloadType.ipcCommand:
@@ -301,21 +301,21 @@ class PrettyPrinter {
       for (final obj in json) {
         switch (type) {
           case IpcPayloadType.ipcCommand:
-            prettyPrintCmd(Status.fromJson(obj as Map<String, Object?>));
+            prettyPrintCmd(Status.fromJson(obj as Map<String, dynamic>));
 
           case IpcPayloadType.ipcGetWorkspaces:
             prettyPrintWorkspace(
-              Workspace.fromJson(obj as Map<String, Object?>),
+              Workspace.fromJson(obj as Map<String, dynamic>),
             );
 
           case IpcPayloadType.ipcGetInputs:
-            prettyPrintInput(Input.fromJson(obj as Map<String, Object?>));
+            prettyPrintInput(Input.fromJson(obj as Map<String, dynamic>));
 
           case IpcPayloadType.ipcGetOutputs:
-            prettyPrintOutput(Output.fromJson(obj as Map<String, Object?>));
+            prettyPrintOutput(Output.fromJson(obj as Map<String, dynamic>));
 
           case IpcPayloadType.ipcGetSeats:
-            prettyPrintSeat(Seat.fromJson(obj as Map<String, Object?>));
+            prettyPrintSeat(Seat.fromJson(obj as Map<String, dynamic>));
         }
       }
     }

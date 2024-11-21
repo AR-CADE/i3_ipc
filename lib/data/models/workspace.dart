@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:i3_ipc/data/models/rect.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'workspace.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Workspace extends Equatable {
   const Workspace({
     required this.num,
@@ -14,19 +18,10 @@ class Workspace extends Equatable {
     this.representation,
   });
 
-  factory Workspace.fromJson(Map<String, Object?> json) {
-    return Workspace(
-      num: json['num']! as int,
-      name: json['name']! as String,
-      visible: json['visible']! as bool,
-      focused: json['focused']! as bool,
-      urgent: json['urgent']! as bool,
-      rect: Rect.fromJson(json['rect']! as Map<String, Object?>),
-      output: json['output']! as String,
-      layout: json['layout'] as String?,
-      representation: json['representation'] as String?,
-    );
-  }
+  factory Workspace.fromJson(Map<String, dynamic> json) =>
+      _$WorkspaceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WorkspaceToJson(this);
 
   /// The workspace number or -1 for workspaces that do not start with a number
   final int num;
@@ -53,26 +48,6 @@ class Workspace extends Equatable {
   final String? layout;
   final String? representation;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['num'] = num;
-    data['name'] = name;
-    data['visible'] = visible;
-    data['focused'] = focused;
-    data['urgent'] = urgent;
-    data['rect'] = rect.toJson();
-    data['output'] = output;
-
-    if (layout != null) {
-      data['layout'] = layout;
-    }
-
-    if (representation != null) {
-      data['representation'] = representation;
-    }
-    return data;
-  }
-
   @override
-  List<Object?> get props => [num, name];
+  List<dynamic> get props => [num, name];
 }

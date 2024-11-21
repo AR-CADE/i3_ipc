@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockLibInput extends MockLibInput {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['send_events'] = 'sendEvents_test';
     data['tap'] = 'tap_test';
     data['tap_button_map'] = 'tapButtonMap_test';

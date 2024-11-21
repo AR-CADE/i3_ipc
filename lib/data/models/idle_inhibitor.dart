@@ -1,15 +1,19 @@
-class IdleInhibitor {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'idle_inhibitor.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class IdleInhibitor extends Equatable {
   const IdleInhibitor({
     required this.application,
     required this.user,
   });
 
-  factory IdleInhibitor.fromJson(Map<String, Object?> json) {
-    return IdleInhibitor(
-      application: json['application']! as String,
-      user: json['user']! as String,
-    );
-  }
+  factory IdleInhibitor.fromJson(Map<String, dynamic> json) =>
+      _$IdleInhibitorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$IdleInhibitorToJson(this);
 
   /// Application can be enabled or none
   final String application;
@@ -17,10 +21,6 @@ class IdleInhibitor {
   /// User can be focus, fullscreen, open, visible or none.
   final String user;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['application'] = application;
-    data['user'] = user;
-    return data;
-  }
+  @override
+  List<dynamic> get props => [application, user];
 }

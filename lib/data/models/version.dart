@@ -1,4 +1,10 @@
-class Version {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'version.g.dart';
+
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
+class Version extends Equatable {
   const Version({
     required this.humanReadable,
     required this.variant,
@@ -8,32 +14,20 @@ class Version {
     required this.loadedConfigFileName,
   });
 
-  factory Version.fromJson(Map<String, Object?> json) {
-    return Version(
-      humanReadable: json['human_readable']! as String,
-      variant: json['variant']! as String,
-      major: json['major']! as int,
-      minor: json['minor']! as int,
-      patch: json['patch']! as int,
-      loadedConfigFileName: json['loaded_config_file_name']! as String,
-    );
-  }
+  factory Version.fromJson(Map<String, dynamic> json) =>
+      _$VersionFromJson(json);
 
+  Map<String, dynamic> toJson() => _$VersionToJson(this);
+
+  @JsonKey(name: 'human_readable')
   final String humanReadable;
   final String variant;
   final int major;
   final int minor;
   final int patch;
+  @JsonKey(name: 'loaded_config_file_name')
   final String loadedConfigFileName;
 
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
-    data['human_readable'] = humanReadable;
-    data['variant'] = variant;
-    data['major'] = major;
-    data['minor'] = minor;
-    data['patch'] = patch;
-    data['loaded_config_file_name'] = loadedConfigFileName;
-    return data;
-  }
+  @override
+  List<dynamic> get props => [major, minor, patch, variant, humanReadable];
 }

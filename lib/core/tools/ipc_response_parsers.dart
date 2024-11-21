@@ -17,12 +17,12 @@ List<Workspace> parseWorkspaces(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final workspaces = <Workspace>[];
 
   for (final e in iterable) {
-    workspaces.add(Workspace.fromJson(e! as Map<String, Object?>));
+    workspaces.add(Workspace.fromJson(e! as Map<String, dynamic>));
   }
   return workspaces;
 }
@@ -34,7 +34,7 @@ Version? parseVersion(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Version.fromJson(jsonBody as Map<String, Object?>);
+  return Version.fromJson(jsonBody as Map<String, dynamic>);
 }
 
 Node? parseTree(IPCResponse? response) {
@@ -44,7 +44,7 @@ Node? parseTree(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Node.fromJson(jsonBody as Map<String, Object?>);
+  return Node.fromJson(jsonBody as Map<String, dynamic>);
 }
 
 List<Seat> parseSeats(IPCResponse? response) {
@@ -53,12 +53,12 @@ List<Seat> parseSeats(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final seats = <Seat>[];
 
   for (final e in iterable) {
-    seats.add(Seat.fromJson(e! as Map<String, Object?>));
+    seats.add(Seat.fromJson(e! as Map<String, dynamic>));
   }
   return seats;
 }
@@ -69,12 +69,12 @@ List<Output> parseOutputs(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final outputs = <Output>[];
 
   for (final e in iterable) {
-    outputs.add(Output.fromJson(e! as Map<String, Object?>));
+    outputs.add(Output.fromJson(e! as Map<String, dynamic>));
   }
   return outputs;
 }
@@ -85,7 +85,7 @@ List<String> parseMarks(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final marks = <String>[];
 
@@ -101,12 +101,12 @@ List<Input> parseInputs(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final inputs = <Input>[];
 
   for (final e in iterable) {
-    inputs.add(Input.fromJson(e! as Map<String, Object?>));
+    inputs.add(Input.fromJson(e! as Map<String, dynamic>));
   }
   return inputs;
 }
@@ -118,7 +118,7 @@ Config? parseConfig(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Config.fromJson(jsonBody as Map<String, Object?>);
+  return Config.fromJson(jsonBody as Map<String, dynamic>);
 }
 
 BindingState? parseBindingState(IPCResponse? response) {
@@ -128,7 +128,7 @@ BindingState? parseBindingState(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return BindingState.fromJson(jsonBody as Map<String, Object?>);
+  return BindingState.fromJson(jsonBody as Map<String, dynamic>);
 }
 
 List<String> parseBindingModes(IPCResponse? response) {
@@ -137,7 +137,7 @@ List<String> parseBindingModes(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final modes = <String>[];
 
@@ -153,7 +153,7 @@ List<String> parseBarConfig(IPCResponse? response) {
     return [];
   }
   final jsonBody = jsonDecode(payload);
-  final iterable = jsonBody as Iterable<Object?>;
+  final iterable = jsonBody as Iterable<dynamic>;
 
   final confgs = <String>[];
 
@@ -170,5 +170,5 @@ Status? parseStatus(IPCResponse? response) {
   }
   final jsonBody = jsonDecode(payload);
 
-  return Status.fromJson(jsonBody as Map<String, Object?>);
+  return Status.fromJson(jsonBody as Map<String, dynamic>);
 }

@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockMode extends MockMode {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['width'] = 1;
     data['height'] = 2;
     data['refresh'] = 3;
@@ -17,8 +17,8 @@ class _MockMode extends MockMode {
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
@@ -339,7 +339,7 @@ void main() {
           'scale': 1.0,
           'subpixel_hinting': 'subpixelHinting_test',
           'transform': 'transform_test',
-          'modes': modesMock.map((e) => e.toJson()),
+          'modes': modesMock.map((e) => e.toJson()).toList(),
           'current_mode': currentModeMock.toJson(),
           'rect': rectMock.toJson(),
         };
@@ -447,7 +447,7 @@ void main() {
           'scale': 1.0,
           'subpixel_hinting': 'subpixelHinting_test',
           'transform': 'transform_test',
-          'modes': modesMock.map((e) => e.toJson()),
+          'modes': modesMock.map((e) => e.toJson()).toList(),
           'current_mode': currentModeMock.toJson(),
           'rect': rectMock.toJson(),
           'dpms': true,

@@ -5,8 +5,8 @@ import '../../core/test.dart';
 
 class _MockRect extends MockRect {
   @override
-  Map<String, Object?> toJson() {
-    final data = <String, Object?>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['x'] = 0;
     data['y'] = 1;
     data['width'] = 2;
