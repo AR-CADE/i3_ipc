@@ -11,7 +11,7 @@ Seat _$SeatFromJson(Map<String, dynamic> json) => Seat(
       capabilities: (json['capabilities'] as num).toInt(),
       focus: (json['focus'] as num).toInt(),
       devices: (json['devices'] as List<dynamic>)
-          .map((e) => SeatDevice.fromJson(e as Map<String, dynamic>))
+          .map((e) => Input.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

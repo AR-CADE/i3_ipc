@@ -8,6 +8,11 @@
     "scroll_factor": 1.0
   },
   {
+    "identifier": "0:0:wayland-touch-default",
+    "name": "wayland-touch-default",
+    "type": "touch"
+  },
+  {
     "identifier": "0:0:wayland-keyboard-default",
     "name": "wayland-keyboard-default",
     "vendor": 0,

@@ -9,14 +9,16 @@ class Input extends Equatable {
   const Input({
     required this.identifier,
     required this.name,
-    required this.vendor,
-    required this.product,
     required this.type,
+    this.vendor,
+    this.product,
     this.xkbActiveLayoutName,
     this.xkbLayoutNames,
     this.xkbActiveLayoutIndex,
     this.scrollFactor,
     this.libinput,
+    this.repeatDelay,
+    this.repeatRate,
   });
 
   factory Input.fromJson(Map<String, dynamic> json) => _$InputFromJson(json);
@@ -29,15 +31,15 @@ class Input extends Equatable {
   /// The human readable name for the device
   final String name;
 
-  /// The vendor code for the input device
-  final int vendor;
-
-  /// The product code for the input device
-  final int product;
-
   /// The device type. Currently this can be keyboard, pointer, touch,
   /// tablet_tool, tablet_pad, or switch
   final String type;
+
+  /// The vendor code for the input device
+  final int? vendor;
+
+  /// The product code for the input device
+  final int? product;
 
   /// (Only keyboards) The name of the active keyboard layout in use
   @JsonKey(name: 'xkb_active_layout_name')
@@ -57,6 +59,11 @@ class Input extends Equatable {
 
   /// (Only libinput devices) An object describing the current device settings.
   final LibInput? libinput;
+
+  @JsonKey(name: 'repeat_delay')
+  final int? repeatDelay;
+  @JsonKey(name: 'repeat_rate')
+  final int? repeatRate;
 
   @override
   List<dynamic> get props => [identifier];

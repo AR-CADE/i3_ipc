@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 import '../../core/test.dart';
 
-class _MockSeatDevice extends MockSeatDevice {
+class _MockInput extends MockInput {
   @override
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -24,7 +24,7 @@ class _MockSeatDevice extends MockSeatDevice {
 void main() {
   group('Seat model', () {
     test('props are correct', () {
-      final devicesMock = [_MockSeatDevice(), _MockSeatDevice()];
+      final devicesMock = [_MockInput(), _MockInput()];
       final seat = Seat(
         name: 'name_test',
         capabilities: 1,
@@ -38,7 +38,7 @@ void main() {
     });
 
     test('serialize', () {
-      final devicesMock = [_MockSeatDevice(), _MockSeatDevice()];
+      final devicesMock = [_MockInput(), _MockInput()];
       final seat = Seat(
         name: 'name_test',
         capabilities: 1,
@@ -70,7 +70,7 @@ void main() {
     });
 
     test('deserialize', () {
-      final devicesMock = [_MockSeatDevice(), _MockSeatDevice()];
+      final devicesMock = [_MockInput(), _MockInput()];
 
       final json = {
         'name': 'name_test',

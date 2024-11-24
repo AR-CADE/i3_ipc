@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:i3_ipc/data/models/seat_device.dart';
+import 'package:i3_ipc/data/models/input.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'seat.g.dart';
@@ -31,7 +31,7 @@ class Seat extends Equatable {
   ///  An array of input devices that are attached to the seat. Currently,
   /// this is an array of objects that are identical to
   /// those returned by GET_INPUTS
-  final List<SeatDevice> devices;
+  final List<Input> devices;
 
   @override
   List<dynamic> get props => [name];

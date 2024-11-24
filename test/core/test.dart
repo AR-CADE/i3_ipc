@@ -28,7 +28,7 @@ class MockI3IpcClientNullResponseApi extends MockI3IpcClientApi {
 
 class MockLibInput extends Mock implements LibInput {}
 
-class MockSeatDevice extends Mock implements SeatDevice {}
+class MockInput extends Mock implements Input {}
 
 class MockRect extends Mock implements Rect {}
 

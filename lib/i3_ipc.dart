@@ -18,7 +18,6 @@ export 'data/models/node.dart';
 export 'data/models/output.dart';
 export 'data/models/rect.dart';
 export 'data/models/seat.dart';
-export 'data/models/seat_device.dart';
 export 'data/models/version.dart';
 export 'data/models/window_properties.dart';
 export 'data/models/workspace.dart';

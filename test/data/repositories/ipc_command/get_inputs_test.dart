@@ -64,7 +64,7 @@ void main() {
 
             expect(
               inputs.length,
-              2,
+              3,
             );
 
             expect(
@@ -74,6 +74,11 @@ void main() {
 
             expect(
               inputs[1].type,
+              'touch',
+            );
+
+            expect(
+              inputs[2].type,
               'keyboard',
             );
           }),
