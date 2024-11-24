@@ -44,7 +44,7 @@ class _MockI3IpcClientApi extends MockI3IpcClientApi {
         controller?.add(response);
       }
     } else {
-      controller?.add(IPCResponse());
+      controller?.add(const IPCResponse());
     }
   }
 }

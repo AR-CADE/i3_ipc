@@ -7,7 +7,7 @@ void main() {
   group('IPCResponse model', () {
     group('serialize', () {
       test('with required parameters only', () {
-        final ipcResponse = IPCResponse();
+        const ipcResponse = IPCResponse();
         final json = ipcResponse.toJson();
         final type = json['type'];
         final size = json['size'];
@@ -37,7 +37,7 @@ void main() {
       });
 
       test('with all parameters', () {
-        final ipcResponse = IPCResponse(
+        const ipcResponse = IPCResponse(
           type: 1,
           size: 1,
           id: 'id_test',
@@ -73,12 +73,14 @@ void main() {
       });
 
       test('with all properties', () {
-        final ipcResponse = IPCResponse()
-          ..type = 1
-          ..size = 1
-          ..id = 'id_test'
-          ..pid = 'pid_test'
-          ..payload = 'payload_test';
+        const ipcResponse = IPCResponse(
+          type: 1,
+          size: 1,
+          id: 'id_test',
+          pid: 'pid_test',
+          payload: 'payload_test',
+        );
+
         final json = ipcResponse.toJson();
         final type = json['type'];
         final size = json['size'];
@@ -203,9 +205,9 @@ void main() {
         final json = {
           'type': 1,
           'size': 1,
-          'payload': 'payload_test',
           'id': 'id_test',
           'pid': 'pid_test',
+          'payload': 'payload_test',
         };
         final iPCResponse = IPCResponse.fromJson(json);
 

@@ -110,16 +110,13 @@ class I3IpcCommandApi {
     //     .asUint8List()
     //     .getRange(0, Magic.asUtf8Encoded.length)
     //     .toList());
-    final response = IPCResponse()
-      ..size = data.getUint32(IpcMagic.asUtf8Encoded.length, endian)
-      ..type = data.getUint32(IpcMagic.asUtf8Encoded.length + 4, endian)
-      ..id = const Uuid().v4();
+    final size = data.getUint32(IpcMagic.asUtf8Encoded.length, endian);
 
     total = 0;
-    final payload = ByteData(response.size);
+    final payload = ByteData(size);
 
-    while (total < response.size) {
-      final received = socket.read(response.size - total);
+    while (total < size) {
+      final received = socket.read(size - total);
       if (received == null || received.isEmpty) {
         _clientAbort('Unable to receive IPC response');
         return null;
@@ -132,10 +129,12 @@ class I3IpcCommandApi {
       total += received.length;
     }
 
-    response
-      ..payload = utf8.decode(payload.buffer.asUint8List())
-      ..pid = _pid;
-
-    return response;
+    return IPCResponse(
+      id: const Uuid().v4(),
+      pid: _pid,
+      size: size,
+      type: data.getUint32(IpcMagic.asUtf8Encoded.length + 4, endian),
+      payload: utf8.decode(payload.buffer.asUint8List()),
+    );
   }
 }

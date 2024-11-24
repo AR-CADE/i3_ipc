@@ -65,7 +65,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcCommand,
             ),
           ),
@@ -84,7 +84,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetBarConfig,
             ),
           ),
@@ -104,7 +104,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetBindingModes,
             ),
           ),
@@ -124,7 +124,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetBindingState,
             ),
           ),
@@ -144,7 +144,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetConfig,
             ),
           ),
@@ -164,7 +164,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetInputs,
             ),
           ),
@@ -184,7 +184,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetMarks,
             ),
           ),
@@ -204,7 +204,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetOutputs,
             ),
           ),
@@ -224,7 +224,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetSeats,
             ),
           ),
@@ -244,7 +244,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetTree,
             ),
           ),
@@ -264,7 +264,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetVersion,
             ),
           ),
@@ -284,7 +284,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcGetWorkspaces,
             ),
           ),
@@ -304,7 +304,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcSendTick,
             ),
           ),
@@ -324,7 +324,7 @@ void main() {
       setUp: () {
         when(() => i3CommandRepository.stream).thenAnswer(
           (_) => Stream.value(
-            IPCResponse(
+            const IPCResponse(
               type: IpcPayloadType.ipcSync,
             ),
           ),
