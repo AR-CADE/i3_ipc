@@ -37,6 +37,23 @@ void main() {
       );
     });
 
+    test('equality', () {
+      expect(
+        Seat(
+          name: 'name_test',
+          capabilities: 1,
+          focus: 2,
+          devices: [_MockInput(), _MockInput()],
+        ),
+        Seat(
+          name: 'name_test',
+          capabilities: 1,
+          focus: 2,
+          devices: [_MockInput(), _MockInput()],
+        ),
+      );
+    });
+
     test('serialize', () {
       final devicesMock = [_MockInput(), _MockInput()];
       final seat = Seat(

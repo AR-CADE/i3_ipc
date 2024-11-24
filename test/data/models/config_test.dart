@@ -3,6 +3,22 @@ import 'package:test/test.dart';
 
 void main() {
   group('Config model', () {
+    test('props are correct', () {
+      const config = Config(config: 'config_test');
+
+      expect(
+        config.props,
+        equals(['config_test']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const Config(config: 'config_test'),
+        const Config(config: 'config_test'),
+      );
+    });
+
     test('serialize', () {
       const config = Config(config: 'config_test');
       final value = config.toJson()['config'];

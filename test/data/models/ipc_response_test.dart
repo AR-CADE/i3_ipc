@@ -5,6 +5,39 @@ import 'package:test/test.dart';
 
 void main() {
   group('IPCResponse model', () {
+    test('props are correct', () {
+      const ipcResponse = IPCResponse(
+        type: 1,
+        size: 1,
+        id: 'id_test',
+        pid: 'pid_test',
+        payload: 'payload_test',
+      );
+      expect(
+        ipcResponse.props,
+        equals(['id_test']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const IPCResponse(
+          type: 1,
+          size: 1,
+          id: 'id_test',
+          pid: 'pid_test',
+          payload: 'payload_test',
+        ),
+        const IPCResponse(
+          type: 1,
+          size: 1,
+          id: 'id_test',
+          pid: 'pid_test',
+          payload: 'payload_test',
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const ipcResponse = IPCResponse();

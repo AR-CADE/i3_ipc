@@ -3,6 +3,38 @@ import 'package:test/test.dart';
 
 void main() {
   group('WindowProperties model', () {
+    test('props are correct', () {
+      const windowProperties = WindowProperties(
+        clazz: 'class_test',
+        instance: 'instance_test',
+        title: 'title_test',
+        transientFor: 'transientFor_test',
+      );
+      expect(
+        windowProperties.props,
+        equals(
+          ['class_test', 'instance_test', 'title_test', 'transientFor_test'],
+        ),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const WindowProperties(
+          clazz: 'class_test',
+          instance: 'instance_test',
+          title: 'title_test',
+          transientFor: 'transientFor_test',
+        ),
+        const WindowProperties(
+          clazz: 'class_test',
+          instance: 'instance_test',
+          title: 'title_test',
+          transientFor: 'transientFor_test',
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const windowProperties = WindowProperties(

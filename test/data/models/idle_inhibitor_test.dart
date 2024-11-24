@@ -3,6 +3,23 @@ import 'package:test/test.dart';
 
 void main() {
   group('IdleInhibitor model', () {
+    test('props are correct', () {
+      const idleInhibitor =
+          IdleInhibitor(application: 'test_app', user: 'test_user');
+
+      expect(
+        idleInhibitor.props,
+        equals(['test_app', 'test_user']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const IdleInhibitor(application: 'test_app', user: 'test_user'),
+        const IdleInhibitor(application: 'test_app', user: 'test_user'),
+      );
+    });
+
     test('serialize', () {
       const idleInhibitor =
           IdleInhibitor(application: 'test_app', user: 'test_user');

@@ -29,5 +29,6 @@ class Version extends Equatable {
   final String loadedConfigFileName;
 
   @override
-  List<dynamic> get props => [major, minor, patch, variant, humanReadable];
+  List<dynamic> get props =>
+      [major, minor, patch, variant, humanReadable, loadedConfigFileName];
 }

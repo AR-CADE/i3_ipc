@@ -112,6 +112,49 @@ void main() {
       );
     });
 
+    test('equality', () {
+      expect(
+        Node(
+          id: 0,
+          name: 'name_test',
+          type: 'type_test',
+          border: 'border_test',
+          currentBorderWidth: 1,
+          layout: 'layout_test',
+          orientation: 'orientation_test',
+          rect: _MockRect(),
+          windowRect: _MockRect(),
+          decoRect: _MockRect(),
+          geometry: _MockRect(),
+          urgent: false,
+          sticky: false,
+          marks: const ['1', '2'],
+          focused: true,
+          focus: const [1, 2, 3, 4],
+          nodes: [_MockNode()],
+        ),
+        Node(
+          id: 0,
+          name: 'name_test',
+          type: 'type_test',
+          border: 'border_test',
+          currentBorderWidth: 1,
+          layout: 'layout_test',
+          orientation: 'orientation_test',
+          rect: _MockRect(),
+          windowRect: _MockRect(),
+          decoRect: _MockRect(),
+          geometry: _MockRect(),
+          urgent: false,
+          sticky: false,
+          marks: const ['1', '2'],
+          focused: true,
+          focus: const [1, 2, 3, 4],
+          nodes: [_MockNode()],
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const marksMock = ['1', '2'];

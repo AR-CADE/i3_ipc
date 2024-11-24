@@ -3,6 +3,22 @@ import 'package:test/test.dart';
 
 void main() {
   group('Status model', () {
+    test('props are correct', () {
+      const status = Status(success: true, error: 'error_test');
+
+      expect(
+        status.props,
+        equals([true, 'error_test']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const Status(success: true, error: 'error_test'),
+        const Status(success: true, error: 'error_test'),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const status = Status();

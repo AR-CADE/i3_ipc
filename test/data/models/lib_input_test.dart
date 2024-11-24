@@ -3,8 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('LibInput model', () {
-    test('serialize', () {
-      const workspace = LibInput(
+    test('props are correct', () {
+      const libinput = LibInput(
         sendEvents: 'sendEvents_test',
         tap: 'tap_test',
         tapButtonMap: 'tapButtonMap_test',
@@ -23,7 +23,94 @@ void main() {
         dwtp: 'dwtp_test',
         calibrationMatrix: [1.0, 2.0],
       );
-      final json = workspace.toJson();
+      expect(
+        libinput.props,
+        equals([
+          'sendEvents_test',
+          'tap_test',
+          'tapButtonMap_test',
+          'tapDrag_test',
+          'tapDragLock_test',
+          1.2,
+          'accelProfile_test',
+          'naturalScroll_test',
+          'leftHanded_test',
+          'clickMethod_test',
+          'middleEmulation_test',
+          'scrollMethod_test',
+          1,
+          'scrollButtonLock_test',
+          'dwt_test',
+          'dwtp_test',
+          [1.0, 2.0],
+        ]),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const LibInput(
+          sendEvents: 'sendEvents_test',
+          tap: 'tap_test',
+          tapButtonMap: 'tapButtonMap_test',
+          tapDrag: 'tapDrag_test',
+          tapDragLock: 'tapDragLock_test',
+          accelSpeed: 1.2,
+          accelProfile: 'accelProfile_test',
+          naturalScroll: 'naturalScroll_test',
+          leftHanded: 'leftHanded_test',
+          clickMethod: 'clickMethod_test',
+          middleEmulation: 'middleEmulation_test',
+          scrollMethod: 'scrollMethod_test',
+          scrollButton: 1,
+          scrollButtonLock: 'scrollButtonLock_test',
+          dwt: 'dwt_test',
+          dwtp: 'dwtp_test',
+          calibrationMatrix: [1.0, 2.0],
+        ),
+        const LibInput(
+          sendEvents: 'sendEvents_test',
+          tap: 'tap_test',
+          tapButtonMap: 'tapButtonMap_test',
+          tapDrag: 'tapDrag_test',
+          tapDragLock: 'tapDragLock_test',
+          accelSpeed: 1.2,
+          accelProfile: 'accelProfile_test',
+          naturalScroll: 'naturalScroll_test',
+          leftHanded: 'leftHanded_test',
+          clickMethod: 'clickMethod_test',
+          middleEmulation: 'middleEmulation_test',
+          scrollMethod: 'scrollMethod_test',
+          scrollButton: 1,
+          scrollButtonLock: 'scrollButtonLock_test',
+          dwt: 'dwt_test',
+          dwtp: 'dwtp_test',
+          calibrationMatrix: [1.0, 2.0],
+        ),
+      );
+    });
+
+    test('serialize', () {
+      const libinput = LibInput(
+        sendEvents: 'sendEvents_test',
+        tap: 'tap_test',
+        tapButtonMap: 'tapButtonMap_test',
+        tapDrag: 'tapDrag_test',
+        tapDragLock: 'tapDragLock_test',
+        accelSpeed: 1.2,
+        accelProfile: 'accelProfile_test',
+        naturalScroll: 'naturalScroll_test',
+        leftHanded: 'leftHanded_test',
+        clickMethod: 'clickMethod_test',
+        middleEmulation: 'middleEmulation_test',
+        scrollMethod: 'scrollMethod_test',
+        scrollButton: 1,
+        scrollButtonLock: 'scrollButtonLock_test',
+        dwt: 'dwt_test',
+        dwtp: 'dwtp_test',
+        calibrationMatrix: [1.0, 2.0],
+      );
+      final json = libinput.toJson();
 
       final sendEvents = json['send_events'];
       final tap = json['tap'];

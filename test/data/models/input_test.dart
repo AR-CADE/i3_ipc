@@ -43,6 +43,26 @@ void main() {
         equals(['identifier_test']),
       );
     });
+
+    test('equality', () {
+      expect(
+        const Input(
+          identifier: 'identifier_test',
+          name: 'name_test',
+          vendor: 0,
+          product: 0,
+          type: 'type_test',
+        ),
+        const Input(
+          identifier: 'identifier_test',
+          name: 'name_test',
+          vendor: 0,
+          product: 0,
+          type: 'type_test',
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const input = Input(

@@ -3,14 +3,44 @@ import 'package:test/test.dart';
 
 void main() {
   group('Rect model', () {
-    test('serialize', () {
-      const mode = Rect(
+    test('props are correct', () {
+      const rect = Rect(
         x: 1,
         y: 2,
         width: 3,
         height: 4,
       );
-      final json = mode.toJson();
+      expect(
+        rect.props,
+        equals([1, 2, 3, 4]),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const Rect(
+          x: 1,
+          y: 2,
+          width: 3,
+          height: 4,
+        ),
+        const Rect(
+          x: 1,
+          y: 2,
+          width: 3,
+          height: 4,
+        ),
+      );
+    });
+
+    test('serialize', () {
+      const rect = Rect(
+        x: 1,
+        y: 2,
+        width: 3,
+        height: 4,
+      );
+      final json = rect.toJson();
       final x = json['x'];
       final y = json['y'];
       final width = json['width'];

@@ -49,5 +49,5 @@ class Workspace extends Equatable {
   final String? representation;
 
   @override
-  List<dynamic> get props => [num, name];
+  List<dynamic> get props => [num, name, output];
 }

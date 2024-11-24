@@ -3,6 +3,36 @@ import 'package:test/test.dart';
 
 void main() {
   group('Mode model', () {
+    test('props are correct', () {
+      const mode = Mode(
+        width: 1,
+        height: 2,
+        refresh: 3,
+        modePictureAspectRatio: 'modePictureAspectRatio_test',
+      );
+      expect(
+        mode.props,
+        equals([1, 2, 3, 'modePictureAspectRatio_test']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const Mode(
+          width: 1,
+          height: 2,
+          refresh: 3,
+          modePictureAspectRatio: 'modePictureAspectRatio_test',
+        ),
+        const Mode(
+          width: 1,
+          height: 2,
+          refresh: 3,
+          modePictureAspectRatio: 'modePictureAspectRatio_test',
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         const mode = Mode(width: 1, height: 2, refresh: 3);

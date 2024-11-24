@@ -30,7 +30,30 @@ void main() {
       );
       expect(
         workspace.props,
-        equals([1, 'name_test']),
+        equals([1, 'name_test', 'output_test']),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        Workspace(
+          num: 1,
+          name: 'name_test',
+          visible: true,
+          focused: true,
+          urgent: false,
+          rect: _MockRect(),
+          output: 'output_test',
+        ),
+        Workspace(
+          num: 1,
+          name: 'name_test',
+          visible: true,
+          focused: true,
+          urgent: false,
+          rect: _MockRect(),
+          output: 'output_test',
+        ),
       );
     });
 

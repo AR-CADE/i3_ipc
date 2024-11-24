@@ -55,6 +55,43 @@ void main() {
       );
     });
 
+    test('equality', () {
+      expect(
+        Output(
+          id: 0,
+          name: 'name_test',
+          make: 'make_test',
+          model: 'model_test',
+          serial: 'serial_test',
+          active: true,
+          power: true,
+          primary: true,
+          scale: 1,
+          subpixelHinting: 'subpixelHinting_test',
+          transform: 'transform_test',
+          modes: [_MockMode()],
+          currentMode: _MockMode(),
+          rect: _MockRect(),
+        ),
+        Output(
+          id: 0,
+          name: 'name_test',
+          make: 'make_test',
+          model: 'model_test',
+          serial: 'serial_test',
+          active: true,
+          power: true,
+          primary: true,
+          scale: 1,
+          subpixelHinting: 'subpixelHinting_test',
+          transform: 'transform_test',
+          modes: [_MockMode()],
+          currentMode: _MockMode(),
+          rect: _MockRect(),
+        ),
+      );
+    });
+
     group('serialize', () {
       test('with required parameters only', () {
         final rectMock = _MockRect();

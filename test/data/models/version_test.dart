@@ -3,6 +3,49 @@ import 'package:test/test.dart';
 
 void main() {
   group('Version model', () {
+    test('props are correct', () {
+      const version = Version(
+        humanReadable: 'humanReadable_test',
+        variant: 'variant_test',
+        major: 1,
+        minor: 2,
+        patch: 3,
+        loadedConfigFileName: 'loadedConfigFileName_test',
+      );
+      expect(
+        version.props,
+        equals([
+          1,
+          2,
+          3,
+          'variant_test',
+          'humanReadable_test',
+          'loadedConfigFileName_test',
+        ]),
+      );
+    });
+
+    test('equality', () {
+      expect(
+        const Version(
+          humanReadable: 'humanReadable_test',
+          variant: 'variant_test',
+          major: 1,
+          minor: 2,
+          patch: 3,
+          loadedConfigFileName: 'loadedConfigFileName_test',
+        ),
+        const Version(
+          humanReadable: 'humanReadable_test',
+          variant: 'variant_test',
+          major: 1,
+          minor: 2,
+          patch: 3,
+          loadedConfigFileName: 'loadedConfigFileName_test',
+        ),
+      );
+    });
+
     test('serialize', () {
       const version = Version(
         humanReadable: 'humanReadable_test',
