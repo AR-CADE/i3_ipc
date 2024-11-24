@@ -4,6 +4,10 @@ import 'dart:io';
 import 'package:i3_ipc/api/ipc_command_api.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 
+const defaultPort = 0;
+const defaultUid = 1000;
+const maxPathSize = 108;
+
 class I3IpcSocketApi {
   const I3IpcSocketApi();
 
@@ -11,9 +15,8 @@ class I3IpcSocketApi {
     String socketPath, {
     Duration timeout = const Duration(seconds: 2),
   }) {
-    const port = 0;
     final host = InternetAddress(socketPath, type: InternetAddressType.unix);
-    final socket = RawSocket.connect(host, port, timeout: timeout);
+    final socket = RawSocket.connect(host, defaultPort, timeout: timeout);
 
     return socket;
   }
@@ -25,8 +28,6 @@ class I3IpcSocketApi {
     socketPath = socketPath ?? _getSocketpath();
     return _ipcOpenSocket(socketPath!, timeout: timeout);
   }
-
-  int get _getuid => 1000;
 
   String? _getSocketpath() {
     final getenv = Platform.environment;
@@ -49,10 +50,9 @@ class I3IpcSocketApi {
     var dir = getenv['XDG_RUNTIME_DIR'];
     dir ??= '/tmp';
 
-    const pathSize = 108;
-    final sunPath = '$dir/wf-ipc.$_getuid.sock';
+    final sunPath = '$dir/wf-ipc.$defaultUid.sock';
 
-    if (sunPath.length >= pathSize) {
+    if (sunPath.length >= maxPathSize) {
       stderr.writeln('Socket path is too long');
       return null;
     }
