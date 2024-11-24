@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ipc_response.g.dart';
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
-class IPCResponse {
+class IPCResponse extends Equatable {
   const IPCResponse({
     this.type = -1,
     this.size = 0,
@@ -29,4 +30,7 @@ class IPCResponse {
   String toString() {
     return jsonEncode(toJson());
   }
+
+  @override
+  List<Object?> get props => [id ?? pid];
 }
