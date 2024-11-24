@@ -13,19 +13,10 @@ Mode _$ModeFromJson(Map<String, dynamic> json) => Mode(
       modePictureAspectRatio: json['picture_aspect_ratio'] as String?,
     );
 
-Map<String, dynamic> _$ModeToJson(Mode instance) {
-  final val = <String, dynamic>{
-    'width': instance.width,
-    'height': instance.height,
-    'refresh': instance.refresh,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('picture_aspect_ratio', instance.modePictureAspectRatio);
-  return val;
-}
+Map<String, dynamic> _$ModeToJson(Mode instance) => <String, dynamic>{
+      'width': instance.width,
+      'height': instance.height,
+      'refresh': instance.refresh,
+      if (instance.modePictureAspectRatio case final value?)
+        'picture_aspect_ratio': value,
+    };

@@ -21,25 +21,18 @@ SeatDevice _$SeatDeviceFromJson(Map<String, dynamic> json) => SeatDevice(
       repeatRate: (json['repeat_rate'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$SeatDeviceToJson(SeatDevice instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-    'name': instance.name,
-    'vendor': instance.vendor,
-    'product': instance.product,
-    'type': instance.type,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('xkb_active_layout_name', instance.xkbActiveLayoutName);
-  writeNotNull('xkb_layout_names', instance.xkbLayoutNames);
-  writeNotNull('xkb_active_layout_index', instance.xkbActiveLayoutIndex);
-  writeNotNull('repeat_delay', instance.repeatDelay);
-  writeNotNull('repeat_rate', instance.repeatRate);
-  return val;
-}
+Map<String, dynamic> _$SeatDeviceToJson(SeatDevice instance) =>
+    <String, dynamic>{
+      'identifier': instance.identifier,
+      'name': instance.name,
+      'vendor': instance.vendor,
+      'product': instance.product,
+      'type': instance.type,
+      if (instance.xkbActiveLayoutName case final value?)
+        'xkb_active_layout_name': value,
+      if (instance.xkbLayoutNames case final value?) 'xkb_layout_names': value,
+      if (instance.xkbActiveLayoutIndex case final value?)
+        'xkb_active_layout_index': value,
+      if (instance.repeatDelay case final value?) 'repeat_delay': value,
+      if (instance.repeatRate case final value?) 'repeat_rate': value,
+    };

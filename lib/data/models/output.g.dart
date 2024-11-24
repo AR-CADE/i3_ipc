@@ -32,36 +32,28 @@ Output _$OutputFromJson(Map<String, dynamic> json) => Output(
       adaptiveSyncStatus: json['adaptive_sync_status'] as String?,
     );
 
-Map<String, dynamic> _$OutputToJson(Output instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-    'make': instance.make,
-    'model': instance.model,
-    'serial': instance.serial,
-    'active': instance.active,
-    'power': instance.power,
-    'primary': instance.primary,
-    'scale': instance.scale,
-    'subpixel_hinting': instance.subpixelHinting,
-    'transform': instance.transform,
-    'modes': instance.modes.map((e) => e.toJson()).toList(),
-    'current_mode': instance.currentMode.toJson(),
-    'rect': instance.rect.toJson(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('dpms', instance.dpms);
-  writeNotNull('current_workspace', instance.currentWorkspace);
-  writeNotNull('non_desktop', instance.nonDesktop);
-  writeNotNull('focused', instance.focused);
-  writeNotNull('scale_filter', instance.scaleFilter);
-  writeNotNull('max_render_time', instance.maxRenderTime);
-  writeNotNull('adaptive_sync_status', instance.adaptiveSyncStatus);
-  return val;
-}
+Map<String, dynamic> _$OutputToJson(Output instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'make': instance.make,
+      'model': instance.model,
+      'serial': instance.serial,
+      'active': instance.active,
+      'power': instance.power,
+      'primary': instance.primary,
+      'scale': instance.scale,
+      'subpixel_hinting': instance.subpixelHinting,
+      'transform': instance.transform,
+      'modes': instance.modes.map((e) => e.toJson()).toList(),
+      'current_mode': instance.currentMode.toJson(),
+      'rect': instance.rect.toJson(),
+      if (instance.dpms case final value?) 'dpms': value,
+      if (instance.currentWorkspace case final value?)
+        'current_workspace': value,
+      if (instance.nonDesktop case final value?) 'non_desktop': value,
+      if (instance.focused case final value?) 'focused': value,
+      if (instance.scaleFilter case final value?) 'scale_filter': value,
+      if (instance.maxRenderTime case final value?) 'max_render_time': value,
+      if (instance.adaptiveSyncStatus case final value?)
+        'adaptive_sync_status': value,
+    };

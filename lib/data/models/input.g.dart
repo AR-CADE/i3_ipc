@@ -23,25 +23,17 @@ Input _$InputFromJson(Map<String, dynamic> json) => Input(
           : LibInput.fromJson(json['libinput'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$InputToJson(Input instance) {
-  final val = <String, dynamic>{
-    'identifier': instance.identifier,
-    'name': instance.name,
-    'vendor': instance.vendor,
-    'product': instance.product,
-    'type': instance.type,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('xkb_active_layout_name', instance.xkbActiveLayoutName);
-  writeNotNull('xkb_layout_names', instance.xkbLayoutNames);
-  writeNotNull('xkb_active_layout_index', instance.xkbActiveLayoutIndex);
-  writeNotNull('scroll_factor', instance.scrollFactor);
-  writeNotNull('libinput', instance.libinput?.toJson());
-  return val;
-}
+Map<String, dynamic> _$InputToJson(Input instance) => <String, dynamic>{
+      'identifier': instance.identifier,
+      'name': instance.name,
+      'vendor': instance.vendor,
+      'product': instance.product,
+      'type': instance.type,
+      if (instance.xkbActiveLayoutName case final value?)
+        'xkb_active_layout_name': value,
+      if (instance.xkbLayoutNames case final value?) 'xkb_layout_names': value,
+      if (instance.xkbActiveLayoutIndex case final value?)
+        'xkb_active_layout_index': value,
+      if (instance.scrollFactor case final value?) 'scroll_factor': value,
+      if (instance.libinput?.toJson() case final value?) 'libinput': value,
+    };

@@ -18,24 +18,14 @@ Workspace _$WorkspaceFromJson(Map<String, dynamic> json) => Workspace(
       representation: json['representation'] as String?,
     );
 
-Map<String, dynamic> _$WorkspaceToJson(Workspace instance) {
-  final val = <String, dynamic>{
-    'num': instance.num,
-    'name': instance.name,
-    'visible': instance.visible,
-    'focused': instance.focused,
-    'urgent': instance.urgent,
-    'rect': instance.rect.toJson(),
-    'output': instance.output,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('layout', instance.layout);
-  writeNotNull('representation', instance.representation);
-  return val;
-}
+Map<String, dynamic> _$WorkspaceToJson(Workspace instance) => <String, dynamic>{
+      'num': instance.num,
+      'name': instance.name,
+      'visible': instance.visible,
+      'focused': instance.focused,
+      'urgent': instance.urgent,
+      'rect': instance.rect.toJson(),
+      'output': instance.output,
+      if (instance.layout case final value?) 'layout': value,
+      if (instance.representation case final value?) 'representation': value,
+    };

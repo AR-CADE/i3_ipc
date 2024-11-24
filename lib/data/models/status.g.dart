@@ -11,17 +11,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) => Status(
       error: json['error'] as String?,
     );
 
-Map<String, dynamic> _$StatusToJson(Status instance) {
-  final val = <String, dynamic>{
-    'success': instance.success,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('error', instance.error);
-  return val;
-}
+Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
+      'success': instance.success,
+      if (instance.error case final value?) 'error': value,
+    };

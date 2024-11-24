@@ -50,45 +50,38 @@ Node _$NodeFromJson(Map<String, dynamic> json) => Node(
               json['window_properties'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$NodeToJson(Node instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'name': instance.name,
-    'type': instance.type,
-    'border': instance.border,
-    'current_border_width': instance.currentBorderWidth,
-    'layout': instance.layout,
-    'orientation': instance.orientation,
-    'rect': instance.rect.toJson(),
-    'window_rect': instance.windowRect.toJson(),
-    'deco_rect': instance.decoRect.toJson(),
-    'geometry': instance.geometry.toJson(),
-    'urgent': instance.urgent,
-    'sticky': instance.sticky,
-    'marks': instance.marks,
-    'focused': instance.focused,
-    'focus': instance.focus,
-    'nodes': instance.nodes.map((e) => e.toJson()).toList(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('floating_nodes',
-      instance.floatingNodes?.map((e) => e.toJson()).toList());
-  writeNotNull('percent', instance.percent);
-  writeNotNull('representation', instance.representation);
-  writeNotNull('fullscreen_mode', instance.fullscreenMode);
-  writeNotNull('app_id', instance.appId);
-  writeNotNull('pid', instance.pid);
-  writeNotNull('visible', instance.visible);
-  writeNotNull('shell', instance.shell);
-  writeNotNull('inhibit_idle', instance.inhibitIdle);
-  writeNotNull('idle_inhibitors', instance.idleInhibitors?.toJson());
-  writeNotNull('window', instance.window);
-  writeNotNull('window_properties', instance.windowProperties?.toJson());
-  return val;
-}
+Map<String, dynamic> _$NodeToJson(Node instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'type': instance.type,
+      'border': instance.border,
+      'current_border_width': instance.currentBorderWidth,
+      'layout': instance.layout,
+      'orientation': instance.orientation,
+      'rect': instance.rect.toJson(),
+      'window_rect': instance.windowRect.toJson(),
+      'deco_rect': instance.decoRect.toJson(),
+      'geometry': instance.geometry.toJson(),
+      'urgent': instance.urgent,
+      'sticky': instance.sticky,
+      'marks': instance.marks,
+      'focused': instance.focused,
+      'focus': instance.focus,
+      'nodes': instance.nodes.map((e) => e.toJson()).toList(),
+      if (instance.floatingNodes?.map((e) => e.toJson()).toList()
+          case final value?)
+        'floating_nodes': value,
+      if (instance.percent case final value?) 'percent': value,
+      if (instance.representation case final value?) 'representation': value,
+      if (instance.fullscreenMode case final value?) 'fullscreen_mode': value,
+      if (instance.appId case final value?) 'app_id': value,
+      if (instance.pid case final value?) 'pid': value,
+      if (instance.visible case final value?) 'visible': value,
+      if (instance.shell case final value?) 'shell': value,
+      if (instance.inhibitIdle case final value?) 'inhibit_idle': value,
+      if (instance.idleInhibitors?.toJson() case final value?)
+        'idle_inhibitors': value,
+      if (instance.window case final value?) 'window': value,
+      if (instance.windowProperties?.toJson() case final value?)
+        'window_properties': value,
+    };

@@ -14,20 +14,11 @@ IPCResponse _$IPCResponseFromJson(Map<String, dynamic> json) => IPCResponse(
       payload: json['payload'] as String?,
     );
 
-Map<String, dynamic> _$IPCResponseToJson(IPCResponse instance) {
-  final val = <String, dynamic>{
-    'type': instance.type,
-    'size': instance.size,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('payload', instance.payload);
-  writeNotNull('id', instance.id);
-  writeNotNull('pid', instance.pid);
-  return val;
-}
+Map<String, dynamic> _$IPCResponseToJson(IPCResponse instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'size': instance.size,
+      if (instance.id case final value?) 'id': value,
+      if (instance.pid case final value?) 'pid': value,
+      if (instance.payload case final value?) 'payload': value,
+    };

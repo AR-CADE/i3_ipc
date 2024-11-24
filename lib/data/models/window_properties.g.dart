@@ -14,19 +14,10 @@ WindowProperties _$WindowPropertiesFromJson(Map<String, dynamic> json) =>
       transientFor: json['transient_for'] as String?,
     );
 
-Map<String, dynamic> _$WindowPropertiesToJson(WindowProperties instance) {
-  final val = <String, dynamic>{
-    'class': instance.clazz,
-    'instance': instance.instance,
-    'title': instance.title,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('transient_for', instance.transientFor);
-  return val;
-}
+Map<String, dynamic> _$WindowPropertiesToJson(WindowProperties instance) =>
+    <String, dynamic>{
+      'class': instance.clazz,
+      'instance': instance.instance,
+      'title': instance.title,
+      if (instance.transientFor case final value?) 'transient_for': value,
+    };
