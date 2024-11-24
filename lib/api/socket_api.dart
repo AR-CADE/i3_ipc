@@ -29,8 +29,27 @@ class I3IpcSocketApi {
     return _ipcOpenSocket(socketPath!, timeout: timeout);
   }
 
+  bool _pathIsValid(String sunPath) {
+    if (sunPath.length < maxPathSize) {
+      if (File(sunPath).existsSync()) {
+        return true;
+      } else {
+        stderr.writeln('No socket file found');
+      }
+    } else {
+      stderr.writeln('Socket path is too long');
+    }
+
+    return false;
+  }
+
   String? _getSocketpath() {
     final getenv = Platform.environment;
+
+    final wfi3sock = getenv['WAYFIREI3SOCK'];
+    if (wfi3sock != null) {
+      return wfi3sock;
+    }
 
     final wfsock = getenv['WAYFIRESOCK'];
     if (wfsock != null) {
@@ -50,11 +69,14 @@ class I3IpcSocketApi {
     var dir = getenv['XDG_RUNTIME_DIR'];
     dir ??= '/tmp';
 
-    final sunPath = '$dir/wf-ipc.$defaultUid.sock';
+    final sunPath = '$dir/wf-i3-ipc.$defaultUid.sock';
 
-    if (sunPath.length >= maxPathSize) {
-      stderr.writeln('Socket path is too long');
-      return null;
+    if (!_pathIsValid(sunPath)) {
+      final legacySunPath = '$dir/wf-ipc.$defaultUid.sock';
+      if (!_pathIsValid(legacySunPath)) {
+        return null;
+      }
+      return legacySunPath;
     }
 
     return sunPath;
