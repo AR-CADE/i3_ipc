@@ -73,8 +73,17 @@ class PrettyPrinter {
     final id = i.identifier;
     final name = i.name;
     final type = i.type;
-    final product = i.product;
-    final vendor = i.vendor;
+
+    int getVendorID() {
+      return int.tryParse(id.split(':').firstOrNull ?? '0') ?? 0;
+    }
+
+    int getProductID() {
+      return int.tryParse(id.split(':').elementAtOrNull(1) ?? '0') ?? 0;
+    }
+
+    final product = i.product ?? getProductID();
+    final vendor = i.vendor ?? getVendorID();
 
     final fmt = 'Input device: $name\n'
         '  Type: ${prettyTypeName(type)}\n'
