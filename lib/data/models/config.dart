@@ -13,6 +13,7 @@ class Config extends Equatable {
 
   Map<String, dynamic> toJson() => _$ConfigToJson(this);
 
+  /// The contents of the config
   final String config;
 
   @override

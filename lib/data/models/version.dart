@@ -19,12 +19,25 @@ class Version extends Equatable {
 
   Map<String, dynamic> toJson() => _$VersionToJson(this);
 
+  /// A human readable version string that will likely contain
+  /// more useful information such as the git commit short hash and
+  /// git branch
   @JsonKey(name: 'human_readable')
   final String humanReadable;
+
+  /// May contain information such as the name of the server process
   final String variant;
+
+  /// The major version of the server process
   final int major;
+
+  /// The minor version of the server process
   final int minor;
+
+  /// The patch version of the server process
   final int patch;
+
+  /// The path to the loaded config file
   @JsonKey(name: 'loaded_config_file_name')
   final String loadedConfigFileName;
 

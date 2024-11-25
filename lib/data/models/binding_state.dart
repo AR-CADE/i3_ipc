@@ -14,6 +14,7 @@ class BindingState extends Equatable {
 
   Map<String, dynamic> toJson() => _$BindingStateToJson(this);
 
+  /// The currently active binding mode
   final String name;
 
   @override
