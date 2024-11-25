@@ -4,18 +4,19 @@ import 'package:test/test.dart';
 void main() {
   group('Status model', () {
     test('props are correct', () {
-      const status = Status(success: true, error: 'error_test');
+      const status =
+          Status(success: true, parseError: false, error: 'error_test');
 
       expect(
         status.props,
-        equals([true, 'error_test']),
+        equals([true, false, 'error_test']),
       );
     });
 
     test('equality', () {
       expect(
-        const Status(success: true, error: 'error_test'),
-        const Status(success: true, error: 'error_test'),
+        const Status(success: true, parseError: false, error: 'error_test'),
+        const Status(success: true, parseError: false, error: 'error_test'),
       );
     });
 
@@ -24,11 +25,17 @@ void main() {
         const status = Status();
         final json = status.toJson();
         final success = json['success'];
+        final parseError = json['parse_error'];
         final error = json['error'];
 
         expect(
           success,
           true,
+        );
+
+        expect(
+          parseError,
+          null,
         );
 
         expect(
@@ -38,14 +45,21 @@ void main() {
       });
 
       test('with all parameters', () {
-        const status = Status(success: true, error: 'error_test');
+        const status =
+            Status(success: true, parseError: false, error: 'error_test');
         final json = status.toJson();
         final success = json['success'];
+        final parseError = json['parse_error'];
         final error = json['error'];
 
         expect(
           success,
           true,
+        );
+
+        expect(
+          parseError,
+          false,
         );
 
         expect(
@@ -70,21 +84,36 @@ void main() {
         );
 
         expect(
+          status.parseError,
+          null,
+        );
+
+        expect(
           status.error,
           null,
         );
       });
 
       test('with all parameters', () {
-        final json = {'success': true, 'error': 'error_test'};
+        final json = {
+          'success': true,
+          'parse_error': false,
+          'error': 'error_test',
+        };
         final status = Status.fromJson(json);
         expect(
           json,
           status.toJson(),
         );
+
         expect(
           status.success,
           true,
+        );
+
+        expect(
+          status.parseError,
+          false,
         );
 
         expect(
