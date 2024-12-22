@@ -15,6 +15,10 @@ import 'package:meta/meta.dart';
 
 @immutable
 class PrettyPrinter {
+  static dynamic prettyNull(dynamic object) {
+    return object ?? 'unknown';
+  }
+
   static String rawPretty(dynamic object) {
     const encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(object);
@@ -133,17 +137,17 @@ class PrettyPrinter {
 
   static void prettyPrintOutput(Output o) {
     final name = o.name;
+    final active = o.active;
+    final rect = o.rect;
+
+    final ws = o.currentWorkspace;
+
     final make = o.make;
     final model = o.model;
     final serial = o.serial;
-    final rect = o.rect;
     final focused = o.focused ?? false;
-
-    final active = o.active;
     final power = o.power;
-    final ws = o.currentWorkspace;
     final nonDesktop = o.nonDesktop;
-
     final scale = o.scale;
     final scaleFilter = o.scaleFilter;
     final subpixel = o.subpixelHinting;
@@ -157,32 +161,47 @@ class PrettyPrinter {
     final modes = o.modes;
     final currentMode = o.currentMode;
 
-    final width = currentMode.width;
-    final height = currentMode.height;
-    final refresh = currentMode.refresh;
+    final info = make != null && model != null && serial != null
+        ? "'$make $model $serial'"
+        : '';
 
     if (nonDesktop != null && nonDesktop == true) {
-      stdout.write("Output $name '$make $model $serial' (non-desktop)\n");
+      stdout.write('Output $name $info (non-desktop)\n');
     } else if (active == true) {
+      stdout.write('Output $name $info'
+          "${focused ? " (focused)" : ""}\n");
+
+      if (currentMode != null) {
+        final width = currentMode.width;
+        final height = currentMode.height;
+        final refresh = currentMode.refresh;
+        stdout
+            .write('  Current mode: ${width}x$height @ ${refresh / 1000} Hz\n');
+      } else {
+        stdout.write('  Rect: ${rect.width}x${rect.height}\n');
+      }
+
+      final prettyPower =
+          power == null ? prettyNull(power) : (power ? 'on' : 'off');
+
       stdout
-        ..write("Output $name '$make $model $serial'"
-            "${focused ? " (focused)" : ""}\n"
-            '  Current mode: ${width}x$height @ ${refresh / 1000} Hz\n'
-            "  Power: ${power ? "on" : "off"}\n"
+        ..write('  Power: $prettyPower\n'
             '  Position: $x,$y\n'
-            '  Scale factor: $scale\n'
-            '  Scale filter: $scaleFilter\n'
-            '  Subpixel hinting: $subpixel\n'
-            '  Transform: $transform\n'
-            '  Workspace: $ws\n')
+            '  Scale factor: ${prettyNull(scale)}\n'
+            '  Scale filter: ${prettyNull(scaleFilter)}\n'
+            '  Subpixel hinting: ${prettyNull(subpixel)}\n'
+            '  Transform: ${prettyNull(transform)}\n'
+            '  Workspace: ${prettyNull(ws)}\n')
         ..write('  Max render time: ')
-        ..write(maxRenderTime == 0 ? 'off\n' : '$maxRenderTime ms\n')
-        ..write('  Adaptive sync: $adaptiveSyncStatus\n');
+        ..write(
+          maxRenderTime == 0 ? 'off\n' : '${prettyNull(maxRenderTime)} ms\n',
+        )
+        ..write('  Adaptive sync: ${prettyNull(adaptiveSyncStatus)}\n');
     } else {
-      stdout.write("Output $name '$make $model $serial' (disabled)\n");
+      stdout.write('Output $name $info (disabled)\n');
     }
 
-    if (modes.isNotEmpty) {
+    if (modes != null && modes.isNotEmpty) {
       stdout.write('  Available modes:\n');
       for (final mode in modes) {
         final modeWidth = mode.width;
@@ -207,7 +226,7 @@ class PrettyPrinter {
   static void prettyPrintVersion(Version v) {
     final ver = v.humanReadable;
     final variant = v.variant;
-    stdout.write('$variant version $ver\n');
+    stdout.write('${variant == null ? "" : "$variant "}version $ver\n');
   }
 
   static void prettyPrintConfig(Config c) {

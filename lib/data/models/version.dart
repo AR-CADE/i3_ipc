@@ -7,11 +7,11 @@ part 'version.g.dart';
 class Version extends Equatable {
   const Version({
     required this.humanReadable,
-    required this.variant,
     required this.major,
     required this.minor,
     required this.patch,
     required this.loadedConfigFileName,
+    this.variant,
   });
 
   factory Version.fromJson(Map<String, dynamic> json) =>
@@ -24,9 +24,6 @@ class Version extends Equatable {
   /// git branch
   @JsonKey(name: 'human_readable')
   final String humanReadable;
-
-  /// May contain information such as the name of the server process
-  final String variant;
 
   /// The major version of the server process
   final int major;
@@ -41,7 +38,10 @@ class Version extends Equatable {
   @JsonKey(name: 'loaded_config_file_name')
   final String loadedConfigFileName;
 
+  /// May contain information such as the name of the server process
+  final String? variant;
+
   @override
   List<dynamic> get props =>
-      [major, minor, patch, variant, humanReadable, loadedConfigFileName];
+      [major, minor, patch, humanReadable, loadedConfigFileName, variant];
 }

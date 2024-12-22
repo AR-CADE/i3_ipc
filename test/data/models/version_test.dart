@@ -6,11 +6,11 @@ void main() {
     test('props are correct', () {
       const version = Version(
         humanReadable: 'humanReadable_test',
-        variant: 'variant_test',
         major: 1,
         minor: 2,
         patch: 3,
         loadedConfigFileName: 'loadedConfigFileName_test',
+        variant: 'variant_test',
       );
       expect(
         version.props,
@@ -18,9 +18,9 @@ void main() {
           1,
           2,
           3,
-          'variant_test',
           'humanReadable_test',
           'loadedConfigFileName_test',
+          'variant_test',
         ]),
       );
     });
@@ -29,19 +29,19 @@ void main() {
       expect(
         const Version(
           humanReadable: 'humanReadable_test',
-          variant: 'variant_test',
           major: 1,
           minor: 2,
           patch: 3,
           loadedConfigFileName: 'loadedConfigFileName_test',
+          variant: 'variant_test',
         ),
         const Version(
           humanReadable: 'humanReadable_test',
-          variant: 'variant_test',
           major: 1,
           minor: 2,
           patch: 3,
           loadedConfigFileName: 'loadedConfigFileName_test',
+          variant: 'variant_test',
         ),
       );
     });
@@ -49,19 +49,19 @@ void main() {
     test('serialize', () {
       const version = Version(
         humanReadable: 'humanReadable_test',
-        variant: 'variant_test',
         major: 1,
         minor: 2,
         patch: 3,
         loadedConfigFileName: 'loadedConfigFileName_test',
+        variant: 'variant_test',
       );
       final json = version.toJson();
       final humanReadable = json['human_readable'];
-      final variant = json['variant'];
       final major = json['major'];
       final minor = json['minor'];
       final patch = json['patch'];
       final loadedConfigFileName = json['loaded_config_file_name'];
+      final variant = json['variant'];
 
       expect(
         humanReadable,
@@ -92,11 +92,11 @@ void main() {
     test('deserialize', () {
       final json = {
         'human_readable': 'humanReadable_test',
-        'variant': 'variant_test',
         'major': 1,
         'minor': 2,
         'patch': 3,
         'loaded_config_file_name': 'loadedConfigFileName_test',
+        'variant': 'variant_test',
       };
       final version = Version.fromJson(json);
       expect(

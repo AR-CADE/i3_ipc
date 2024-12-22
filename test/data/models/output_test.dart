@@ -95,22 +95,10 @@ void main() {
     group('serialize', () {
       test('with required parameters only', () {
         final rectMock = _MockRect();
-        final currentModeMock = _MockMode();
-        final modesMock = [_MockMode()];
         final output = Output(
-          id: 0,
           name: 'name_test',
-          make: 'make_test',
-          model: 'model_test',
-          serial: 'serial_test',
           active: true,
-          power: true,
           primary: true,
-          scale: 1,
-          subpixelHinting: 'subpixelHinting_test',
-          transform: 'transform_test',
-          modes: modesMock,
-          currentMode: currentModeMock,
           rect: rectMock,
         );
         final json = output.toJson();
@@ -137,31 +125,11 @@ void main() {
         final adaptiveSyncStatus = json['adaptive_sync_status'];
 
         expect(
-          id,
-          0,
-        );
-        expect(
           name,
           'name_test',
         );
         expect(
-          make,
-          'make_test',
-        );
-        expect(
-          model,
-          'model_test',
-        );
-        expect(
-          serial,
-          'serial_test',
-        );
-        expect(
           active,
-          true,
-        );
-        expect(
-          power,
           true,
         );
         expect(
@@ -169,28 +137,45 @@ void main() {
           true,
         );
         expect(
+          rect,
+          rectMock.toJson(),
+        );
+        expect(
+          id,
+          null,
+        );
+        expect(
+          make,
+          null,
+        );
+        expect(
+          power,
+          null,
+        );
+        expect(
+          model,
+          null,
+        );
+        expect(
+          serial,
+          null,
+        );
+        expect(
           scale,
-          1,
+          null,
         );
         expect(
           subpixelHinting,
-          'subpixelHinting_test',
+          null,
         );
         expect(
           transform,
-          'transform_test',
+          null,
         );
-        expect(
-          modes,
-          modesMock.map((e) => e.toJson()),
-        );
+        expect(modes, null);
         expect(
           currentMode,
-          currentModeMock.toJson(),
-        );
-        expect(
-          rect,
-          rectMock.toJson(),
+          null,
         );
         expect(
           dpms,
@@ -361,23 +346,11 @@ void main() {
 
     group('deserialize', () {
       final rectMock = _MockRect();
-      final currentModeMock = _MockMode();
-      final modesMock = [_MockMode()];
       test('with required parameters only', () {
         final json = {
-          'id': 0,
           'name': 'name_test',
-          'make': 'make_test',
-          'model': 'model_test',
-          'serial': 'serial_test',
           'active': true,
-          'power': true,
           'primary': true,
-          'scale': 1.0,
-          'subpixel_hinting': 'subpixelHinting_test',
-          'transform': 'transform_test',
-          'modes': modesMock.map((e) => e.toJson()).toList(),
-          'current_mode': currentModeMock.toJson(),
           'rect': rectMock.toJson(),
         };
         final output = Output.fromJson(json);
@@ -387,7 +360,7 @@ void main() {
         );
         expect(
           output.id,
-          0,
+          null,
         );
         expect(
           output.name,
@@ -395,15 +368,15 @@ void main() {
         );
         expect(
           output.make,
-          'make_test',
+          null,
         );
         expect(
           output.model,
-          'model_test',
+          null,
         );
         expect(
           output.serial,
-          'serial_test',
+          null,
         );
         expect(
           output.active,
@@ -411,7 +384,7 @@ void main() {
         );
         expect(
           output.power,
-          true,
+          null,
         );
         expect(
           output.primary,
@@ -419,23 +392,23 @@ void main() {
         );
         expect(
           output.scale,
-          1,
+          null,
         );
         expect(
           output.subpixelHinting,
-          'subpixelHinting_test',
+          null,
         );
         expect(
           output.transform,
-          'transform_test',
+          null,
         );
         expect(
-          output.modes.map((e) => e.toJson()),
-          modesMock.map((e) => e.toJson()),
+          output.modes,
+          null,
         );
         expect(
-          output.currentMode.toJson(),
-          currentModeMock.toJson(),
+          output.currentMode,
+          null,
         );
         expect(
           output.rect.toJson(),
@@ -472,6 +445,8 @@ void main() {
       });
 
       test('with all parameters', () {
+        final currentModeMock = _MockMode();
+        final modesMock = [_MockMode()];
         final json = {
           'id': 0,
           'name': 'name_test',
@@ -545,11 +520,11 @@ void main() {
           'transform_test',
         );
         expect(
-          output.modes.map((e) => e.toJson()),
+          output.modes?.map((e) => e.toJson()),
           modesMock.map((e) => e.toJson()),
         );
         expect(
-          output.currentMode.toJson(),
+          output.currentMode?.toJson(),
           currentModeMock.toJson(),
         );
         expect(

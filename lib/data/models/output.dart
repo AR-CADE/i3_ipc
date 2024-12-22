@@ -8,20 +8,20 @@ part 'output.g.dart';
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class Output extends Equatable {
   const Output({
-    required this.id,
     required this.name,
-    required this.make,
-    required this.model,
-    required this.serial,
     required this.active,
-    required this.power,
     required this.primary,
-    required this.scale,
-    required this.subpixelHinting,
-    required this.transform,
-    required this.modes,
-    required this.currentMode,
     required this.rect,
+    this.id,
+    this.make,
+    this.model,
+    this.serial,
+    this.power,
+    this.scale,
+    this.subpixelHinting,
+    this.transform,
+    this.modes,
+    this.currentMode,
     this.dpms,
     this.currentWorkspace,
     this.nonDesktop,
@@ -35,54 +35,54 @@ class Output extends Equatable {
 
   Map<String, dynamic> toJson() => _$OutputToJson(this);
 
-  /// The id of the output
-  final int id;
-
   /// The name of the output. On DRM, this is the connector
   final String name;
 
-  /// The make of the output
-  final String make;
-
-  /// The model of the output
-  final String model;
-
-  /// The output's serial number as a hexadecimal string
-  final String serial;
-
   /// Whether this output is active/enabled
   final bool active;
-
-  /// Whether this output is on/off
-  final bool power;
 
   /// For i3 compatibility, this will be false.
   /// It does not make sense in Wayland
   final bool primary;
 
+  /// The bounds for the output consisting of x, y, width, and height
+  final Rect rect;
+
+  /// The id of the output
+  final int? id;
+
+  /// The make of the output
+  final String? make;
+
+  /// The model of the output
+  final String? model;
+
+  /// The output's serial number as a hexadecimal string
+  final String? serial;
+
+  /// Whether this output is on/off
+  final bool? power;
+
   /// The scale currently in use on the output or -1 for disabled outputs
-  final double scale;
+  final double? scale;
 
   /// The subpixel hinting current in use on the output.
   /// This can be rgb, bgr, vrgb, vbgr, or none
   @JsonKey(name: 'subpixel_hinting')
-  final String subpixelHinting;
+  final String? subpixelHinting;
 
   /// The transform currently in use for the output.
   /// This can be normal, 90, 180, 270, flipped-90, flipped-180, or flipped-270
-  final String transform;
+  final String? transform;
 
   /// An array of supported mode objects. Each object contains width, height,
   /// and refresh
-  final List<Mode> modes;
+  final List<Mode>? modes;
 
   /// An object representing the current mode containing width, height,
   /// and refresh
   @JsonKey(name: 'current_mode')
-  final Mode currentMode;
-
-  /// The bounds for the output consisting of x, y, width, and height
-  final Rect rect;
+  final Mode? currentMode;
 
   /// (Deprecated, use power instead) Whether this output is on/off (via DPMS)
   final bool? dpms;
@@ -103,5 +103,5 @@ class Output extends Equatable {
   final String? adaptiveSyncStatus;
 
   @override
-  List<dynamic> get props => [id];
+  List<dynamic> get props => [id ?? name];
 }
