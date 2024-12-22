@@ -46,9 +46,8 @@ class PrettyPrinter {
     final representation = w.representation;
     final focused = w.focused;
 
-    stdout.write(
-        // ignore: lines_longer_than_80_chars
-        "Workspace $name${focused ? " (focused)" : ""}${!visible ? " (off-screen)" : ""}${urgent ? " (urgent)" : ""}\n"
+    stdout.write("Workspace $name${focused ? " (focused)" : ""}"
+        "${!visible ? " (off-screen)" : ""}${urgent ? " (urgent)" : ""}\n"
         '  Output: $output\n'
         '  Layout: $layout\n'
         '  Representation: $representation\n\n');

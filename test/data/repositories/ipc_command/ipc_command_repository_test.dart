@@ -190,7 +190,7 @@ void main() {
             payload: '["window"]',
             client: client,
           );
-        } catch (_) {
+        } on Exception catch (_) {
           expect(
             i3IpcCommandRepository.processCount,
             0,
@@ -227,7 +227,7 @@ void main() {
             0,
             client: client,
           );
-        } catch (_) {
+        } on Exception catch (_) {
           expect(
             i3IpcCommandRepository.processCount,
             0,

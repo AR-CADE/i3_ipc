@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'dart:convert';
 
 import 'package:i3_ipc/core/tools/ipc_magic.dart';

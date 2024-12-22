@@ -1,7 +1,7 @@
 /// An I3 ipc client library written in Dart.
 ///
 ///
-library i3_ipc;
+library;
 
 export 'core/tools/ipc_event_type.dart';
 export 'core/tools/ipc_magic.dart';

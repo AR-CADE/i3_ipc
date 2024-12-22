@@ -71,8 +71,7 @@ void main() {
 
     group('deserialize', () {
       test('with required parameters only', () {
-        // ignore: omit_local_variable_types
-        final Map<String, dynamic> json = {};
+        final json = <String, dynamic>{};
         final status = Status.fromJson(json);
         expect(
           {'success': true},

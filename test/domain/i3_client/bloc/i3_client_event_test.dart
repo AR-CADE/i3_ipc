@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:i3_ipc/domain/i3_client/bloc/i3_client_bloc.dart';
 import 'package:test/test.dart';
 
@@ -8,14 +6,14 @@ void main() {
     group('I3IpcGetBarConfigRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetBarConfigRequested(),
-          equals(I3IpcGetBarConfigRequested()),
+          const I3IpcGetBarConfigRequested(),
+          equals(const I3IpcGetBarConfigRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetBarConfigRequested().props,
+          const I3IpcGetBarConfigRequested().props,
           equals(['', null]),
         );
       });
@@ -24,14 +22,14 @@ void main() {
     group('I3IpcGetBindingModesRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetBindingModesRequested(),
-          equals(I3IpcGetBindingModesRequested()),
+          const I3IpcGetBindingModesRequested(),
+          equals(const I3IpcGetBindingModesRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetBindingModesRequested().props,
+          const I3IpcGetBindingModesRequested().props,
           equals(['', null]),
         );
       });
@@ -40,14 +38,14 @@ void main() {
     group('I3IpcGetBindingStateRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetBindingStateRequested(),
-          equals(I3IpcGetBindingStateRequested()),
+          const I3IpcGetBindingStateRequested(),
+          equals(const I3IpcGetBindingStateRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetBindingStateRequested().props,
+          const I3IpcGetBindingStateRequested().props,
           equals(['', null]),
         );
       });
@@ -56,14 +54,14 @@ void main() {
     group('I3IpcGetConfigRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetConfigRequested(),
-          equals(I3IpcGetConfigRequested()),
+          const I3IpcGetConfigRequested(),
+          equals(const I3IpcGetConfigRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetConfigRequested().props,
+          const I3IpcGetConfigRequested().props,
           equals(['', null]),
         );
       });
@@ -72,14 +70,14 @@ void main() {
     group('I3IpcGetInputsRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetInputsRequested(),
-          equals(I3IpcGetInputsRequested()),
+          const I3IpcGetInputsRequested(),
+          equals(const I3IpcGetInputsRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetInputsRequested().props,
+          const I3IpcGetInputsRequested().props,
           equals(['', null]),
         );
       });
@@ -88,14 +86,14 @@ void main() {
     group('I3IpcGetMarksRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetMarksRequested(),
-          equals(I3IpcGetMarksRequested()),
+          const I3IpcGetMarksRequested(),
+          equals(const I3IpcGetMarksRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetMarksRequested().props,
+          const I3IpcGetMarksRequested().props,
           equals(['', null]),
         );
       });
@@ -104,14 +102,14 @@ void main() {
     group('I3IpcGetOutputsRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetOutputsRequested(),
-          equals(I3IpcGetOutputsRequested()),
+          const I3IpcGetOutputsRequested(),
+          equals(const I3IpcGetOutputsRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetOutputsRequested().props,
+          const I3IpcGetOutputsRequested().props,
           equals(['', null]),
         );
       });
@@ -120,14 +118,14 @@ void main() {
     group('I3IpcGetSeatsRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetSeatsRequested(),
-          equals(I3IpcGetSeatsRequested()),
+          const I3IpcGetSeatsRequested(),
+          equals(const I3IpcGetSeatsRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetSeatsRequested().props,
+          const I3IpcGetSeatsRequested().props,
           equals(['', null]),
         );
       });
@@ -136,14 +134,14 @@ void main() {
     group('I3IpcGetTreeRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetTreeRequested(),
-          equals(I3IpcGetTreeRequested()),
+          const I3IpcGetTreeRequested(),
+          equals(const I3IpcGetTreeRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetTreeRequested().props,
+          const I3IpcGetTreeRequested().props,
           equals(['', null]),
         );
       });
@@ -152,14 +150,14 @@ void main() {
     group('I3IpcGetVersionRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetVersionRequested(),
-          equals(I3IpcGetVersionRequested()),
+          const I3IpcGetVersionRequested(),
+          equals(const I3IpcGetVersionRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetVersionRequested().props,
+          const I3IpcGetVersionRequested().props,
           equals(['', null]),
         );
       });
@@ -168,14 +166,14 @@ void main() {
     group('I3IpcGetWorkspacesRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcGetWorkspacesRequested(),
-          equals(I3IpcGetWorkspacesRequested()),
+          const I3IpcGetWorkspacesRequested(),
+          equals(const I3IpcGetWorkspacesRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcGetWorkspacesRequested().props,
+          const I3IpcGetWorkspacesRequested().props,
           equals(['', null]),
         );
       });
@@ -184,14 +182,14 @@ void main() {
     group('I3IpcSubscribeEventsRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcSubscribeEventsRequested(),
-          equals(I3IpcSubscribeEventsRequested()),
+          const I3IpcSubscribeEventsRequested(),
+          equals(const I3IpcSubscribeEventsRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcSubscribeEventsRequested().props,
+          const I3IpcSubscribeEventsRequested().props,
           equals(['', null]),
         );
       });
@@ -200,14 +198,14 @@ void main() {
     group('I3IpcExecuteRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcExecuteRequested(type: 0),
-          equals(I3IpcExecuteRequested(type: 0)),
+          const I3IpcExecuteRequested(type: 0),
+          equals(const I3IpcExecuteRequested(type: 0)),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcExecuteRequested(type: 0).props,
+          const I3IpcExecuteRequested(type: 0).props,
           equals(['', null]),
         );
       });
@@ -216,14 +214,14 @@ void main() {
     group('I3IpcCommandRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcCommandRequested(),
-          equals(I3IpcCommandRequested()),
+          const I3IpcCommandRequested(),
+          equals(const I3IpcCommandRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcCommandRequested().props,
+          const I3IpcCommandRequested().props,
           equals(['', null]),
         );
       });
@@ -232,14 +230,14 @@ void main() {
     group('I3IpcSendTickRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcSendTickRequested(),
-          equals(I3IpcSendTickRequested()),
+          const I3IpcSendTickRequested(),
+          equals(const I3IpcSendTickRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcSendTickRequested().props,
+          const I3IpcSendTickRequested().props,
           equals(['', null]),
         );
       });
@@ -248,14 +246,14 @@ void main() {
     group('I3IpcSyncRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcSyncRequested(),
-          equals(I3IpcSyncRequested()),
+          const I3IpcSyncRequested(),
+          equals(const I3IpcSyncRequested()),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcSyncRequested().props,
+          const I3IpcSyncRequested().props,
           equals(['', null]),
         );
       });
@@ -264,14 +262,14 @@ void main() {
     group('I3IpcCloseRequested', () {
       test('supports value equality', () {
         expect(
-          I3IpcCloseRequested(''),
-          equals(I3IpcCloseRequested('')),
+          const I3IpcCloseRequested(''),
+          equals(const I3IpcCloseRequested('')),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3IpcCloseRequested('').props,
+          const I3IpcCloseRequested('').props,
           equals(['']),
         );
       });

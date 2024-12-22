@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/domain/i3_client/bloc/i3_client_bloc.dart';
 import 'package:test/test.dart';
@@ -9,14 +8,14 @@ void main() {
     group('I3ClientBlocState.unknown', () {
       test('supports value comparisons', () {
         expect(
-          I3ClientBlocState.unknown(),
-          I3ClientBlocState.unknown(),
+          const I3ClientBlocState.unknown(),
+          const I3ClientBlocState.unknown(),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3ClientBlocState.unknown().props,
+          const I3ClientBlocState.unknown().props,
           equals(['unknown', 'unknown']),
         );
       });
@@ -25,14 +24,14 @@ void main() {
     group('I3ClientBlocState.close', () {
       test('supports value comparisons', () {
         expect(
-          I3ClientBlocState.close('pid'),
-          I3ClientBlocState.close('pid'),
+          const I3ClientBlocState.close('pid'),
+          const I3ClientBlocState.close('pid'),
         );
       });
 
       test('props are correct', () {
         expect(
-          I3ClientBlocState.close('pid').props,
+          const I3ClientBlocState.close('pid').props,
           equals(['pid', 'close']),
         );
       });
