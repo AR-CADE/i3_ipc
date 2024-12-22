@@ -283,6 +283,7 @@ class I3IpcCommandRepository {
         .doOnError((e, s) {
           close(pid: pid);
           _addError(e, s);
+          throw Exception(e);
         })
         .first
         .then((status) {
@@ -342,6 +343,7 @@ class I3IpcCommandRepository {
         .doOnError((e, s) {
           close(pid: pid);
           _addError(e, s);
+          throw Exception(e);
         })
         .first
         .then((value) {
