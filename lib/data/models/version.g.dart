@@ -8,18 +8,18 @@ part of 'version.dart';
 
 Version _$VersionFromJson(Map<String, dynamic> json) => Version(
       humanReadable: json['human_readable'] as String,
-      variant: json['variant'] as String,
       major: (json['major'] as num).toInt(),
       minor: (json['minor'] as num).toInt(),
       patch: (json['patch'] as num).toInt(),
       loadedConfigFileName: json['loaded_config_file_name'] as String,
+      variant: json['variant'] as String?,
     );
 
 Map<String, dynamic> _$VersionToJson(Version instance) => <String, dynamic>{
       'human_readable': instance.humanReadable,
-      'variant': instance.variant,
       'major': instance.major,
       'minor': instance.minor,
       'patch': instance.patch,
       'loaded_config_file_name': instance.loadedConfigFileName,
+      if (instance.variant case final value?) 'variant': value,
     };
