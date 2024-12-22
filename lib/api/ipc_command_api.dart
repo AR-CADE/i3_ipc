@@ -5,8 +5,10 @@ import 'dart:typed_data';
 import 'package:i3_ipc/core/tools/ipc_magic.dart';
 import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
+import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
+@immutable
 class I3IpcCommandApi {
   I3IpcCommandApi(
     RawSocket socket,
@@ -61,7 +63,7 @@ class I3IpcCommandApi {
 
   final String _pid;
   final StreamController<IPCResponse?>? _controller;
-  late StreamSubscription<RawSocketEvent> streamListener;
+  late final StreamSubscription<RawSocketEvent> streamListener;
 
   void _clientAbort(
     String message,

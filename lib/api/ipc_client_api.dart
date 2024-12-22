@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:i3_ipc/api/socket_api.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class I3IpcClientApi {
   const I3IpcClientApi();
 

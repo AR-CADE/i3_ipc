@@ -6,10 +6,12 @@ import 'package:i3_ipc/core/tools/ipc_payload_type.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
 import 'package:i3_ipc/data/models/status.dart';
 import 'package:i3_ipc/data/repositories/ipc_command/ipc_command_repository_error.dart';
+import 'package:meta/meta.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:rxdart/transformers.dart';
 import 'package:uuid/uuid.dart';
 
+@immutable
 class I3IpcCommandRepository {
   final _controllers = <String, StreamController<IPCResponse?>>{};
   final _subscriptions =

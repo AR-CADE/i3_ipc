@@ -3,11 +3,13 @@ import 'dart:io';
 
 import 'package:i3_ipc/api/ipc_command_api.dart';
 import 'package:i3_ipc/data/models/ipc_response.dart';
+import 'package:meta/meta.dart';
 
 const defaultPort = 0;
 const defaultUid = 1000;
 const maxPathSize = 108;
 
+@immutable
 class I3IpcSocketApi {
   const I3IpcSocketApi();
 

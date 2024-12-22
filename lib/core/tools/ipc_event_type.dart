@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+
+@immutable
 class IPCEventType {
   // events sent from sway to clients. events have the highest bits set.
   static final ipcI3EventTypeWorkspace = (1.toUnsigned(8) << 31) | 0;

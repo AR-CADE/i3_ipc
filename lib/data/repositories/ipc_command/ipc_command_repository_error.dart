@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+
+@immutable
 class IpcCommandRepositoryError {
   const IpcCommandRepositoryError({
     required this.error,

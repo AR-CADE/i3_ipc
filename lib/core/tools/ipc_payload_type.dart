@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+
+@immutable
 class IpcPayloadType {
   // i3 command types - see i3's I3_REPLY_TYPE constants
   static const ipcCommand = 0;

@@ -11,7 +11,9 @@ import 'package:i3_ipc/data/models/seat.dart';
 import 'package:i3_ipc/data/models/status.dart';
 import 'package:i3_ipc/data/models/version.dart';
 import 'package:i3_ipc/data/models/workspace.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class PrettyPrinter {
   static String rawPretty(dynamic object) {
     const encoder = JsonEncoder.withIndent('  ');

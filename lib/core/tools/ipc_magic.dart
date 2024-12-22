@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:meta/meta.dart';
+
+@immutable
 class IpcMagic {
   static final List<int> _ipcMagic = utf8.encode(asString);
   static final int _ipcHeaderSize = _ipcMagic.length + 8;
