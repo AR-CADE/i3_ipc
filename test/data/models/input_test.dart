@@ -49,15 +49,11 @@ void main() {
         const Input(
           identifier: 'identifier_test',
           name: 'name_test',
-          vendor: 0,
-          product: 0,
           type: 'type_test',
         ),
         const Input(
           identifier: 'identifier_test',
           name: 'name_test',
-          vendor: 0,
-          product: 0,
           type: 'type_test',
         ),
       );
@@ -68,8 +64,6 @@ void main() {
         const input = Input(
           identifier: 'identifier_test',
           name: 'name_test',
-          vendor: 0,
-          product: 0,
           type: 'type_test',
         );
         final json = input.toJson();
@@ -83,6 +77,8 @@ void main() {
         final xkbActiveLayoutIndex = json['xkb_active_layout_index'];
         final scrollFactor = json['scroll_factor'];
         final libinput = json['libinput'];
+        final repeatDelay = json['repeat_delay'];
+        final repeatRate = json['repeat_rate'];
 
         expect(
           identifier,
@@ -95,18 +91,18 @@ void main() {
         );
 
         expect(
+          type,
+          'type_test',
+        );
+
+        expect(
           vendor,
-          0,
+          null,
         );
 
         expect(
           product,
-          0,
-        );
-
-        expect(
-          type,
-          'type_test',
+          null,
         );
 
         expect(
@@ -133,6 +129,16 @@ void main() {
           libinput,
           null,
         );
+
+        expect(
+          repeatDelay,
+          null,
+        );
+
+        expect(
+          repeatRate,
+          null,
+        );
       });
 
       test('with all parameters', () {
@@ -148,6 +154,8 @@ void main() {
           xkbActiveLayoutIndex: 0,
           scrollFactor: 1.2,
           libinput: libinputMock,
+          repeatDelay: 0,
+          repeatRate: 1,
         );
         final json = input.toJson();
         final identifier = json['identifier'];
@@ -160,6 +168,8 @@ void main() {
         final xkbActiveLayoutIndex = json['xkb_active_layout_index'];
         final scrollFactor = json['scroll_factor'];
         final libinput = json['libinput'];
+        final repeatDelay = json['repeat_delay'];
+        final repeatRate = json['repeat_rate'];
 
         expect(
           identifier,
@@ -210,6 +220,16 @@ void main() {
           libinput,
           libinputMock.toJson(),
         );
+
+        expect(
+          repeatDelay,
+          0,
+        );
+
+        expect(
+          repeatRate,
+          1,
+        );
       });
     });
 
@@ -218,8 +238,6 @@ void main() {
         final json = {
           'identifier': 'identifier_test',
           'name': 'name_test',
-          'vendor': 0,
-          'product': 0,
           'type': 'type_test',
         };
         final input = Input.fromJson(json);
@@ -239,18 +257,18 @@ void main() {
         );
 
         expect(
+          input.type,
+          'type_test',
+        );
+
+        expect(
           input.vendor,
-          0,
+          null,
         );
 
         expect(
           input.product,
-          0,
-        );
-
-        expect(
-          input.type,
-          'type_test',
+          null,
         );
 
         expect(
@@ -277,6 +295,16 @@ void main() {
           input.libinput,
           null,
         );
+
+        expect(
+          input.repeatDelay,
+          null,
+        );
+
+        expect(
+          input.repeatRate,
+          null,
+        );
       });
 
       test('with all parameters', () {
@@ -293,6 +321,8 @@ void main() {
           'xkb_active_layout_index': 0,
           'scroll_factor': 1.2,
           'libinput': libinputMock.toJson(),
+          'repeat_delay': 0,
+          'repeat_rate': 1,
         };
         final input = Input.fromJson(json);
 
@@ -349,6 +379,16 @@ void main() {
         expect(
           input.libinput?.toJson(),
           libinputMock.toJson(),
+        );
+
+        expect(
+          input.repeatDelay,
+          0,
+        );
+
+        expect(
+          input.repeatRate,
+          1,
         );
       });
     });
