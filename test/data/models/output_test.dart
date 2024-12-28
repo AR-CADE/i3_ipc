@@ -98,7 +98,6 @@ void main() {
         final output = Output(
           name: 'name_test',
           active: true,
-          primary: true,
           rect: rectMock,
         );
         final json = output.toJson();
@@ -134,7 +133,7 @@ void main() {
         );
         expect(
           primary,
-          true,
+          false,
         );
         expect(
           rect,
@@ -350,12 +349,16 @@ void main() {
         final json = {
           'name': 'name_test',
           'active': true,
-          'primary': true,
           'rect': rectMock.toJson(),
         };
         final output = Output.fromJson(json);
         expect(
-          json,
+          {
+            'name': 'name_test',
+            'active': true,
+            'rect': rectMock.toJson(),
+            'primary': false,
+          },
           output.toJson(),
         );
         expect(
@@ -388,7 +391,7 @@ void main() {
         );
         expect(
           output.primary,
-          true,
+          false,
         );
         expect(
           output.scale,

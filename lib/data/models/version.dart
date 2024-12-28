@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'version.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Version extends Equatable {
   const Version({
     required this.humanReadable,

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'rect.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Rect extends Equatable {
   const Rect({
     required this.x,

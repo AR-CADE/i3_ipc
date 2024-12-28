@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'idle_inhibitor.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class IdleInhibitor extends Equatable {
   const IdleInhibitor({
     required this.application,

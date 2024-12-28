@@ -8,7 +8,7 @@ part 'lib_input.g.dart';
 /// the object. In addition to the possible options listed, all string
 /// properties may also be unknown, in the case that a new option is added
 /// to libinput.
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class LibInput extends Equatable {
   const LibInput({
     required this.sendEvents,

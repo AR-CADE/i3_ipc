@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'binding_state.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class BindingState extends Equatable {
   const BindingState({
     required this.name,

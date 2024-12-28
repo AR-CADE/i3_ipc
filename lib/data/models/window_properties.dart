@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'window_properties.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class WindowProperties extends Equatable {
   const WindowProperties({
     required this.clazz,

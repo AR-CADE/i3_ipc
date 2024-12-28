@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'mode.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Mode extends Equatable {
   const Mode({
     required this.width,

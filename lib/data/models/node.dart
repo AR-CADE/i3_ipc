@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'node.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Node extends Equatable {
   const Node({
     required this.id,

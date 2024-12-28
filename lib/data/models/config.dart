@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'config.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Config extends Equatable {
   const Config({
     required this.config,

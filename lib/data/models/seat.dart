@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'seat.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Seat extends Equatable {
   const Seat({
     required this.name,

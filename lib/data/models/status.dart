@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'status.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Status extends Equatable {
   const Status({bool? success, this.parseError, this.error})
       : success = success ?? true;

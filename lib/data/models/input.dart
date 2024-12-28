@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'input.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Input extends Equatable {
   const Input({
     required this.identifier,

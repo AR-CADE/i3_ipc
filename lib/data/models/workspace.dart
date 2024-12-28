@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'workspace.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class Workspace extends Equatable {
   const Workspace({
     required this.num,

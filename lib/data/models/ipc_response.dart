@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'ipc_response.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable()
 class IPCResponse extends Equatable {
   const IPCResponse({
     this.type = -1,
