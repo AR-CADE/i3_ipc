@@ -9,8 +9,8 @@ part of 'output.dart';
 Output _$OutputFromJson(Map<String, dynamic> json) => Output(
       name: json['name'] as String,
       active: json['active'] as bool,
-      primary: json['primary'] as bool,
       rect: Rect.fromJson(json['rect'] as Map<String, dynamic>),
+      primary: json['primary'] as bool? ?? false,
       id: (json['id'] as num?)?.toInt(),
       make: json['make'] as String?,
       model: json['model'] as String?,
@@ -37,8 +37,8 @@ Output _$OutputFromJson(Map<String, dynamic> json) => Output(
 Map<String, dynamic> _$OutputToJson(Output instance) => <String, dynamic>{
       'name': instance.name,
       'active': instance.active,
-      'primary': instance.primary,
       'rect': instance.rect.toJson(),
+      'primary': instance.primary,
       if (instance.id case final value?) 'id': value,
       if (instance.make case final value?) 'make': value,
       if (instance.model case final value?) 'model': value,

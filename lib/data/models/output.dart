@@ -10,8 +10,8 @@ class Output extends Equatable {
   const Output({
     required this.name,
     required this.active,
-    required this.primary,
     required this.rect,
+    this.primary = false,
     this.id,
     this.make,
     this.model,
@@ -41,12 +41,12 @@ class Output extends Equatable {
   /// Whether this output is active/enabled
   final bool active;
 
+  /// The bounds for the output consisting of x, y, width, and height
+  final Rect rect;
+
   /// For i3 compatibility, this will be false.
   /// It does not make sense in Wayland
   final bool primary;
-
-  /// The bounds for the output consisting of x, y, width, and height
-  final Rect rect;
 
   /// The id of the output (required by sway)
   final int? id;
