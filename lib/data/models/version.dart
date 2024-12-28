@@ -39,6 +39,7 @@ class Version extends Equatable {
   final String loadedConfigFileName;
 
   /// May contain information such as the name of the server process
+  /// (required by sway)
   final String? variant;
 
   @override

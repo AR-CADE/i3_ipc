@@ -48,39 +48,41 @@ class Output extends Equatable {
   /// The bounds for the output consisting of x, y, width, and height
   final Rect rect;
 
-  /// The id of the output
+  /// The id of the output (required by sway)
   final int? id;
 
-  /// The make of the output
+  /// The make of the output (required by sway)
   final String? make;
 
-  /// The model of the output
+  /// The model of the output (required by sway)
   final String? model;
 
-  /// The output's serial number as a hexadecimal string
+  /// The output's serial number as a hexadecimal string (required by sway)
   final String? serial;
 
-  /// Whether this output is on/off
+  /// Whether this output is on/off (required by sway)
   final bool? power;
 
   /// The scale currently in use on the output or -1 for disabled outputs
+  /// (required by sway)
   final double? scale;
 
   /// The subpixel hinting current in use on the output.
-  /// This can be rgb, bgr, vrgb, vbgr, or none
+  /// This can be rgb, bgr, vrgb, vbgr, or none (required by sway)
   @JsonKey(name: 'subpixel_hinting')
   final String? subpixelHinting;
 
   /// The transform currently in use for the output.
   /// This can be normal, 90, 180, 270, flipped-90, flipped-180, or flipped-270
+  /// (required by sway)
   final String? transform;
 
   /// An array of supported mode objects. Each object contains width, height,
-  /// and refresh
+  /// and refresh (required by sway)
   final List<Mode>? modes;
 
   /// An object representing the current mode containing width, height,
-  /// and refresh
+  /// and refresh (required by sway)
   @JsonKey(name: 'current_mode')
   final Mode? currentMode;
 
